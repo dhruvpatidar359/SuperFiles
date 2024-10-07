@@ -6,6 +6,9 @@ import 'package:open_filex/open_filex.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'nav_button.dart';
+import 'file_item_card.dart';
+import 'database_helper.dart';
 
 class FileExplorerScreen extends StatefulWidget {
   @override
@@ -17,13 +20,12 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
   String currentPath = Directory.current.path;
   List<FileSystemEntity> filesAndFolders = [];
   TextEditingController pathController = TextEditingController();
-  FileSystemEntity? selectedEntity; // For tracking selected file/folder
-  bool showSummary =
-      false; // For controlling the visibility of the summary panel
-  double summaryWidth = 250; // Initial width of the summary panel
-  double minSummaryWidth = 150; // Minimum width of the summary panel
-  double maxSummaryWidth = 400; // Maximum width of the summary panel
-  late Database database; // SQLite database instance
+  FileSystemEntity? selectedEntity;
+  bool showSummary = false;
+  double summaryWidth = 250;
+  double minSummaryWidth = 150;
+  double maxSummaryWidth = 400;
+  late Database database;
 
   @override
   void initState() {
@@ -49,7 +51,6 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
     // Get the application documents directory
     final appDocDir = await getApplicationDocumentsDirectory();
     final dbPath = path.join(appDocDir.path, 'summaries.db');
-    // basically in the documents/summaries.db
 
     // Open the database
     database = await databaseFactory.openDatabase(dbPath);
@@ -70,9 +71,8 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
       setState(() {
         filesAndFolders = entities;
         pathController.text = currentPath;
-        selectedEntity = null; // Reset selection on folder change
-        showSummary =
-            false; // Hide summary panel when navigating to a new folder
+        selectedEntity = null;
+        showSummary = false;
       });
     } catch (e) {
       print("Error accessing directory: $e");
@@ -178,7 +178,7 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
         String summary = await _generateSummaryForFile(entity);
 
         // Save the summary to the database
-        await _insertSummary(filePath, summary);
+        await DatabaseHelper.insertSummary(database, filePath, summary);
       }
     }
 
@@ -187,29 +187,6 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
           content:
               Text('Organize completed for ${path.basename(directory.path)}')),
     );
-  }
-
-  Future<void> _insertSummary(String filePath, String summary) async {
-    await database.insert(
-      'summaries',
-      {'filePath': filePath, 'summary': summary},
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-  }
-
-  Future<String?> _getSummaryFromDatabase(String filePath) async {
-    List<Map<String, dynamic>> results = await database.query(
-      'summaries',
-      columns: ['summary'],
-      where: 'filePath = ?',
-      whereArgs: [filePath],
-    );
-
-    if (results.isNotEmpty) {
-      return results.first['summary'] as String;
-    } else {
-      return null;
-    }
   }
 
   Future<String> _generateSummaryForFile(File file) async {
@@ -222,7 +199,7 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
 
   Future<String> _getSummary(FileSystemEntity entity) async {
     if (entity is File) {
-      String? summary = await _getSummaryFromDatabase(entity.path);
+      String? summary = await DatabaseHelper.getSummary(database, entity.path);
       if (summary != null) {
         return summary;
       } else {
@@ -554,157 +531,5 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
         ],
       ),
     );
-  }
-}
-
-class NavButton extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final VoidCallback onTap;
-
-  const NavButton({
-    Key? key,
-    required this.icon,
-    required this.label,
-    required this.onTap,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(icon, color: Theme.of(context).colorScheme.primary),
-      title: Text(label),
-      onTap: onTap,
-    );
-  }
-}
-
-class FileItemCard extends StatelessWidget {
-  final String name;
-  final bool isFolder;
-  final bool isCardView;
-  final IconData icon;
-  final FileSystemEntity entity;
-  final Function(String) onMenuItemSelected;
-
-  const FileItemCard({
-    Key? key,
-    required this.name,
-    required this.isFolder,
-    required this.isCardView,
-    required this.icon,
-    required this.entity,
-    required this.onMenuItemSelected,
-  }) : super(key: key);
-
-  bool _isImageFile(String extension) {
-    return ['.jpg', '.jpeg', '.png', '.gif'].contains(extension);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final fileExtension = path.extension(entity.path).toLowerCase();
-    Widget content;
-
-    if (!isFolder && _isImageFile(fileExtension)) {
-      // Display image thumbnail
-      content = Image.file(
-        File(entity.path),
-        fit: BoxFit.cover,
-      );
-    } else {
-      // Display icon centered
-      content = Icon(icon, size: 40);
-    }
-
-    if (isCardView) {
-      return Card(
-        elevation: 2,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        margin: EdgeInsets.all(5), // Reduced margin
-        child: Stack(
-          children: [
-            Column(
-              children: [
-                Expanded(
-                  child: Center(child: content),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(4.0), // Reduced padding
-                  child: Text(
-                    name,
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
-            ),
-            Positioned(
-              top: 0,
-              right: 0,
-              child: PopupMenuButton<String>(
-                icon: Icon(Icons.more_vert),
-                onSelected: (String value) {
-                  onMenuItemSelected(value);
-                },
-                itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-                  if (entity is Directory)
-                    const PopupMenuItem<String>(
-                      value: 'organize',
-                      child: Text('Organize'),
-                    ),
-                  const PopupMenuItem<String>(
-                    value: 'move',
-                    child: Text('Move'),
-                  ),
-                  const PopupMenuItem<String>(
-                    value: 'rename',
-                    child: Text('Rename'),
-                  ),
-                  const PopupMenuItem<String>(
-                    value: 'delete',
-                    child: Text('Delete'),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
-    } else {
-      return ListTile(
-        leading: content,
-        title: Text(
-          name,
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        trailing: PopupMenuButton<String>(
-          icon: Icon(Icons.more_vert),
-          onSelected: (String value) {
-            onMenuItemSelected(value);
-          },
-          itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-            if (entity is Directory)
-              const PopupMenuItem<String>(
-                value: 'organize',
-                child: Text('Organize'),
-              ),
-            const PopupMenuItem<String>(
-              value: 'move',
-              child: Text('Move'),
-            ),
-            const PopupMenuItem<String>(
-              value: 'rename',
-              child: Text('Rename'),
-            ),
-            const PopupMenuItem<String>(
-              value: 'delete',
-              child: Text('Delete'),
-            ),
-          ],
-        ),
-      );
-    }
   }
 }
