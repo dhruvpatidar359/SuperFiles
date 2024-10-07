@@ -19,7 +19,8 @@ Your response must be a JSON object with the following schema:
         {
             "src_path": "original file path",
             "suggested_file_name": "the Proposed file name",
-            "dst_path": "new file path under proposed directory structure with proposed file name"
+            "dst_path": "new file path under proposed directory structure with proposed file name",
+            "summary": "The summary of the file given by user"
         }
     ]
 }
@@ -59,10 +60,13 @@ class TreeGenerator {
       responseText =
           responseText?.replaceAll('```json\n', '').replaceAll('\n```', '');
 
+      print('Raw response after replacement: $responseText');
+
+
 
       return responseText;
       // Parse the response into a JSON object
-      final Map<String, dynamic> fileTree = jsonDecode(responseText!);
+      // final Map<String, dynamic> fileTree = jsonDecode(responseText!);
       // return fileTree;
     } catch (e) {
       print('Error: $e');

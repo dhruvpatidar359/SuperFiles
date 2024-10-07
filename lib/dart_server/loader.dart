@@ -21,6 +21,7 @@ class Loader {
     for (FileSystemEntity entity in entities) {
       if (entity is File) {
         final fileExtension = p.extension(entity.path).toLowerCase();
+
         if (allowedExtensions.contains(fileExtension)) {
           String fileContent = await extractTextFromFile(entity.path);
 
@@ -28,8 +29,9 @@ class Loader {
           if (fileContent.length > 500) {
             fileContent =  fileContent.substring(0, 500);  // Extract the first 500 characters
           }
+          String fileName = p.basename(entity.path);
 
-          String summaryJson = await summarizer.summarizeFile(entity.path, fileContent);
+          String summaryJson = await summarizer.summarizeFile(fileName, fileContent);
           Map<String, dynamic> summaryMap = jsonDecode(summaryJson);
           summariesList.add(summaryMap);  // Add the JSON object to the list
         }

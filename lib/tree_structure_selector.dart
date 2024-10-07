@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_generative_ai/google_generative_ai.dart';
+
+import 'dart_server/loader.dart';
+import 'dart_server/summarizer.dart';
+import 'dart_server/tree_generator.dart';
 
 class TreeStructureSelector extends StatefulWidget {
   const TreeStructureSelector({super.key});
@@ -8,6 +13,8 @@ class TreeStructureSelector extends StatefulWidget {
 }
 
 class _TreeStructureSelectorState extends State<TreeStructureSelector> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,18 +23,34 @@ class _TreeStructureSelectorState extends State<TreeStructureSelector> {
         child: Card(
           child: Column(
             children: [
-              Container(
-                child: Text(
-                  "We have Generated several Tree Structure",
-                  style: TextStyle(fontSize: 30),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween, // Aligns widgets to the sides
+                children: [
+                  Expanded(
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center, // Centers the Column in the middle
+                        children: [
+                          Text("Centered Content"),
+                          SizedBox(height: 10),
+                          Text("More Content Here"),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: IconButton(
+                      icon: Icon(Icons.cancel),
+                      onPressed: () {
+                        Navigator.pop(context);
+                        // Cancel button action here
+                      },
+                    ),
+                  ),
+                ],
               ),
-              Container(
-                child: Text(
-                  "Please select one of the following",
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
+              
               Row(
                 children: [
                   Expanded(
@@ -35,7 +58,7 @@ class _TreeStructureSelectorState extends State<TreeStructureSelector> {
                         margin: EdgeInsets.all(20),
                         width: MediaQuery.sizeOf(context).width,
                         height: MediaQuery.sizeOf(context).height / 1.5,
-                        color: Theme.of(context).colorScheme.outlineVariant),
+                        color: Theme.of(context).colorScheme.secondaryFixed),
                   ),
                   Expanded(
                     child: Container(
@@ -49,7 +72,7 @@ class _TreeStructureSelectorState extends State<TreeStructureSelector> {
                       margin: EdgeInsets.all(20),
                       width: MediaQuery.sizeOf(context).width,
                       height: MediaQuery.sizeOf(context).height / 1.5,
-                      color: Colors.red,
+                      color: Theme.of(context).colorScheme.secondaryFixed,
                     ),
                   ),
                 ],

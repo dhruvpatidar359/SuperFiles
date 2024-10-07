@@ -6,23 +6,24 @@ class Summarizer {
   Summarizer(this.model);
 
   // Summarize a single file's content and return a JSON string
-  Future<String> summarizeFile(String filePath, String content) async {
+  Future<String> summarizeFile(String fileName, String content) async {
     // Define the prompt with the file content
     final prompt = '''
 You will be provided with the contents of a file along with its metadata. Provide a summary of the contents. The purpose of the summary is to organize files based on their content. To this end provide a concise but informative summary. Make the summary as specific to the file as possible.
 
 ```{
-   "file_path": "path to the file including name",
+   "original_file_name" : "original name of the file as given by the user"
+   "suggested_file_name": "suggest a file name that best describes it",
    "summary": " summary of the content"
 }```
 
     
 Below is the file's data with file path and its content:
-$filePath
+$fileName
 $content
     ''';
 
-    print('Summarizing file: $filePath');
+    print('Summarizing file: $fileName');
     final contentToSummarize = [Content.text(prompt)];
 
     // Count tokens in the request content
@@ -46,10 +47,11 @@ $content
     print(strBuf);
 
     // Return the result as a JSON string
-    Map<String, dynamic> result = {
-      "file_path": filePath,
-      "summary": summaryBuffer.toString()
-    };
+    // Map<String, dynamic> result = {
+    //   "file_path": fileName,
+    //   "original_file_name": fileName
+    //   "summary": summaryBuffer.toString()
+    // };
 
     return strBuf;
     // return jsonEncode(strBuf);  // Convert to JSON string

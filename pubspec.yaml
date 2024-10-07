@@ -48,6 +48,7 @@ dependencies:
   archive: ^3.6.1
   xml: ^6.5.0
   watcher: ^1.1.0
+  flutter_fancy_tree_view: ^1.6.0
 
 
 dev_dependencies:

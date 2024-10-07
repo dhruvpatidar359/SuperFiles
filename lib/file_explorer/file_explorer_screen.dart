@@ -264,6 +264,7 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
 
   Future<void> _organizeFolder(Directory directory) async {
     List<FileSystemEntity> files = directory.listSync();
+    String directoryPath = directory.path;
 
     // for (var entity in files) {
     //   if (entity is File) {
@@ -277,7 +278,7 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
     //   }
     // }
     Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => FileClassifierSelectorScreen()));
+        builder: (context) => FileClassifierSelectorScreen(directoryPath: directoryPath,)));
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
