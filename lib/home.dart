@@ -1,8 +1,11 @@
+// file_explorer_screen.dart
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as path;
 import 'package:open_file/open_file.dart';
-import 'package:path_provider/path_provider.dart'; // Add this import
+import 'package:path_provider/path_provider.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 class FileExplorerScreen extends StatefulWidget {
   @override
@@ -20,12 +23,44 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
   double summaryWidth = 250; // Initial width of the summary panel
   double minSummaryWidth = 150; // Minimum width of the summary panel
   double maxSummaryWidth = 400; // Maximum width of the summary panel
+  late Database database; // SQLite database instance
 
   @override
   void initState() {
     super.initState();
+    _initializeDatabase(); // Initialize the database
     pathController.text = currentPath;
     _loadFilesAndFolders();
+  }
+
+  @override
+  void dispose() {
+    database.close(); // Close the database when done
+    super.dispose();
+  }
+
+  Future<void> _initializeDatabase() async {
+    // Initialize FFI
+    sqfliteFfiInit();
+
+    // Use the ffi factory
+    var databaseFactory = databaseFactoryFfi;
+
+    // Get the application documents directory
+    final appDocDir = await getApplicationDocumentsDirectory();
+    final dbPath = path.join(appDocDir.path, 'summaries.db');
+    // basically in the documents/summaries.db
+
+    // Open the database
+    database = await databaseFactory.openDatabase(dbPath);
+
+    // Create the summaries table if it doesn't exist
+    await database.execute('''
+      CREATE TABLE IF NOT EXISTS summaries (
+        filePath TEXT PRIMARY KEY,
+        summary TEXT NOT NULL
+      )
+    ''');
   }
 
   void _loadFilesAndFolders() {
@@ -128,24 +163,17 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
   }
 
   Future<void> _organizeFolder(Directory directory) async {
-    // Get the summaries directory
-    Directory summariesDir = await _getSummariesDirectory();
-
-    // List all files in the directory
     List<FileSystemEntity> files = directory.listSync();
 
     for (var entity in files) {
       if (entity is File) {
-        String fileName = path.basename(entity.path);
-        String summaryFilePath =
-            path.join(summariesDir.path, '$fileName.summary');
+        String filePath = entity.path;
 
-        // Simulate summary generation
+        // Generate summary (replace with actual implementation)
         String summary = await _generateSummaryForFile(entity);
 
-        // Save the summary to a file
-        File summaryFile = File(summaryFilePath);
-        await summaryFile.writeAsString(summary);
+        // Save the summary to the database
+        await _insertSummary(filePath, summary);
       }
     }
 
@@ -156,15 +184,27 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
     );
   }
 
-  Future<Directory> _getSummariesDirectory() async {
-    final appDocDir = await getApplicationDocumentsDirectory();
-    final summariesDir = Directory(path.join(appDocDir.path, 'summaries'));
+  Future<void> _insertSummary(String filePath, String summary) async {
+    await database.insert(
+      'summaries',
+      {'filePath': filePath, 'summary': summary},
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
 
-    if (!await summariesDir.exists()) {
-      await summariesDir.create(recursive: true);
+  Future<String?> _getSummaryFromDatabase(String filePath) async {
+    List<Map<String, dynamic>> results = await database.query(
+      'summaries',
+      columns: ['summary'],
+      where: 'filePath = ?',
+      whereArgs: [filePath],
+    );
+
+    if (results.isNotEmpty) {
+      return results.first['summary'] as String;
+    } else {
+      return null;
     }
-
-    return summariesDir;
   }
 
   Future<String> _generateSummaryForFile(File file) async {
@@ -177,15 +217,8 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
 
   Future<String> _getSummary(FileSystemEntity entity) async {
     if (entity is File) {
-      Directory summariesDir = await _getSummariesDirectory();
-      String fileName = path.basename(entity.path);
-      String summaryFilePath =
-          path.join(summariesDir.path, '$fileName.summary');
-
-      File summaryFile = File(summaryFilePath);
-
-      if (await summaryFile.exists()) {
-        String summary = await summaryFile.readAsString();
+      String? summary = await _getSummaryFromDatabase(entity.path);
+      if (summary != null) {
         return summary;
       } else {
         return "Summary not available. Please organize the folder to generate summaries.";
@@ -294,7 +327,6 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
               children: [
                 // Main content
                 Expanded(
-                  flex: showSummary ? 1 : 1, // Adjusted flex
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
