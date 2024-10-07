@@ -430,24 +430,47 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
                       // Address bar
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            IconButton(
-                              icon: Icon(Icons.arrow_back),
-                              onPressed: _navigateUp,
-                            ),
-                            Expanded(
-                              child: TextField(
-                                controller: pathController,
-                                onSubmitted: _onPathSubmitted,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  contentPadding:
-                                      EdgeInsets.symmetric(horizontal: 8),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(10), // Rounded corners
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          child: Row(
+                            children: [
+                              IconButton(
+                                icon: Icon(Icons.arrow_back,
+                                    color: Colors.black), // Styled icon
+                                onPressed: _navigateUp,
+                              ),
+                              Expanded(
+                                child: TextField(
+                                  controller: pathController,
+                                  onSubmitted: _onPathSubmitted,
+                                  decoration: InputDecoration(
+                                    filled: true,
+
+                                    // TextField background color
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(
+                                          10), // Rounded TextField
+                                      borderSide: BorderSide.none, // No border
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        horizontal: 15,
+                                        vertical: 10), // Inner padding
+                                    hintText: 'Enter path...', // Hint text
+                                    hintStyle: TextStyle(), // Hint text style
+                                  ),
+                                  style: TextStyle(
+                                      fontSize: 16), // Font size for text
                                 ),
                               ),
-                            ),
-                          ],
+                              SizedBox(width: 8), // Spacer
+                              // Optional search icon
+                            ],
+                          ),
                         ),
                       ),
                       Expanded(
