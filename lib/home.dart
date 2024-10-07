@@ -2,8 +2,8 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:open_filex/open_filex.dart';
 import 'package:path/path.dart' as path;
-import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
@@ -101,8 +101,13 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
     }
   }
 
-  void _openFile(String filePath) {
-    OpenFile.open(filePath);
+  void _openFile(String filePath) async {
+    final result = await OpenFilex.open(filePath);
+    if (result.type != ResultType.done) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error opening file: ${result.message}')),
+      );
+    }
   }
 
   IconData _getIcon(FileSystemEntity entity) {
