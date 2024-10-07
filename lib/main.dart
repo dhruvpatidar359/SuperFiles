@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:superfiles/file_classifier_selector_screen.dart';
 import 'util.dart';
 import 'theme.dart';
 
@@ -21,10 +22,11 @@ class MyApp extends StatelessWidget {
     TextTheme textTheme = createTextTheme(context, "Ubuntu", "Ubuntu");
 
     MaterialTheme theme = MaterialTheme(textTheme);
-    return MaterialApp(
+    return
+      MaterialApp(
       title: 'Flutter Demo',
       theme: brightness == Brightness.light ? theme.light() : theme.dark(),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: FileClassifierSelectorScreen(),
     );
   }
 }
