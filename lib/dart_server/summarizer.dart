@@ -1,5 +1,3 @@
-import 'dart:convert';  // For JSON encoding
-import 'dart:io';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 class Summarizer {
@@ -43,7 +41,8 @@ $content
     print(summaryBuffer);
 
     print("summarBuffer to String");
-    String strBuf = summaryBuffer.toString().substring(7, summaryBuffer.length - 3);
+    String strBuf =
+        summaryBuffer.toString().substring(7, summaryBuffer.length - 3);
     print(strBuf);
 
     // Return the result as a JSON string
