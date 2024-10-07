@@ -4,6 +4,11 @@ import 'package:csv/csv.dart';
 import 'package:archive/archive.dart';
 import 'package:xml/xml.dart';
 import 'dart:convert';
+import 'package:google_generative_ai/google_generative_ai.dart';
+import 'dart:typed_data';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 
 // Main function to extract text based on file extension
 Future<String> extractTextFromFile(String filePath) async {
@@ -35,6 +40,10 @@ Future<String> extractTextFromFile(String filePath) async {
 
       case 'csv':
         return await extractTextFromCSV(filePath);
+
+      case 'png':
+      case 'jpeg':
+        return await sendPhotoWithPrompt(filePath);
 
       default:
         return "Unsupported file type: $extension";
@@ -96,5 +105,48 @@ Future<String> extractTextFromCSV(String filePath) async {
     return fields.map((e) => e.join(', ')).join('\n');
   } catch (e) {
     return "Error extracting text from CSV: $e";
+  }
+}
+
+// Extract the summary of the text file from gemini
+Future<String> sendPhotoWithPrompt(String imagePath) async {
+
+  late final GenerativeModel _model;
+
+  _model = GenerativeModel(
+    model: 'gemini-1.5-flash-latest',
+    apiKey: 'AIzaSyDqXskrI3gT1axkZGkYRCBW8tBENIjlpNw', // Secure the API key!
+  );
+
+  final List<({Image? image, String? text, bool fromUser})> _generatedContent =
+  <({Image? image, String? text, bool fromUser})>[];
+
+
+  try {
+    // Set the prompt message
+    String message = "give context of image concise and precise";
+
+    // Load the image from the local file system
+    Uint8List imageBytes = await File(imagePath).readAsBytes();
+
+    // Create the content payload (with a single image and a text message)
+    String extension = imagePath.split('.').last.toLowerCase();
+    String mimeType = extension == 'png' ? 'image/png' : 'image/jpeg';
+
+    final content = [
+      Content.multi([
+        TextPart(message),
+        DataPart(mimeType, imageBytes), // Only one image
+      ])
+    ];
+
+    // Make API call to generate content
+    var response = await _model.generateContent(content);
+    String text = response.text.toString();
+
+    return text;
+  }
+  catch(e){
+    return "Error generating the summary: $e";
   }
 }
