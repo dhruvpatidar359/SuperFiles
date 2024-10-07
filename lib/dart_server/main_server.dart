@@ -3,29 +3,11 @@ import 'dart:convert';
 import 'package:superfiles/dart_server/summarizer.dart';
 import 'package:superfiles/dart_server/tree_generator.dart';
 
-
 import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:file_picker/file_picker.dart';
 
 import 'loader.dart'; // Import file picker
-
-void main() async {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Document Summarizer',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: DocumentSummarizerScreen(),
-    );
-  }
-}
 
 class DocumentSummarizerScreen extends StatefulWidget {
   @override
@@ -42,7 +24,7 @@ class _DocumentSummarizerScreenState extends State<DocumentSummarizerScreen> {
   final summarizer = Summarizer(GenerativeModel(
     model: 'gemini-1.5-flash-latest', // The model you are using
     apiKey:
-    'AIzaSyDqXskrI3gT1axkZGkYRCBW8tBENIjlpNw', // Replace with your actual Google Generative AI API key
+        'AIzaSyDqXskrI3gT1axkZGkYRCBW8tBENIjlpNw', // Replace with your actual Google Generative AI API key
   ));
 
   late final loader = Loader(summarizer); // Initialize loader with summarizer
@@ -50,7 +32,7 @@ class _DocumentSummarizerScreenState extends State<DocumentSummarizerScreen> {
   late final tree = TreeGenerator(GenerativeModel(
     model: 'gemini-1.5-flash-latest', // The model you are using
     apiKey:
-    'AIzaSyDqXskrI3gT1axkZGkYRCBW8tBENIjlpNw', // Replace with your actual Google Generative AI API key
+        'AIzaSyDqXskrI3gT1axkZGkYRCBW8tBENIjlpNw', // Replace with your actual Google Generative AI API key
   ));
 
   Future<void> pickFolderAndSummarizeDocuments() async {
@@ -65,7 +47,7 @@ class _DocumentSummarizerScreenState extends State<DocumentSummarizerScreen> {
 
       // Load and summarize document content from the selected folder
       combinedSummariesJson =
-      await loader.loadAndSummarizeDocuments(folderPath);
+          await loader.loadAndSummarizeDocuments(folderPath);
 
       treeGenerator = await tree.createFileTree(combinedSummariesJson!);
       setState(() {

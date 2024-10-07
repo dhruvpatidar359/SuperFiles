@@ -1,11 +1,14 @@
 // file_explorer_screen.dart
 
+import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:superfiles/file_classifier_selector_screen.dart';
+import 'package:watcher/watcher.dart';
 import 'nav_button.dart';
 import 'file_item_card.dart';
 import 'database_helper.dart';
@@ -26,6 +29,94 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
   double minSummaryWidth = 150;
   double maxSummaryWidth = 400;
   late Database database;
+  bool isAutoOrganizeEnabled = false;
+
+  StreamSubscription? _directoryWatcherSubscription;
+  Map<String, StreamSubscription> _fileWatchers = {};
+
+  Future<void> _handleFileAdded(String filePath) async {
+    final file = File(filePath);
+
+    // Generate summary
+    final summary = await _generateSummaryForFile(file);
+
+    // Save summary to database
+    await DatabaseHelper.insertSummary(database, filePath, summary);
+
+    // Refresh the UI
+    _loadFilesAndFolders();
+  }
+
+  Future<void> _handleFileModified(String filePath) async {
+    final file = File(filePath);
+
+    // Regenerate summary
+    print("we are seeing a file has been modified");
+    final summary = await _generateSummaryForFile(file);
+
+    // Update summary in database
+    await DatabaseHelper.insertSummary(database, filePath, summary);
+
+    // Refresh the UI if necessary
+  }
+
+  Future<void> _handleFileRemoved(String filePath) async {
+    // Remove summary from database
+    await DatabaseHelper.deleteSummary(database, filePath);
+
+    // Refresh the UI
+    _loadFilesAndFolders();
+  }
+
+  void _handleFileSystemEvent(WatchEvent event) async {
+    if (!isAutoOrganizeEnabled) return;
+
+    final filePath = event.path;
+    final entityType = await FileSystemEntity.type(filePath);
+
+    switch (event.type) {
+      case ChangeType.ADD:
+        if (entityType == FileSystemEntityType.file) {
+          // Handle file addition
+          await _handleFileAdded(filePath);
+        }
+        break;
+      case ChangeType.MODIFY:
+        if (entityType == FileSystemEntityType.file) {
+          // Handle file modification
+          await _handleFileModified(filePath);
+        }
+        break;
+      case ChangeType.REMOVE:
+        if (entityType == FileSystemEntityType.file) {
+          // Handle file removal
+          await _handleFileRemoved(filePath);
+        }
+        break;
+    }
+  }
+
+  void _startWatching() {
+    _stopWatching(); // Ensure previous watchers are cancelled
+
+    // Start watching the current directory
+    final directoryWatcher = DirectoryWatcher(currentPath);
+    print("we are watching to the " + currentPath);
+    _directoryWatcherSubscription = directoryWatcher.events.listen((event) {
+      _handleFileSystemEvent(event);
+    });
+  }
+
+  void _stopWatching() {
+    _directoryWatcherSubscription?.cancel();
+    _directoryWatcherSubscription = null;
+
+    // Cancel all file watchers
+    for (var subscription in _fileWatchers.values) {
+      subscription.cancel();
+    }
+    _fileWatchers.clear();
+  }
 
   @override
   void initState() {
@@ -74,6 +165,10 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
         selectedEntity = null;
         showSummary = false;
       });
+
+      if (isAutoOrganizeEnabled) {
+        _startWatching();
+      }
     } catch (e) {
       print("Error accessing directory: $e");
     }
@@ -170,17 +265,19 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
   Future<void> _organizeFolder(Directory directory) async {
     List<FileSystemEntity> files = directory.listSync();
 
-    for (var entity in files) {
-      if (entity is File) {
-        String filePath = entity.path;
-
-        // Generate summary (replace with actual implementation)
-        String summary = await _generateSummaryForFile(entity);
-
-        // Save the summary to the database
-        await DatabaseHelper.insertSummary(database, filePath, summary);
-      }
-    }
+    // for (var entity in files) {
+    //   if (entity is File) {
+    //     String filePath = entity.path;
+    //
+    //     // Generate summary (replace with actual implementation)
+    //     String summary = await _generateSummaryForFile(entity);
+    //
+    //     // Save the summary to the database
+    //     await DatabaseHelper.insertSummary(database, filePath, summary);
+    //   }
+    // }
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => FileClassifierSelectorScreen()));
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -229,7 +326,6 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('File Explorer'),
         actions: [
           IconButton(
             icon: Icon(isCardView ? Icons.view_list : Icons.grid_view),
@@ -239,13 +335,32 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
               });
             },
           ),
+          Row(
+            children: [
+              Text('Auto-Organize'),
+              Switch(
+                value: isAutoOrganizeEnabled,
+                onChanged: (value) {
+                  setState(() {
+                    isAutoOrganizeEnabled = value;
+                    if (isAutoOrganizeEnabled) {
+                      _startWatching();
+                    } else {
+                      _stopWatching();
+                    }
+                  });
+                },
+              ),
+            ],
+          ),
         ],
+        title: Text('Super Files'),
       ),
       body: Row(
         children: [
           // Left-side navigation
           Container(
-            width: 180, // Reduced width
+            width: 200, // Reduced width
             padding: EdgeInsets.all(10),
             color: Theme.of(context).colorScheme.surfaceVariant,
             child: SingleChildScrollView(
@@ -341,7 +456,7 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
                                 gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount:
-                                      showSummary ? 3 : 4, // Adjust columns
+                                      showSummary ? 7 : 8, // Adjust columns
                                   childAspectRatio: 0.8,
                                 ),
                                 itemCount: filesAndFolders.length,

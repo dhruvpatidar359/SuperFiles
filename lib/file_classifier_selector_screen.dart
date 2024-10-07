@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:superfiles/dart_server/tree_structure_selector.dart';
 
 class FileClassifierSelectorScreen extends StatefulWidget {
   const FileClassifierSelectorScreen({super.key});
 
   @override
-  State<FileClassifierSelectorScreen> createState() => _FileClassifierSelectorScreenState();
+  State<FileClassifierSelectorScreen> createState() =>
+      _FileClassifierSelectorScreenState();
 }
 
-class _FileClassifierSelectorScreenState extends State<FileClassifierSelectorScreen> {
+class _FileClassifierSelectorScreenState
+    extends State<FileClassifierSelectorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,8 +66,7 @@ class _AddDocumentFormState extends State<AddDocumentForm> {
             child: Text(
               "Parent Path\n/CSE",
               style: TextStyle(
-                  fontSize: 16,
-                  color: Theme.of(context).colorScheme.onPrimary),
+                  fontSize: 16, color: Theme.of(context).colorScheme.onPrimary),
             ),
           ),
         ),
@@ -91,7 +93,7 @@ class _AddDocumentFormState extends State<AddDocumentForm> {
                   // Logic to generate Auto-ID
                   documentIdController.text = "Auto-ID Generated";
                 },
-                child: Text("Auto-ID", style: TextStyle(color: Colors.blue)),
+                child: Text("Auto-ID"),
               )
             ],
           ),
@@ -120,10 +122,9 @@ class _AddDocumentFormState extends State<AddDocumentForm> {
                 fieldControllers.add(TextEditingController());
               });
             },
-            icon: Icon(Icons.add_circle, color: Colors.blue),
+            icon: Icon(Icons.add_circle),
             label: Text(
               'Add field',
-              style: TextStyle(color: Colors.blue),
             ),
           ),
         ),
@@ -142,19 +143,20 @@ class _AddDocumentFormState extends State<AddDocumentForm> {
                         borderRadius: BorderRadius.circular(5))),
                 onPressed: () {
                   // Handle cancel logic
+                  Navigator.pop(context);
                 },
                 child: Text('Cancel', style: TextStyle(color: Colors.grey)),
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue, // Background color
-                  foregroundColor: Colors.white, // Text color
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5), // Square border
                   ),
                 ),
                 onPressed: () {
                   // Handle button press
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => TreeStructureSelector()));
                   print("Document ID: ${documentIdController.text}");
                   fieldControllers.forEach((controller) {
                     print("Field: ${controller.text}");

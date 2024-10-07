@@ -28,4 +28,14 @@ class DatabaseHelper {
       return null;
     }
   }
+
+  // database_helper.dart
+
+  static Future<void> deleteSummary(Database database, String filePath) async {
+    await database.delete(
+      'summaries',
+      where: 'filePath = ?',
+      whereArgs: [filePath],
+    );
+  }
 }
