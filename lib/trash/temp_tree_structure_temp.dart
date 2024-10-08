@@ -2,9 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_fancy_tree_view/flutter_fancy_tree_view.dart';
-// import 'package:admin/screens/local_files/node.dart'; // Import your updated Node class here
 
-import 'node.dart';
+import '../directory_tree_structure/node.dart';
 
 class FileExplorerUI extends StatefulWidget {
   final String source_path;
@@ -22,6 +21,7 @@ class _FileExplorerUIState extends State<FileExplorerUI> {
   Node? selectedNode;
   double _panelWidth = 300;
   bool _showSummary = false;
+  Node? hoveredNode;
 
   @override
   void initState() {
@@ -36,7 +36,6 @@ class _FileExplorerUIState extends State<FileExplorerUI> {
     );
   }
 
-  // Updated populateTreeFromJson method
   Future<void> populateTreeFromJson(dynamic jsonData) async {
     if (jsonData.isEmpty) {
       jsonData = '''{
@@ -48,12 +47,7 @@ class _FileExplorerUIState extends State<FileExplorerUI> {
     }''';
     }
 
-    print("json String before converting");
-    print(jsonData);
-
     Map<String, dynamic> processedJsonData = jsonDecode(jsonData);
-
-    // Access the "files" field which is a List
     List<dynamic> files = processedJsonData['files'];
 
     for (var file in files) {
@@ -61,31 +55,22 @@ class _FileExplorerUIState extends State<FileExplorerUI> {
       String suggestedFileName = file['suggested_file_name'];
       String summaryOfFile = file['summary'];
 
-      // Split path to create a tree structure
       List<String> segments = path.split('/');
-
-      // Create nodes for the path
       Node currentNode = root;
 
-      // Traverse the segments to add folder nodes
       for (String segment in segments) {
-        // Check if the current segment already exists in the children of the current node
         Node? child = currentNode.children.firstWhere(
               (child) => child.name == segment,
           orElse: () => Node(id: segment.hashCode, name: segment, summary: ""),
         );
 
-        // If the segment is a new node, add it to the tree
         if (!currentNode.children.contains(child)) {
           currentNode.insertChild(currentNode.children.length, child);
         }
 
-        // Move the current node to the child node
         currentNode = child;
       }
 
-      // Add the suggested file node at the appropriate level as a leaf node
-      // Make sure it does not already exist as a directory node
       if (!currentNode.children.any((child) => child.name == suggestedFileName)) {
         Node fileNode = Node(
           id: suggestedFileName.hashCode,
@@ -96,28 +81,23 @@ class _FileExplorerUIState extends State<FileExplorerUI> {
       }
     }
 
-    // Update the TreeController after populating the tree
-    setState(() {
-      treeController.rebuild();
-    });
+    setState(() {});
   }
 
-
   void updateJsonAfterNodeMove() {
-    // Method to generate the JSON string from the current tree structure
     Map<String, dynamic> generateJsonFromTree(Node currentNode) {
       List<Map<String, dynamic>> files = [];
 
       void traverse(Node node, String currentPath) {
         for (var child in node.children) {
           String newPath =
-              currentPath.isEmpty ? child.name : '$currentPath/${child.name}';
+          currentPath.isEmpty ? child.name : '$currentPath/${child.name}';
           if (child.isLeaf) {
             files.add({
               'dst_path': newPath,
               'suggested_file_name': child.name,
               'summary': child.summary,
-              'src_path': '' // Update with source path if needed
+              'src_path': ''
             });
           } else {
             traverse(child, newPath);
@@ -131,43 +111,7 @@ class _FileExplorerUIState extends State<FileExplorerUI> {
 
     Map<String, dynamic> updatedJson = generateJsonFromTree(root);
     String updatedJsonString = jsonEncode(updatedJson);
-    print(updatedJsonString); // This will print the updated JSON string
-  }
-
-  void copyTreeStructureToFileSystem(dynamic jsonData) async {
-    Map<String, dynamic> processedJsonData = jsonDecode(jsonData);
-
-    // Access the "files" field which is a List
-    List<dynamic> files = processedJsonData['files'];
-
-    // Base directory (replace this with your actual path in string format)
-    String basePath = widget.source_path; // Replace with actual path
-
-    // Iterate through the file entries and move files
-    for (var fileEntry in files) {
-      // Convert relative src_path and dst_path to full paths
-      String srcPath = fileEntry['src_path'];
-      String dstPath = fileEntry['dst_path'];
-
-      // Combine the base path with src_path and dst_path
-      String absoluteSrcPath = '$basePath/$srcPath';
-      String absoluteDstPath = '$basePath/$dstPath';
-
-      // Create the destination directory if it doesn't exist
-      Directory dstDir = Directory(absoluteDstPath).parent;
-      if (!await dstDir.exists()) {
-        await dstDir.create(recursive: true);
-      }
-
-      // Move the file from srcPath to dstPath
-      File srcFile = File(absoluteSrcPath);
-      if (await srcFile.exists()) {
-        await srcFile.rename(absoluteDstPath);
-        print('Moved: $absoluteSrcPath to $absoluteDstPath');
-      } else {
-        print('Source file not found: $absoluteSrcPath');
-      }
-    }
+    print(updatedJsonString);
   }
 
   @override
@@ -184,7 +128,7 @@ class _FileExplorerUIState extends State<FileExplorerUI> {
           TextButton(
               onPressed: () {},
               child:
-                  Text('Options Menu', style: TextStyle(color: Colors.white))),
+              Text('Options Menu', style: TextStyle(color: Colors.white))),
           TextButton(
             onPressed: () {
               if (selectedNode != null) {
@@ -194,13 +138,6 @@ class _FileExplorerUIState extends State<FileExplorerUI> {
               }
             },
             child: Text('Summary', style: TextStyle(color: Colors.white)),
-          ),
-          TextButton(
-            onPressed: () async {
-              copyTreeStructureToFileSystem(widget.dataList);
-            },
-            child: Text('Create Directory Structure',
-                style: TextStyle(color: Colors.white)),
           ),
         ],
       ),
@@ -241,82 +178,97 @@ class _FileExplorerUIState extends State<FileExplorerUI> {
       child: AnimatedTreeView<Node>(
         treeController: treeController,
         nodeBuilder: (BuildContext context, TreeEntry<Node> entry) {
-          return _buildDraggableNode(entry);
+          return TreeDragTarget<Node>(
+            node: entry.node,
+            onNodeAccepted: (details) {
+              if (!entry.node.isLeaf || (entry.node.isLeaf && !entry.node.name.contains('.'))) {
+                // Accept drop only if the target is a folder (not a file)
+                setState(() {
+                  _moveNode(details.draggedNode, entry.node);
+                  treeController.rebuild();
+                  updateJsonAfterNodeMove();
+                });
+              }
+            },
+            builder: (BuildContext context, TreeDragAndDropDetails<Node>? details) {
+              return TreeDraggable<Node>(
+                node: entry.node,
+                feedback: Material(
+                  color: Colors.transparent,
+                  child: Container(
+                    padding: EdgeInsets.all(8),
+                    color: Colors.blue.withOpacity(0.5),
+                    child: Text(entry.node.name, style: TextStyle(color: Colors.white)),
+                  ),
+                ),
+                childWhenDragging: Opacity(
+                  opacity: 0.5,
+                  child: _buildTreeNodeTile(entry),
+                ),
+                child: _buildTreeNodeTile(entry),
+              );
+            },
+          );
         },
       ),
     );
   }
 
-  Widget _buildDraggableNode(TreeEntry<Node> entry) {
-    return DragTarget<Node>(
-      builder: (context, candidateData, rejectedData) {
-        return Draggable<Node>(
-          data: entry.node,
-          feedback: Material(
-            color: Colors.transparent,
-            child: Container(
-              padding: EdgeInsets.all(8),
-              color: Colors.blue.withOpacity(0.5),
-              child:
-                  Text(entry.node.name, style: TextStyle(color: Colors.white)),
-            ),
-          ),
-          child: InkWell(
-            onTap: () {
-              setState(() {
-                selectedNode = entry.node;
-                if (entry.hasChildren) {
-                  treeController.toggleExpansion(entry.node);
-                }
-              });
-            },
-            child: TreeIndentation(
-              entry: entry,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    if (entry.node.isLeaf)
-                      Icon(
-                        Icons.file_copy,
-                        color: Colors.amber,
-                      )
-                    else if (entry.isExpanded)
-                      Icon(
-                        Icons.folder_open,
-                        color: Colors.amber,
-                      )
-                    else if (!entry.isExpanded)
-                      Icon(
-                        Icons.folder,
-                        color: Colors.amber,
-                      ),
-                    SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        entry.node.name,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        );
-      },
-      onWillAccept: (incomingNode) {
-        return entry.node.isLeaf == false &&
-            incomingNode != null &&
-            !_isDescendant(entry.node, incomingNode);
-      },
-      onAccept: (incomingNode) {
+  Widget _buildTreeNodeTile(TreeEntry<Node> entry) {
+    return MouseRegion(
+      onEnter: (_) {
         setState(() {
-          _moveNode(incomingNode, entry.node);
-          treeController.rebuild();
-          updateJsonAfterNodeMove();
+          hoveredNode = entry.node;
         });
       },
+      onExit: (_) {
+        setState(() {
+          hoveredNode = null;
+        });
+      },
+      child: InkWell(
+        onTap: () {
+          setState(() {
+            selectedNode = entry.node;
+            if (entry.hasChildren) {
+              treeController.toggleExpansion(entry.node);
+            }
+          });
+        },
+        child: TreeIndentation(
+          entry: entry,
+          child: Container(
+            color: hoveredNode == entry.node ? Colors.grey[700] : Colors.transparent,
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                if (entry.node.isLeaf && entry.node.name.contains('.'))
+                  Icon(
+                    Icons.file_copy,
+                    color: Colors.amber,
+                  )
+                else if (entry.isExpanded)
+                  Icon(
+                    Icons.folder_open,
+                    color: Colors.amber,
+                  )
+                else if (!entry.isExpanded)
+                    Icon(
+                      Icons.folder,
+                      color: Colors.amber,
+                    ),
+                SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    entry.node.name,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 
@@ -329,14 +281,12 @@ class _FileExplorerUIState extends State<FileExplorerUI> {
   }
 
   void _moveNode(Node nodeToMove, Node newParent) {
-    // Remove the node from its current parent
     if (nodeToMove.parent != null) {
       List<Node> updatedChildren = List<Node>.from(nodeToMove.parent!.children);
       updatedChildren.remove(nodeToMove);
       nodeToMove.parent!.children = updatedChildren;
     }
 
-    // Add the node to its new parent
     newParent.insertChild(newParent.children.length, nodeToMove);
     nodeToMove.parent = newParent;
   }
@@ -347,20 +297,23 @@ class _FileExplorerUIState extends State<FileExplorerUI> {
       padding: EdgeInsets.all(16),
       child: selectedNode != null
           ? (selectedNode!.isLeaf
-              ? FileDetailsPanel(
-                  node: selectedNode!,
-                  onCreateSummary: () {
-                    setState(() {
-                      _showSummary = true;
-                    });
-                  })
-              : FolderDetailsPanel(node: selectedNode!))
+          ? FileDetailsPanel(
+          node: selectedNode!,
+          onCreateSummary: () {
+            setState(() {
+              _showSummary = true;
+            });
+          })
+          : FolderDetailsPanel(node: selectedNode!))
           : Center(
-              child: Text('Select a file or folder to view details',
-                  style: TextStyle(color: Colors.white))),
+          child: Text('Select a file or folder to view details',
+              style: TextStyle(color: Colors.white))),
     );
   }
 }
+
+// FileDetailsPanel and FolderDetailsPanel widgets remain the same.
+// FileDetailsPanel and FolderDetailsPanel widgets remain the same.
 
 class FileDetailsPanel extends StatelessWidget {
   final Node node;

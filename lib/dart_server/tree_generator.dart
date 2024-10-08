@@ -13,9 +13,26 @@ Follow good naming conventions. Here are a few guidelines:
 If the file is already named well or matches a known convention, set the destination path to the same as the source path.
 
 Your response must be a JSON object with the following schema:
+You should include 3 different suggestion for each(Each one should be completely different and unique from other), Give JSON as given below
 ```json
 {
-    "files": [
+    "files1": [
+        {
+            "src_path": "original file path",
+            "suggested_file_name": "the Proposed file name",
+            "dst_path": "new folder path under proposed directory structure without proposed file name",
+            "summary": "The summary of the file given by user"
+        }
+    ],
+    "files2": [
+        {
+            "src_path": "original file path",
+            "suggested_file_name": "the Proposed file name",
+            "dst_path": "new folder path under proposed directory structure without proposed file name",
+            "summary": "The summary of the file given by user"
+        }
+    ],
+    "files3": [
         {
             "src_path": "original file path",
             "suggested_file_name": "the Proposed file name",

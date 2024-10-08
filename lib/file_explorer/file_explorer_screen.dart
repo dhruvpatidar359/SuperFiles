@@ -7,7 +7,7 @@ import 'package:open_filex/open_filex.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'package:superfiles/file_classifier_selector_screen.dart';
+import 'package:superfiles/directory_tree_structure/file_classifier_selector_screen.dart';
 import 'package:watcher/watcher.dart';
 import 'nav_button.dart';
 import 'file_item_card.dart';
