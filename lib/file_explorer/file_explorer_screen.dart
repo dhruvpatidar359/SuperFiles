@@ -9,6 +9,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:superfiles/file_classifier_selector_screen.dart';
 import 'package:watcher/watcher.dart';
+import '../utility_functions/option_functions.dart';
 import 'nav_button.dart';
 import 'file_item_card.dart';
 import 'database_helper.dart';
@@ -65,6 +66,7 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
     await DatabaseHelper.deleteSummary(database, filePath);
 
     // Refresh the UI
+
     _loadFilesAndFolders();
   }
 
@@ -318,6 +320,207 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
     return path.join(homeDir, folderName);
   }
 
+  void showPopupMenu(BuildContext context, Offset position,FileSystemEntity entity,bool isFolder) {
+    showMenu<String>(
+      context: context,
+      position: RelativeRect.fromLTRB(position.dx, position.dy, position.dx, position.dy),
+      items: <PopupMenuEntry<String>>[
+        if (isFolder)
+          PopupMenuItem<String>(
+            value: 'organize',
+            child: ListTile(
+              leading: Icon(Icons.folder),
+              title: Text('Organize'),
+              onTap: () {
+                Navigator.pop(context, 'organize'); // Close the menu and return value
+                _handleOrganize(context); // Call organize handler
+              },
+            ),
+          ),
+        PopupMenuItem<String>(
+          value: 'move',
+          child: ListTile(
+            leading: Icon(Icons.drive_file_move),
+            title: Text('Move'),
+            onTap: () {
+              Navigator.pop(context, 'move'); // Close the menu and return value
+              _handleMove(context,entity); // Call move handler
+            },
+          ),
+        ),
+        PopupMenuItem<String>(
+          value: 'rename',
+          child: ListTile(
+            leading: const Icon(Icons.edit),
+            title: const Text('Rename'),
+            onTap: () async {
+              Navigator.pop(context, 'rename'); // Close the menu
+              await _handleRename(context,entity); // Call rename handler
+            },
+          ),
+        ),
+        PopupMenuItem<String>(
+          value: 'delete',
+          child: ListTile(
+            leading: Icon(Icons.delete),
+            title: Text('Delete'),
+            onTap: () async {
+              Navigator.pop(context, 'delete'); // Close the menu
+              await _handleDelete(context,entity); // Call delete handler
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+// Add the corresponding handler functions
+
+  void _handleOrganize(BuildContext context) {
+    // Organize logic
+    print('Organize clicked');
+    _loadFilesAndFolders();
+  }
+
+  Future<void> _handleMove(BuildContext context,FileSystemEntity entity) async {
+    String fullPath = entity.path;
+
+    String newName = await _promptForMove(context,fullPath);
+    if (newName.isNotEmpty) {
+      // Confirm rename action
+      bool confirmed = await _confirmAction(context, 'rename');
+      if (confirmed) {
+        // Call rename file function from UtilityFunctions
+        UtilityFunctions.renameFile(entity.path, newName).then((value) {
+          _loadFilesAndFolders();
+        },);
+      }
+    }
+  }
+
+  Future<void> _handleRename(BuildContext context,FileSystemEntity entity) async {
+    // Ask user for new file name
+    String fullPath = entity.path;
+
+    // Extract the file name by splitting at the directory separator and getting the last element
+    String currentFileName = fullPath.split(Platform.pathSeparator).last;
+    String newName = await _promptForRename(context,currentFileName);
+    if (newName.isNotEmpty) {
+      // Confirm rename action
+      bool confirmed = await _confirmAction(context, 'rename');
+      if (confirmed) {
+        // Call rename file function from UtilityFunctions
+        UtilityFunctions.renameFile(entity.path, newName).then((value) {
+          _loadFilesAndFolders();
+        },);
+      }
+    }
+
+  }
+
+  Future<void> _handleDelete(BuildContext context,FileSystemEntity entity) async {
+    // Confirm delete action
+    bool confirmed = await _confirmAction(context, 'delete');
+    if (confirmed) {
+      // Call delete file function from UtilityFunctions
+      UtilityFunctions.deleteFile(entity.path).then((value) {
+        _loadFilesAndFolders();
+      },);
+    }
+
+  }
+
+// Function to prompt for renaming
+  Future<String> _promptForRename(BuildContext context,String hintText) async {
+    String newName = '';
+    await showDialog<String>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Rename File'),
+          content: TextField(
+
+            onChanged: (value) {
+              newName = value;
+            },
+            decoration: InputDecoration(hintText: hintText),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context); // User canceled
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context, newName); // Close dialog with new name
+              },
+              child: Text('Rename'),
+            ),
+          ],
+        );
+      },
+    );
+    return newName;
+  }
+
+  Future<String> _promptForMove(BuildContext context,String currentLocation) async {
+    String newLocation = '';
+    await showDialog<String>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Move to which Folder'),
+          content: TextField(
+            onChanged: (value) {
+              newLocation = value;
+            },
+            decoration: InputDecoration(hintText: currentLocation),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context); // User canceled
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context, newLocation); // Close dialog with new name
+              },
+              child: Text('Move'),
+            ),
+          ],
+        );
+      },
+    );
+    return newLocation;
+  }
+
+// Function to confirm actions (like delete, rename)
+  Future<bool> _confirmAction(BuildContext context, String action) async {
+    return await showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Confirm $action'),
+          content: Text('Are you sure you want to $action this file?'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, true), // User confirmed
+              child: Text('Yes'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, false), // User canceled
+              child: Text('No'),
+            ),
+          ],
+        );
+      },
+    ) ?? false; // Return false if dialog is dismissed without selection
+  }
+
   // Variables for dragging the divider
   bool isDragging = false;
   double initialDragX = 0.0;
@@ -338,7 +541,7 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
           ),
           Row(
             children: [
-              Text('Auto-Organize'),
+              const Text('Auto-Organize'),
               Switch(
                 value: isAutoOrganizeEnabled,
                 onChanged: (value) {
@@ -504,6 +707,10 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
                                       } else {
                                         _openFile(entity.path);
                                       }
+                                    },
+                                    onSecondaryTapDown: (TapDownDetails details) {
+                                      // Show the popup menu at the location of the right-click (secondary tap)
+                                      showPopupMenu(context, details.globalPosition,entity,isFolder);
                                     },
                                     child: FileItemCard(
                                       entity: entity,
