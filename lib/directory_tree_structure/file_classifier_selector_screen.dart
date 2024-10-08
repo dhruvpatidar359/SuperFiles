@@ -1,12 +1,12 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
-import 'package:superfiles/trash/temp_tree_structure.dart';
-import 'package:superfiles/tree_structure_selector.dart';
+import 'package:superfiles/directory_tree_structure/tree_structure.dart';
+import 'package:superfiles/directory_tree_structure/tree_structure_selector.dart';
 
-import 'dart_server/loader.dart';
-import 'dart_server/summarizer.dart';
-import 'dart_server/tree_generator.dart';
+import '../dart_server/loader.dart';
+import '../dart_server/summarizer.dart';
+import '../dart_server/tree_generator.dart';
 
 class FileClassifierSelectorScreen extends StatefulWidget {
   final String directoryPath;
@@ -249,9 +249,9 @@ class _AddDocumentFormState extends State<AddDocumentForm> {
                           // print("combinerSummaries after replacement");
                           // print(treeGenerator);
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => FileExplorerUI(
+                              builder: (context) => TreeStructureSelector(
                                     dataList: treeGenerator!,
-                                    source_path: widget.directoryPath,
+                                    srcPath: widget.directoryPath,
                                   )));
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
