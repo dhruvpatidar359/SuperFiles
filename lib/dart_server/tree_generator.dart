@@ -19,7 +19,7 @@ Your response must be a JSON object with the following schema:
         {
             "src_path": "original file path",
             "suggested_file_name": "the Proposed file name",
-            "dst_path": "new file path under proposed directory structure with proposed file name",
+            "dst_path": "new folder path under proposed directory structure without proposed file name",
             "summary": "The summary of the file given by user"
         }
     ]
