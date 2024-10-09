@@ -13,14 +13,14 @@ class FileItemCard extends StatelessWidget {
   final Function(String) onMenuItemSelected;
 
   const FileItemCard({
-    Key? key,
+    super.key,
     required this.name,
     required this.isFolder,
     required this.isCardView,
     required this.icon,
     required this.entity,
     required this.onMenuItemSelected,
-  }) : super(key: key);
+  });
 
   bool _isImageFile(String extension) {
     return ['.jpg', '.jpeg', '.png', '.gif'].contains(extension);
@@ -42,8 +42,7 @@ class FileItemCard extends StatelessWidget {
       content = Icon(icon, size: 40);
     }
 
-    if (isCardView) {
-      return Card(
+     return Card(
         elevation: 2,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         margin: EdgeInsets.all(5), // Reduced margin
@@ -65,71 +64,9 @@ class FileItemCard extends StatelessWidget {
                 ),
               ],
             ),
-            Positioned(
-              top: 0,
-              right: 0,
-              child: PopupMenuButton<String>(
-                icon: Icon(Icons.more_vert),
-                onSelected: (String value) {
-                  onMenuItemSelected(value);
-                },
-                itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-                  if (entity is Directory)
-                    const PopupMenuItem<String>(
-                      value: 'organize',
-                      child: Text('Organize'),
-                    ),
-                  const PopupMenuItem<String>(
-                    value: 'move',
-                    child: Text('Move'),
-                  ),
-                  const PopupMenuItem<String>(
-                    value: 'rename',
-                    child: Text('Rename'),
-                  ),
-                  const PopupMenuItem<String>(
-                    value: 'delete',
-                    child: Text('Delete'),
-                  ),
-                ],
-              ),
-            ),
           ],
         ),
       );
-    } else {
-      return ListTile(
-        leading: content,
-        title: Text(
-          name,
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        trailing: PopupMenuButton<String>(
-          icon: Icon(Icons.more_vert),
-          onSelected: (String value) {
-            onMenuItemSelected(value);
-          },
-          itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-            if (entity is Directory)
-              const PopupMenuItem<String>(
-                value: 'organize',
-                child: Text('Organize'),
-              ),
-            const PopupMenuItem<String>(
-              value: 'move',
-              child: Text('Move'),
-            ),
-            const PopupMenuItem<String>(
-              value: 'rename',
-              child: Text('Rename'),
-            ),
-            const PopupMenuItem<String>(
-              value: 'delete',
-              child: Text('Delete'),
-            ),
-          ],
-        ),
-      );
-    }
+
   }
 }
