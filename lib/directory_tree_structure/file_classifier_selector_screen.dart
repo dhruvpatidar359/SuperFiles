@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:superfiles/directory_tree_structure/tree_structure.dart';
 import 'package:superfiles/directory_tree_structure/tree_structure_selector.dart';
+import 'package:superfiles/restricted_directories/check_development_directories.dart';
+import 'package:superfiles/restricted_directories/check_software_directories.dart';
 
 import '../dart_server/loader.dart';
 import '../dart_server/summarizer.dart';
 import '../dart_server/tree_generator.dart';
+
+import '../restricted_directories/check_system_directories.dart';
 
 class FileClassifierSelectorScreen extends StatefulWidget {
   final String directoryPath;
@@ -230,40 +234,57 @@ class _AddDocumentFormState extends State<AddDocumentForm> {
                       ),
                     ),
                     onPressed: () async {
-                      if (_folderPathController.text != "%" &&
-                          _folderPathController.text.isNotEmpty) {
-                        setState(() {
-                          dataSent = true; // Show progress indicator
-                        });
+                      if(_folderPathController.text != "%" &&
+                          _folderPathController.text.isNotEmpty
+                          && !isSubFolderOrSystemFolder(_folderPathController.text)
+                          && !isSoftwareInstallFolder(_folderPathController.text)
+                          && !isAppDevelopmentFolder(_folderPathController.text)
+                          && !isWebDevelopmentFolder(_folderPathController.text)
+                      ){
 
-                        await summarizeAllFilesInDirectory(
-                            _folderPathController.text);
+                        if (_folderPathController.text != "%" &&
+                            _folderPathController.text.isNotEmpty) {
 
-                        setState(() {
-                          dataSent = false; // Hide progress indicator
-                        });
+                          setState(() {
+                            dataSent = true; // Show progress indicator
+                          });
 
-                        // Navigate to the next screen if summary is successful
-                        if (treeGenerator != null) {
-                          // combinedSummariesJson = combinedSummariesJson?.replaceAll("```json", "").replaceAll("```", "replace");
-                          // print("combinerSummaries after replacement");
-                          // print(treeGenerator);
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => TreeStructureSelector(
-                                    dataList: treeGenerator!,
-                                    srcPath: widget.directoryPath,
-                                  )));
+                          await summarizeAllFilesInDirectory(
+                              _folderPathController.text);
+
+                          setState(() {
+                            dataSent = false; // Hide progress indicator
+                          });
+
+                          // Navigate to the next screen if summary is successful
+                          if (treeGenerator != null) {
+                            // combinedSummariesJson = combinedSummariesJson?.replaceAll("```json", "").replaceAll("```", "replace");
+                            // print("combinerSummaries after replacement");
+                            // print(treeGenerator);
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => TreeStructureSelector(
+                                  dataList: treeGenerator!,
+                                  srcPath: widget.directoryPath,
+                                )));
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text("Summarization failed.")),
+                            );
+                          }
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                                content: Text("Summarization failed.")),
+                                content: Text(
+                                    "Please enter or select a valid folder path.")),
                           );
                         }
-                      } else {
+                      }
+                      else{
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                               content: Text(
-                                  "Please enter or select a valid folder path.")),
+                                  "System Files and Software Files cannot be Manipulated ")),
                         );
                       }
                     },

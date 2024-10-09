@@ -280,11 +280,11 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
     Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => FileClassifierSelectorScreen(directoryPath: directoryPath,)));
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-          content:
-              Text('Organize completed for ${path.basename(directory.path)}')),
-    );
+    // ScaffoldMessenger.of(context).showSnackBar(
+    //   SnackBar(
+    //       content:
+    //           Text('Organize completed for ${path.basename(directory.path)}')),
+    // );
   }
 
   Future<String> _generateSummaryForFile(File file) async {
