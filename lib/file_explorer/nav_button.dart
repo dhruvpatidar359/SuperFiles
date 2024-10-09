@@ -4,12 +4,14 @@ class NavButton extends StatefulWidget {
   final IconData icon;
   final String label;
   final VoidCallback onTap;
+  final bool selected; // Added selected property
 
   const NavButton({
     Key? key,
     required this.icon,
     required this.label,
     required this.onTap,
+    this.selected = false, // Default to false
   }) : super(key: key);
 
   @override
@@ -21,6 +23,9 @@ class _NavButtonState extends State<NavButton> {
 
   @override
   Widget build(BuildContext context) {
+    final Color selectedColor = Theme.of(context).colorScheme.primary;
+    final Color normalColor = Theme.of(context).colorScheme.onSurface;
+
     return MouseRegion(
       onEnter: (_) {
         setState(() {
@@ -35,28 +40,28 @@ class _NavButtonState extends State<NavButton> {
       child: ListTile(
         leading: Icon(
           widget.icon,
-          color: _isHovered
-              ? Theme.of(context)
-                  .colorScheme
-                  .primary
-                  .withOpacity(0.7) // Lightened on hover
-              : Theme.of(context).colorScheme.primary, // Normal color
+          color: widget.selected
+              ? selectedColor
+              : _isHovered
+              ? selectedColor.withOpacity(0.7)
+              : normalColor,
         ),
         title: Text(
           widget.label,
           style: TextStyle(
-            color: _isHovered
-                ? Theme.of(context)
-                    .colorScheme
-                    .primary
-                    .withOpacity(0.7) // Lightened on hover
-                : Theme.of(context).colorScheme.onSurface, // Normal color
+            color: widget.selected
+                ? selectedColor
+                : _isHovered
+                ? selectedColor.withOpacity(0.7)
+                : normalColor,
           ),
         ),
         onTap: widget.onTap,
-        tileColor: _isHovered
-            ? Colors.grey.withOpacity(0.1) // Light background on hover
-            : Colors.transparent, // Normal background
+        tileColor: widget.selected
+            ? selectedColor.withOpacity(0.1)
+            : _isHovered
+            ? Colors.grey.withOpacity(0.1)
+            : Colors.transparent,
       ),
     );
   }

@@ -395,10 +395,10 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
     String newName = await _promptForMove(context, fullPath);
     if (newName.isNotEmpty) {
       // Confirm rename action
-      bool confirmed = await _confirmAction(context, 'rename');
+      bool confirmed = await _confirmAction(context, 'move');
       if (confirmed) {
-        // Call rename file function from UtilityFunctions
-        UtilityFunctions.renameFile(entity.path, newName).then(
+        // Call move file function from UtilityFunctions
+        UtilityFunctions.moveFile(entity.path, newName).then(
               (value) {
             _loadFilesAndFolders();
           },
@@ -477,38 +477,22 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
     return newName;
   }
 
+// Modify the _promptForMove function to allow browsing directories
   Future<String> _promptForMove(
       BuildContext context, String currentLocation) async {
     String newLocation = '';
     await showDialog<String>(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: Text('Move to which Folder'),
-          content: TextField(
-            onChanged: (value) {
-              newLocation = value;
-            },
-            decoration: InputDecoration(hintText: currentLocation),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context); // User canceled
-              },
-              child: Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pop(
-                    context, newLocation); // Close dialog with new name
-              },
-              child: Text('Move'),
-            ),
-          ],
+        return DirectoryPickerDialog(
+          initialDirectory: currentLocation,
         );
       },
-    );
+    ).then((selectedPath) {
+      if (selectedPath != null) {
+        newLocation = selectedPath;
+      }
+    });
     return newLocation;
   }
 
@@ -571,6 +555,16 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
   double initialDragX = 0.0;
   double initialSummaryWidth = 0.0;
 
+  // Helper function to check if a path is selected
+  bool _isSelectedPath(String pathToCheck) {
+    // On Windows, paths are case-insensitive
+    if (Platform.isWindows) {
+      return currentPath.toLowerCase() == pathToCheck.toLowerCase();
+    } else {
+      return currentPath == pathToCheck;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -619,6 +613,10 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
                   NavButton(
                     icon: Icons.home,
                     label: "Home",
+                    selected: _isSelectedPath(
+                        Platform.environment['USERPROFILE'] ??
+                            Platform.environment['HOME'] ??
+                            '/'),
                     onTap: () => _navigateToFolder(
                         Platform.environment['USERPROFILE'] ??
                             Platform.environment['HOME'] ??
@@ -627,34 +625,40 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
                   NavButton(
                     icon: Icons.desktop_windows,
                     label: "Desktop",
+                    selected: _isSelectedPath(getUserDirectory('Desktop')),
                     onTap: () => _navigateToFolder(getUserDirectory('Desktop')),
                   ),
                   NavButton(
                     icon: Icons.folder,
                     label: "Documents",
+                    selected: _isSelectedPath(getUserDirectory('Documents')),
                     onTap: () =>
                         _navigateToFolder(getUserDirectory('Documents')),
                   ),
                   NavButton(
                     icon: Icons.download,
                     label: "Downloads",
+                    selected: _isSelectedPath(getUserDirectory('Downloads')),
                     onTap: () =>
                         _navigateToFolder(getUserDirectory('Downloads')),
                   ),
                   NavButton(
                     icon: Icons.image,
                     label: "Pictures",
+                    selected: _isSelectedPath(getUserDirectory('Pictures')),
                     onTap: () =>
                         _navigateToFolder(getUserDirectory('Pictures')),
                   ),
                   NavButton(
                     icon: Icons.music_note,
                     label: "Music",
+                    selected: _isSelectedPath(getUserDirectory('Music')),
                     onTap: () => _navigateToFolder(getUserDirectory('Music')),
                   ),
                   NavButton(
                     icon: Icons.video_library,
                     label: "Videos",
+                    selected: _isSelectedPath(getUserDirectory('Videos')),
                     onTap: () => _navigateToFolder(getUserDirectory('Videos')),
                   ),
                   // Adding available drives dynamically
@@ -662,6 +666,7 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
                     NavButton(
                       icon: Icons.storage,
                       label: "$drive",
+                      selected: _isSelectedPath(drive),
                       onTap: () => _navigateToFolder(drive),
                     ),
                 ],
@@ -928,6 +933,117 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
           ),
         ],
       ),
+    );
+  }
+}
+
+// Create a DirectoryPickerDialog widget
+class DirectoryPickerDialog extends StatefulWidget {
+  final String initialDirectory;
+
+  DirectoryPickerDialog({required this.initialDirectory});
+
+  @override
+  _DirectoryPickerDialogState createState() => _DirectoryPickerDialogState();
+}
+
+class _DirectoryPickerDialogState extends State<DirectoryPickerDialog> {
+  late String currentDirectory;
+  List<FileSystemEntity> directories = [];
+
+  @override
+  void initState() {
+    super.initState();
+    currentDirectory = widget.initialDirectory;
+    _loadDirectories();
+  }
+
+  void _loadDirectories() {
+    try {
+      Directory dir = Directory(currentDirectory);
+      List<FileSystemEntity> entities = dir
+          .listSync()
+          .where((entity) => FileSystemEntity.isDirectorySync(entity.path))
+          .toList();
+      setState(() {
+        directories = entities;
+      });
+    } catch (e) {
+      print("Error accessing directory: $e");
+    }
+  }
+
+  void _navigateTo(String path) {
+    setState(() {
+      currentDirectory = path;
+      _loadDirectories();
+    });
+  }
+
+  void _navigateUp() {
+    String parentPath = Directory(currentDirectory).parent.path;
+    _navigateTo(parentPath);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text('Select Destination Folder'),
+      content: Container(
+        width: double.maxFinite,
+        height: 400,
+        child: Column(
+          children: [
+            // Address bar
+            Row(
+              children: [
+                IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: _navigateUp,
+                ),
+                Expanded(
+                  child: Text(
+                    currentDirectory,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
+            Divider(),
+            // Directory list
+            Expanded(
+              child: ListView.builder(
+                itemCount: directories.length,
+                itemBuilder: (context, index) {
+                  FileSystemEntity entity = directories[index];
+                  return ListTile(
+                    leading: Icon(Icons.folder),
+                    title: Text(path.basename(entity.path)),
+                    onTap: () {
+                      _navigateTo(entity.path);
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context); // User canceled
+          },
+          child: Text('Cancel'),
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context,
+                currentDirectory); // Close dialog with selected directory
+          },
+          child: Text('Select'),
+        ),
+      ],
     );
   }
 }
