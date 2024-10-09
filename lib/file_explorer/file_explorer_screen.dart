@@ -253,13 +253,13 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
         }
         break;
       case 'move':
-        // Implement move action
+      // Implement move action
         break;
       case 'rename':
-        // Implement rename action
+      // Implement rename action
         break;
       case 'delete':
-        // Implement delete action
+      // Implement delete action
         break;
     }
   }
@@ -399,7 +399,7 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
       if (confirmed) {
         // Call rename file function from UtilityFunctions
         UtilityFunctions.renameFile(entity.path, newName).then(
-          (value) {
+              (value) {
             _loadFilesAndFolders();
           },
         );
@@ -421,7 +421,7 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
       if (confirmed) {
         // Call rename file function from UtilityFunctions
         UtilityFunctions.renameFile(entity.path, newName).then(
-          (value) {
+              (value) {
             _loadFilesAndFolders();
           },
         );
@@ -436,7 +436,7 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
     if (confirmed) {
       // Call delete file function from UtilityFunctions
       UtilityFunctions.deleteFile(entity.path).then(
-        (value) {
+            (value) {
           _loadFilesAndFolders();
         },
       );
@@ -515,27 +515,55 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
 // Function to confirm actions (like delete, rename)
   Future<bool> _confirmAction(BuildContext context, String action) async {
     return await showDialog<bool>(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: Text('Confirm $action'),
-              content: Text('Are you sure you want to $action this file?'),
-              actions: [
-                TextButton(
-                  onPressed: () =>
-                      Navigator.pop(context, true), // User confirmed
-                  child: Text('Yes'),
-                ),
-                TextButton(
-                  onPressed: () =>
-                      Navigator.pop(context, false), // User canceled
-                  child: Text('No'),
-                ),
-              ],
-            );
-          },
-        ) ??
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Confirm $action'),
+          content: Text('Are you sure you want to $action this file?'),
+          actions: [
+            TextButton(
+              onPressed: () =>
+                  Navigator.pop(context, true), // User confirmed
+              child: Text('Yes'),
+            ),
+            TextButton(
+              onPressed: () =>
+                  Navigator.pop(context, false), // User canceled
+              child: Text('No'),
+            ),
+          ],
+        );
+      },
+    ) ??
         false; // Return false if dialog is dismissed without selection
+  }
+
+  List<String> getAvailableDrives() {
+    if (Platform.isWindows) {
+      // On Windows, generate A-Z drive letters and check if they exist
+      return List.generate(26, (i) => String.fromCharCode(i + 65) + ':\\')
+          .where((drive) => Directory(drive).existsSync())
+          .toList();
+    } else if (Platform.isLinux) {
+      // On Linux, read from /proc/mounts to get mounted drives
+      List<String> drives = [];
+      File('/proc/mounts').readAsLinesSync().forEach((line) {
+        var parts = line.split(' ');
+        if (parts.isNotEmpty && parts[1].startsWith('/media') ||
+            parts[1] == '/') {
+          drives.add(parts[1]);
+        }
+      });
+      return drives;
+    } else if (Platform.isMacOS) {
+      // On macOS, you can access mounted volumes under /Volumes
+      return Directory('/Volumes')
+          .listSync()
+          .whereType<Directory>()
+          .map((dir) => dir.path)
+          .toList();
+    }
+    return [];
   }
 
   // Variables for dragging the divider
@@ -629,11 +657,13 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
                     label: "Videos",
                     onTap: () => _navigateToFolder(getUserDirectory('Videos')),
                   ),
-                  NavButton(
-                    icon: Icons.storage,
-                    label: "C: Drive",
-                    onTap: () => _navigateToFolder("C:/"),
-                  ),
+                  // Adding available drives dynamically
+                  for (var drive in getAvailableDrives())
+                    NavButton(
+                      icon: Icons.storage,
+                      label: "$drive",
+                      onTap: () => _navigateToFolder(drive),
+                    ),
                 ],
               ),
             ),
@@ -654,7 +684,7 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius:
-                                BorderRadius.circular(10), // Rounded corners
+                            BorderRadius.circular(10), // Rounded corners
                           ),
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 10),
@@ -697,112 +727,112 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
                       Expanded(
                         child: isCardView
                             ? GridView.builder(
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount:
-                                      showSummary ? 7 : 8, // Adjust columns
-                                  childAspectRatio: 0.8,
-                                ),
-                                itemCount: filesAndFolders.length,
-                                itemBuilder: (context, index) {
-                                  FileSystemEntity entity =
-                                      filesAndFolders[index];
-                                  bool isFolder = entity is Directory;
-                                  IconData icon = _getIcon(entity);
-                                  return GestureDetector(
-                                    onTap: () {
-                                      // Show summary on single tap
-                                      setState(() {
-                                        selectedEntity = entity;
-                                        showSummary = true;
-                                      });
-                                    },
-                                    onDoubleTap: () {
-                                      // Open file or navigate to folder on double tap
-                                      if (isFolder) {
-                                        _navigateToFolder(entity.path);
-                                      } else {
-                                        _openFile(entity.path);
-                                      }
-                                    },
-                                    onSecondaryTapDown:
-                                        (TapDownDetails details) {
-                                      // Show the popup menu at the location of the right-click (secondary tap)
-                                      showPopupMenu(
-                                          context,
-                                          details.globalPosition,
-                                          entity,
-                                          isFolder);
-                                    },
-                                    child: FileItemCard(
-                                      entity: entity,
-                                      name: path.basename(entity.path),
-                                      isFolder: isFolder,
-                                      isCardView: isCardView,
-                                      icon: icon,
-                                      onMenuItemSelected: (String value) {
-                                        _handleMenuSelection(entity, value);
-                                      },
-                                    ),
-                                  );
-                                },
-                              )
-                            : ListView.builder(
-                                itemCount: filesAndFolders.length,
-                                itemBuilder: (context, index) {
-                                  FileSystemEntity entity =
-                                      filesAndFolders[index];
-                                  bool isFolder = entity is Directory;
-                                  IconData icon = _getIcon(entity);
-                                  return GestureDetector(
-                                    onTap: () {
-                                      // Show summary on single tap
-                                      setState(() {
-                                        selectedEntity = entity;
-                                        showSummary = true;
-                                      });
-                                    },
-                                    onDoubleTap: () {
-                                      // Open file or navigate to folder on double tap
-                                      if (isFolder) {
-                                        _navigateToFolder(entity.path);
-                                      } else {
-                                        _openFile(entity.path);
-                                      }
-                                    },
-                                    child: ListTile(
-                                      leading: Icon(icon),
-                                      title: Text(path.basename(entity.path)),
-                                      trailing: PopupMenuButton<String>(
-                                        icon: Icon(Icons.more_vert),
-                                        onSelected: (String value) {
-                                          _handleMenuSelection(entity, value);
-                                        },
-                                        itemBuilder: (BuildContext context) =>
-                                            <PopupMenuEntry<String>>[
-                                          if (entity is Directory)
-                                            const PopupMenuItem<String>(
-                                              value: 'organize',
-                                              child: Text('Organize'),
-                                            ),
-                                          const PopupMenuItem<String>(
-                                            value: 'move',
-                                            child: Text('Move'),
-                                          ),
-                                          const PopupMenuItem<String>(
-                                            value: 'rename',
-                                            child: Text('Rename'),
-                                          ),
-                                          const PopupMenuItem<String>(
-                                            value: 'delete',
-                                            child: Text('Delete'),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  );
+                          gridDelegate:
+                          SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount:
+                            showSummary ? 7 : 8, // Adjust columns
+                            childAspectRatio: 0.8,
+                          ),
+                          itemCount: filesAndFolders.length,
+                          itemBuilder: (context, index) {
+                            FileSystemEntity entity =
+                            filesAndFolders[index];
+                            bool isFolder = entity is Directory;
+                            IconData icon = _getIcon(entity);
+                            return GestureDetector(
+                              onTap: () {
+                                // Show summary on single tap
+                                setState(() {
+                                  selectedEntity = entity;
+                                  showSummary = true;
+                                });
+                              },
+                              onDoubleTap: () {
+                                // Open file or navigate to folder on double tap
+                                if (isFolder) {
+                                  _navigateToFolder(entity.path);
+                                } else {
+                                  _openFile(entity.path);
+                                }
+                              },
+                              onSecondaryTapDown:
+                                  (TapDownDetails details) {
+                                // Show the popup menu at the location of the right-click (secondary tap)
+                                showPopupMenu(
+                                    context,
+                                    details.globalPosition,
+                                    entity,
+                                    isFolder);
+                              },
+                              child: FileItemCard(
+                                entity: entity,
+                                name: path.basename(entity.path),
+                                isFolder: isFolder,
+                                isCardView: isCardView,
+                                icon: icon,
+                                onMenuItemSelected: (String value) {
+                                  _handleMenuSelection(entity, value);
                                 },
                               ),
+                            );
+                          },
+                        )
+                            : ListView.builder(
+                          itemCount: filesAndFolders.length,
+                          itemBuilder: (context, index) {
+                            FileSystemEntity entity =
+                            filesAndFolders[index];
+                            bool isFolder = entity is Directory;
+                            IconData icon = _getIcon(entity);
+                            return GestureDetector(
+                              onTap: () {
+                                // Show summary on single tap
+                                setState(() {
+                                  selectedEntity = entity;
+                                  showSummary = true;
+                                });
+                              },
+                              onDoubleTap: () {
+                                // Open file or navigate to folder on double tap
+                                if (isFolder) {
+                                  _navigateToFolder(entity.path);
+                                } else {
+                                  _openFile(entity.path);
+                                }
+                              },
+                              child: ListTile(
+                                leading: Icon(icon),
+                                title: Text(path.basename(entity.path)),
+                                trailing: PopupMenuButton<String>(
+                                  icon: Icon(Icons.more_vert),
+                                  onSelected: (String value) {
+                                    _handleMenuSelection(entity, value);
+                                  },
+                                  itemBuilder: (BuildContext context) =>
+                                  <PopupMenuEntry<String>>[
+                                    if (entity is Directory)
+                                      const PopupMenuItem<String>(
+                                        value: 'organize',
+                                        child: Text('Organize'),
+                                      ),
+                                    const PopupMenuItem<String>(
+                                      value: 'move',
+                                      child: Text('Move'),
+                                    ),
+                                    const PopupMenuItem<String>(
+                                      value: 'rename',
+                                      child: Text('Rename'),
+                                    ),
+                                    const PopupMenuItem<String>(
+                                      value: 'delete',
+                                      child: Text('Delete'),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ],
                   ),
@@ -810,88 +840,88 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
                 // Draggable divider
                 showSummary
                     ? GestureDetector(
-                        behavior: HitTestBehavior.translucent,
-                        onHorizontalDragStart: (details) {
-                          isDragging = true;
-                          initialDragX = details.globalPosition.dx;
-                          initialSummaryWidth = summaryWidth;
-                        },
-                        onHorizontalDragUpdate: (details) {
-                          if (isDragging) {
-                            setState(() {
-                              double delta =
-                                  details.globalPosition.dx - initialDragX;
-                              summaryWidth = (initialSummaryWidth - delta)
-                                  .clamp(minSummaryWidth, maxSummaryWidth);
-                            });
-                          }
-                        },
-                        onHorizontalDragEnd: (details) {
-                          isDragging = false;
-                        },
-                        child: VerticalDivider(
-                          thickness: 4,
-                          width: 4,
-                          color: Colors.grey[300],
-                        ),
-                      )
+                  behavior: HitTestBehavior.translucent,
+                  onHorizontalDragStart: (details) {
+                    isDragging = true;
+                    initialDragX = details.globalPosition.dx;
+                    initialSummaryWidth = summaryWidth;
+                  },
+                  onHorizontalDragUpdate: (details) {
+                    if (isDragging) {
+                      setState(() {
+                        double delta =
+                            details.globalPosition.dx - initialDragX;
+                        summaryWidth = (initialSummaryWidth - delta)
+                            .clamp(minSummaryWidth, maxSummaryWidth);
+                      });
+                    }
+                  },
+                  onHorizontalDragEnd: (details) {
+                    isDragging = false;
+                  },
+                  child: VerticalDivider(
+                    thickness: 4,
+                    width: 4,
+                    color: Colors.grey[300],
+                  ),
+                )
                     : SizedBox.shrink(),
                 // Summary panel
                 showSummary
                     ? Container(
-                        width: summaryWidth,
-                        color: Theme.of(context).colorScheme.surfaceVariant,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            // Close button
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: IconButton(
-                                icon: Icon(Icons.close),
-                                onPressed: () {
-                                  setState(() {
-                                    showSummary = false;
-                                  });
-                                },
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Text(
-                                'Summary',
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            Divider(),
-                            Expanded(
-                              child: FutureBuilder<String>(
-                                future: _getSummary(selectedEntity!),
-                                builder: (context, snapshot) {
-                                  if (snapshot.connectionState ==
-                                      ConnectionState.waiting) {
-                                    return Center(
-                                        child: CircularProgressIndicator());
-                                  } else if (snapshot.hasError) {
-                                    return Text('Error: ${snapshot.error}');
-                                  } else {
-                                    return SingleChildScrollView(
-                                      padding: const EdgeInsets.all(16.0),
-                                      child: Text(
-                                        snapshot.data ?? '',
-                                        style: TextStyle(fontSize: 16),
-                                      ),
-                                    );
-                                  }
-                                },
-                              ),
-                            ),
-                          ],
+                  width: summaryWidth,
+                  color: Theme.of(context).colorScheme.surfaceVariant,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Close button
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: IconButton(
+                          icon: Icon(Icons.close),
+                          onPressed: () {
+                            setState(() {
+                              showSummary = false;
+                            });
+                          },
                         ),
-                      )
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          'Summary',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Divider(),
+                      Expanded(
+                        child: FutureBuilder<String>(
+                          future: _getSummary(selectedEntity!),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return Center(
+                                  child: CircularProgressIndicator());
+                            } else if (snapshot.hasError) {
+                              return Text('Error: ${snapshot.error}');
+                            } else {
+                              return SingleChildScrollView(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Text(
+                                  snapshot.data ?? '',
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                              );
+                            }
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                )
                     : SizedBox.shrink(),
               ],
             ),
