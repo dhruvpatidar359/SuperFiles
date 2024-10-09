@@ -280,13 +280,14 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
     //   }
     // }
     Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => FileClassifierSelectorScreen(directoryPath: directoryPath,)));
+        builder: (context) =>
+            FileClassifierSelectorScreen(directoryPath: directoryPath)));
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-          content:
-              Text('Organize completed for ${path.basename(directory.path)}')),
-    );
+    // ScaffoldMessenger.of(context).showSnackBar(
+    //   SnackBar(
+    //       content:
+    //           Text('Organize completed for ${path.basename(directory.path)}')),
+    // );
   }
 
   Future<String> _generateSummaryForFile(File file) async {
@@ -320,10 +321,12 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
     return path.join(homeDir, folderName);
   }
 
-  void showPopupMenu(BuildContext context, Offset position,FileSystemEntity entity,bool isFolder) {
+  void showPopupMenu(BuildContext context, Offset position,
+      FileSystemEntity entity, bool isFolder) {
     showMenu<String>(
       context: context,
-      position: RelativeRect.fromLTRB(position.dx, position.dy, position.dx, position.dy),
+      position: RelativeRect.fromLTRB(
+          position.dx, position.dy, position.dx, position.dy),
       items: <PopupMenuEntry<String>>[
         if (isFolder)
           PopupMenuItem<String>(
@@ -332,8 +335,11 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
               leading: Icon(Icons.folder),
               title: Text('Organize'),
               onTap: () {
-                Navigator.pop(context, 'organize'); // Close the menu and return value
-                _handleOrganize(context); // Call organize handler
+                // _organizeFolder(entity);
+                _handleMenuSelection(entity, "organize");
+                // Navigator.pop(
+                //     context, 'organize'); // Close the menu and return value
+                // _handleOrganize(context); // Call organize handler
               },
             ),
           ),
@@ -344,7 +350,7 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
             title: Text('Move'),
             onTap: () {
               Navigator.pop(context, 'move'); // Close the menu and return value
-              _handleMove(context,entity); // Call move handler
+              _handleMove(context, entity); // Call move handler
             },
           ),
         ),
@@ -355,7 +361,7 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
             title: const Text('Rename'),
             onTap: () async {
               Navigator.pop(context, 'rename'); // Close the menu
-              await _handleRename(context,entity); // Call rename handler
+              await _handleRename(context, entity); // Call rename handler
             },
           ),
         ),
@@ -366,7 +372,7 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
             title: Text('Delete'),
             onTap: () async {
               Navigator.pop(context, 'delete'); // Close the menu
-              await _handleDelete(context,entity); // Call delete handler
+              await _handleDelete(context, entity); // Call delete handler
             },
           ),
         ),
@@ -382,56 +388,63 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
     _loadFilesAndFolders();
   }
 
-  Future<void> _handleMove(BuildContext context,FileSystemEntity entity) async {
+  Future<void> _handleMove(
+      BuildContext context, FileSystemEntity entity) async {
     String fullPath = entity.path;
 
-    String newName = await _promptForMove(context,fullPath);
+    String newName = await _promptForMove(context, fullPath);
     if (newName.isNotEmpty) {
       // Confirm rename action
       bool confirmed = await _confirmAction(context, 'rename');
       if (confirmed) {
         // Call rename file function from UtilityFunctions
-        UtilityFunctions.renameFile(entity.path, newName).then((value) {
-          _loadFilesAndFolders();
-        },);
+        UtilityFunctions.renameFile(entity.path, newName).then(
+          (value) {
+            _loadFilesAndFolders();
+          },
+        );
       }
     }
   }
 
-  Future<void> _handleRename(BuildContext context,FileSystemEntity entity) async {
+  Future<void> _handleRename(
+      BuildContext context, FileSystemEntity entity) async {
     // Ask user for new file name
     String fullPath = entity.path;
 
     // Extract the file name by splitting at the directory separator and getting the last element
     String currentFileName = fullPath.split(Platform.pathSeparator).last;
-    String newName = await _promptForRename(context,currentFileName);
+    String newName = await _promptForRename(context, currentFileName);
     if (newName.isNotEmpty) {
       // Confirm rename action
       bool confirmed = await _confirmAction(context, 'rename');
       if (confirmed) {
         // Call rename file function from UtilityFunctions
-        UtilityFunctions.renameFile(entity.path, newName).then((value) {
-          _loadFilesAndFolders();
-        },);
+        UtilityFunctions.renameFile(entity.path, newName).then(
+          (value) {
+            _loadFilesAndFolders();
+          },
+        );
       }
     }
-
   }
 
-  Future<void> _handleDelete(BuildContext context,FileSystemEntity entity) async {
+  Future<void> _handleDelete(
+      BuildContext context, FileSystemEntity entity) async {
     // Confirm delete action
     bool confirmed = await _confirmAction(context, 'delete');
     if (confirmed) {
       // Call delete file function from UtilityFunctions
-      UtilityFunctions.deleteFile(entity.path).then((value) {
-        _loadFilesAndFolders();
-      },);
+      UtilityFunctions.deleteFile(entity.path).then(
+        (value) {
+          _loadFilesAndFolders();
+        },
+      );
     }
-
   }
 
 // Function to prompt for renaming
-  Future<String> _promptForRename(BuildContext context,String hintText) async {
+  Future<String> _promptForRename(BuildContext context, String hintText) async {
     String newName = '';
     await showDialog<String>(
       context: context,
@@ -439,7 +452,6 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
         return AlertDialog(
           title: Text('Rename File'),
           content: TextField(
-
             onChanged: (value) {
               newName = value;
             },
@@ -465,7 +477,8 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
     return newName;
   }
 
-  Future<String> _promptForMove(BuildContext context,String currentLocation) async {
+  Future<String> _promptForMove(
+      BuildContext context, String currentLocation) async {
     String newLocation = '';
     await showDialog<String>(
       context: context,
@@ -487,7 +500,8 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
             ),
             TextButton(
               onPressed: () {
-                Navigator.pop(context, newLocation); // Close dialog with new name
+                Navigator.pop(
+                    context, newLocation); // Close dialog with new name
               },
               child: Text('Move'),
             ),
@@ -501,24 +515,27 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
 // Function to confirm actions (like delete, rename)
   Future<bool> _confirmAction(BuildContext context, String action) async {
     return await showDialog<bool>(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text('Confirm $action'),
-          content: Text('Are you sure you want to $action this file?'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context, true), // User confirmed
-              child: Text('Yes'),
-            ),
-            TextButton(
-              onPressed: () => Navigator.pop(context, false), // User canceled
-              child: Text('No'),
-            ),
-          ],
-        );
-      },
-    ) ?? false; // Return false if dialog is dismissed without selection
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text('Confirm $action'),
+              content: Text('Are you sure you want to $action this file?'),
+              actions: [
+                TextButton(
+                  onPressed: () =>
+                      Navigator.pop(context, true), // User confirmed
+                  child: Text('Yes'),
+                ),
+                TextButton(
+                  onPressed: () =>
+                      Navigator.pop(context, false), // User canceled
+                  child: Text('No'),
+                ),
+              ],
+            );
+          },
+        ) ??
+        false; // Return false if dialog is dismissed without selection
   }
 
   // Variables for dragging the divider
@@ -708,9 +725,14 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
                                         _openFile(entity.path);
                                       }
                                     },
-                                    onSecondaryTapDown: (TapDownDetails details) {
+                                    onSecondaryTapDown:
+                                        (TapDownDetails details) {
                                       // Show the popup menu at the location of the right-click (secondary tap)
-                                      showPopupMenu(context, details.globalPosition,entity,isFolder);
+                                      showPopupMenu(
+                                          context,
+                                          details.globalPosition,
+                                          entity,
+                                          isFolder);
                                     },
                                     child: FileItemCard(
                                       entity: entity,
