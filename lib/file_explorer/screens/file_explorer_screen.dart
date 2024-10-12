@@ -191,7 +191,7 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
       _navigateToFolder(inputPath);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Directory does not exist')),
+        const SnackBar(content: Text('Directory does not exist')),
       );
     }
   }
@@ -199,25 +199,41 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
 
 
 
-  void _handleMenuSelection(FileSystemEntity entity, String value) {
+  Future<void> _handleMenuSelection(FileSystemEntity entity, String value) async {
     switch (value) {
       case 'organize':
         if (entity is Directory) {
-          _organizeFolder(entity);
+          _organizeFolder(entity).then(
+                (value) {
+              _loadFilesAndFolders();
+            },
+          );
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Organize is only available for folders.')),
+            const SnackBar(content: Text('Organize is only available for folders.')),
           );
         }
         break;
       case 'move':
-        // Implement move action
+        await FileSystemService.handleMove(context, entity).then(
+              (value) {
+            _loadFilesAndFolders();
+          },
+        );// Call move handler// Call move handler
         break;
       case 'rename':
-        // Implement rename action
+        await FileSystemService.handleRename(context, entity).then(
+              (value) {
+            _loadFilesAndFolders();
+          },
+        );// Call move handler
         break;
       case 'delete':
-        // Implement delete action
+        await FileSystemService.handleDelete(context, entity).then(
+              (value) {
+            _loadFilesAndFolders();
+          },
+        );// Call move handler// Call delete handler
         break;
     }
   }
