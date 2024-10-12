@@ -39,7 +39,7 @@ class _TreeStructureSelectorState extends State<TreeStructureSelector> {
 
 
   void closeThisScreen(){
-
+    Navigator.pop(context);
     Navigator.pop(context);
   }
 
