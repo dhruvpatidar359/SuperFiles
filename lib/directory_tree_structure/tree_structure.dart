@@ -6,7 +6,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/rendering.dart';
 import 'package:sqflite_common/sqlite_api.dart';
 
-import '../file_explorer/database_helper.dart';
+
+import '../file_explorer/services/Databases/database_helper.dart';
 import 'node.dart';
 
 class TreeStructure extends StatefulWidget {
@@ -92,13 +93,17 @@ class _TreeStructureState extends State<TreeStructure> {
     setState(() {});
   }
 
-  void saveSummary(String filePath, String summary) async {
+  void saveSummary(String fileName, String filePath, String summary, String suggestedFileName) async {
+    String currentTime = DateTime.now().toString();
+
     final db = DatabaseHelper.instance;
     Database databaseHelper = await db.getDatabase();
-    await DatabaseHelper.insertSummary(databaseHelper, filePath, summary);
+    await DatabaseHelper.insertSummary(databaseHelper,fileName, filePath, summary, suggestedFileName, currentTime);
     print("Summary saved for $filePath");
   }
 
+
+  //For debugging purposes
   Future<void> getSummary(
     String filePath,
   ) async {
@@ -134,6 +139,8 @@ class _TreeStructureState extends State<TreeStructure> {
       String absoluteSrcPath = '$basePath/$srcPath';
       String absoluteDstPath = '$basePath/$dstPath/$suggestedFileName'.replaceAll("//", "/");
 
+      print("absoluteDstPath $absoluteDstPath");
+
 
 
       // Create the destination directory if it doesn't exist
@@ -154,7 +161,7 @@ class _TreeStructureState extends State<TreeStructure> {
 
       // Storing the summary in the database.
 
-      saveSummary(absoluteDstPath, summary);
+      saveSummary(srcPath, absoluteDstPath, summary, suggestedFileName);
 
       getSummary(absoluteDstPath);
     }

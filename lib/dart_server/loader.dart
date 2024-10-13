@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'dart:convert';  // For JSON encoding
 import 'package:path/path.dart' as p;
+import 'package:sqflite_common/sqlite_api.dart';
+import '../file_explorer/services/Databases/database_helper.dart';
 import 'summarizer.dart';
 import '../file_to_text/file_to_text.dart';
 
@@ -30,8 +32,10 @@ class Loader {
             fileContent =  fileContent.substring(0, 500);  // Extract the first 500 characters
           }
           String fileName = p.basename(entity.path);
+          print("entity.path ${entity.path}");
 
-          String summaryJson = await summarizer.summarizeFile(fileName, fileContent);
+          String summaryJson = await summarizer.summarizeFile(entity.path, fileName, fileContent);
+          print("summaryJson ${summaryJson}");
           Map<String, dynamic> summaryMap = jsonDecode(summaryJson);
           summariesList.add(summaryMap);  // Add the JSON object to the list
         }
@@ -39,6 +43,29 @@ class Loader {
     }
 
     return summariesList.isNotEmpty ? jsonEncode(summariesList) : null;  // Return the list as JSON string
+  }
+
+
+  void saveSummary(String fileName, String filePath, String summary, String suggestedFileName) async {
+    // Current dateTime
+    String currentTime = DateTime.now().toString();
+
+    final db = DatabaseHelper.instance;
+    Database databaseHelper = await db.getDatabase();
+    await DatabaseHelper.insertSummary(databaseHelper,fileName, filePath, summary, currentTime, suggestedFileName);
+    print("Summary saved for $filePath");
+  }
+
+
+  //For debugging purposes
+  Future<String?> getSummary(
+      String filePath,
+      ) async {
+    final db = DatabaseHelper.instance;
+    Database databaseHelper = await db.getDatabase();
+    String? summary = await DatabaseHelper.getSummary(databaseHelper, filePath);
+
+    return summary;
   }
 
 }
