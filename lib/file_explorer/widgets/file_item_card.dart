@@ -1,8 +1,7 @@
-// file_item_card.dart
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as path;
+import 'package:shimmer/shimmer.dart';
 
 class FileItemCard extends StatelessWidget {
   final String name;
@@ -32,13 +31,35 @@ class FileItemCard extends StatelessWidget {
     Widget content;
 
     if (!isFolder && _isImageFile(fileExtension)) {
-      // Display image thumbnail
-      content = Image.file(
-        File(entity.path),
-        fit: BoxFit.cover,
+      // Display image thumbnail with shimmer effect
+      content = FutureBuilder(
+        future: File(entity.path).exists(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            // Display shimmer while image is loading
+            return Shimmer.fromColors(
+              baseColor: Colors.grey[300]!,
+              highlightColor: Colors.grey[100]!,
+              child: Container(
+                color: Colors.white,
+                height: double.infinity,
+                width: double.infinity,
+              ),
+            );
+          } else if (snapshot.hasData && snapshot.data == true) {
+            // Image loaded successfully
+            return Image.file(
+              File(entity.path),
+              fit: BoxFit.cover,
+            );
+          } else {
+            // Display icon if not an image or file not found
+            return Icon(icon, size: 40);
+          }
+        },
       );
     } else {
-      // Display icon centered
+      // Display icon centered for non-image files or folders
       content = Icon(icon, size: 40);
     }
 
@@ -46,7 +67,7 @@ class FileItemCard extends StatelessWidget {
       return Card(
         elevation: 2,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        margin: EdgeInsets.all(5), // Reduced margin
+        margin: const EdgeInsets.all(5), // Reduced margin
         child: Stack(
           children: [
             Column(
@@ -58,7 +79,7 @@ class FileItemCard extends StatelessWidget {
                   padding: const EdgeInsets.all(4.0), // Reduced padding
                   child: Text(
                     name,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
                   ),
@@ -69,7 +90,7 @@ class FileItemCard extends StatelessWidget {
               top: 0,
               right: 0,
               child: PopupMenuButton<String>(
-                icon: Icon(Icons.more_vert),
+                icon: const Icon(Icons.more_vert),
                 onSelected: (String value) {
                   onMenuItemSelected(value);
                 },
@@ -102,10 +123,10 @@ class FileItemCard extends StatelessWidget {
         leading: content,
         title: Text(
           name,
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         trailing: PopupMenuButton<String>(
-          icon: Icon(Icons.more_vert),
+          icon: const Icon(Icons.more_vert),
           onSelected: (String value) {
             onMenuItemSelected(value);
           },

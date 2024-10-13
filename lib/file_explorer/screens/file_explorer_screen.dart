@@ -3,17 +3,21 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:open_filex/open_filex.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:superfiles/directory_tree_structure/file_classifier_selector_screen.dart';
+import 'package:superfiles/file_explorer/services/File%20System%20Services/file_system_service.dart';
 import 'package:watcher/watcher.dart';
-import 'nav_button.dart';
-import 'file_item_card.dart';
-import 'database_helper.dart';
+import '../widgets/file_list_view.dart';
+import '../widgets/file_popup_menu.dart';
+import '../widgets/file_summary_panel.dart';
+import '../services/Databases/database_helper.dart';
+import '../widgets/navigation_drawer.dart';
 
 class FileExplorerScreen extends StatefulWidget {
+  const FileExplorerScreen({super.key});
+
   @override
   _FileExplorerScreenState createState() => _FileExplorerScreenState();
 }
@@ -49,14 +53,9 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
 
   Future<void> _handleFileModified(String filePath) async {
     final file = File(filePath);
-
-    // Regenerate summary
-    print("we are seeing a file has been modified");
     final summary = await _generateSummaryForFile(file);
-
     // Update summary in database
     await DatabaseHelper.insertSummary(database, filePath, summary);
-
     // Refresh the UI if necessary
   }
 
@@ -65,6 +64,7 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
     await DatabaseHelper.deleteSummary(database, filePath);
 
     // Refresh the UI
+
     _loadFilesAndFolders();
   }
 
@@ -101,7 +101,7 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
 
     // Start watching the current directory
     final directoryWatcher = DirectoryWatcher(currentPath);
-    print("we are watching to the " + currentPath);
+    print("we are watching to the $currentPath");
     _directoryWatcherSubscription = directoryWatcher.events.listen((event) {
       _handleFileSystemEvent(event);
     });
@@ -191,100 +191,58 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
       _navigateToFolder(inputPath);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Directory does not exist')),
+        const SnackBar(content: Text('Directory does not exist')),
       );
     }
   }
 
-  void _openFile(String filePath) async {
-    final result = await OpenFilex.open(filePath);
-    if (result.type != ResultType.done) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error opening file: ${result.message}')),
-      );
-    }
-  }
 
-  IconData _getIcon(FileSystemEntity entity) {
-    if (entity is Directory) {
-      return Icons.folder;
-    } else if (entity is File) {
-      String extension = path.extension(entity.path).toLowerCase();
-      switch (extension) {
-        case '.jpg':
-        case '.jpeg':
-        case '.png':
-        case '.gif':
-          return Icons.image;
-        case '.mp3':
-        case '.wav':
-          return Icons.music_note;
-        case '.mp4':
-        case '.avi':
-          return Icons.movie;
-        case '.pdf':
-          return Icons.picture_as_pdf;
-        case '.doc':
-        case '.docx':
-          return Icons.description;
-        case '.txt':
-          return Icons.text_snippet;
-        case '.zip':
-        case '.rar':
-          return Icons.archive;
-        default:
-          return Icons.insert_drive_file;
-      }
-    }
-    return Icons.help;
-  }
 
-  void _handleMenuSelection(FileSystemEntity entity, String value) {
+
+  Future<void> _handleMenuSelection(FileSystemEntity entity, String value) async {
     switch (value) {
       case 'organize':
         if (entity is Directory) {
-          _organizeFolder(entity);
+          _organizeFolder(entity).then(
+                (value) {
+              _loadFilesAndFolders();
+            },
+          );
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Organize is only available for folders.')),
+            const SnackBar(content: Text('Organize is only available for folders.')),
           );
         }
         break;
       case 'move':
-        // Implement move action
+        await FileSystemService.handleMove(context, entity).then(
+              (value) {
+            _loadFilesAndFolders();
+          },
+        );// Call move handler// Call move handler
         break;
       case 'rename':
-        // Implement rename action
+        await FileSystemService.handleRename(context, entity).then(
+              (value) {
+            _loadFilesAndFolders();
+          },
+        );// Call move handler
         break;
       case 'delete':
-        // Implement delete action
+        await FileSystemService.handleDelete(context, entity).then(
+              (value) {
+            _loadFilesAndFolders();
+          },
+        );// Call move handler// Call delete handler
         break;
     }
   }
 
   Future<void> _organizeFolder(Directory directory) async {
-    List<FileSystemEntity> files = directory.listSync();
     String directoryPath = directory.path;
-
-    // for (var entity in files) {
-    //   if (entity is File) {
-    //     String filePath = entity.path;
-    //
-    //     // Generate summary (replace with actual implementation)
-    //     String summary = await _generateSummaryForFile(entity);
-    //
-    //     // Save the summary to the database
-    //     await DatabaseHelper.insertSummary(database, filePath, summary);
-    //   }
-    // }
     Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => FileClassifierSelectorScreen(directoryPath: directoryPath,)));
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-          content:
-              Text('Organize completed for ${path.basename(directory.path)}')),
-    );
+        builder: (context) =>
+            FileClassifierSelectorScreen(directoryPath: directoryPath)));
   }
 
   Future<String> _generateSummaryForFile(File file) async {
@@ -295,33 +253,29 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
     return "Summary for ${path.basename(file.path)}: This is a generated summary of the file.";
   }
 
-  Future<String> _getSummary(FileSystemEntity entity) async {
-    if (entity is File) {
-      String? summary = await DatabaseHelper.getSummary(database, entity.path);
-      if (summary != null) {
-        return summary;
-      } else {
-        return "Summary not available. Please organize the folder to generate summaries.";
-      }
-    } else if (entity is Directory) {
-      int itemCount = Directory(entity.path).listSync().length;
-      return "This folder '${path.basename(entity.path)}' contains $itemCount items.";
-    } else {
-      return "No summary available.";
-    }
+
+
+  void showPopupMenu(BuildContext context, Offset position, FileSystemEntity entity, bool isFolder) {
+    FilePopupMenu.show(context, position, (value) {
+      _handleMenuSelection(entity, value);
+    });
   }
 
-  String getUserDirectory(String folderName) {
-    String homeDir = Platform.environment['USERPROFILE'] ??
-        Platform.environment['HOME'] ??
-        '/';
-    return path.join(homeDir, folderName);
-  }
 
   // Variables for dragging the divider
   bool isDragging = false;
   double initialDragX = 0.0;
   double initialSummaryWidth = 0.0;
+
+  // Helper function to check if a path is selected
+  bool _isSelectedPath(String pathToCheck) {
+    // On Windows, paths are case-insensitive
+    if (Platform.isWindows) {
+      return currentPath.toLowerCase() == pathToCheck.toLowerCase();
+    } else {
+      return currentPath == pathToCheck;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -338,7 +292,7 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
           ),
           Row(
             children: [
-              Text('Auto-Organize'),
+              const Text('Auto-Organize'),
               Switch(
                 value: isAutoOrganizeEnabled,
                 onChanged: (value) {
@@ -360,63 +314,13 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
       body: Row(
         children: [
           // Left-side navigation
-          Container(
-            width: 200, // Reduced width
-            padding: EdgeInsets.all(10),
-            color: Theme.of(context).colorScheme.surfaceVariant,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  NavButton(
-                    icon: Icons.home,
-                    label: "Home",
-                    onTap: () => _navigateToFolder(
-                        Platform.environment['USERPROFILE'] ??
-                            Platform.environment['HOME'] ??
-                            '/'),
-                  ),
-                  NavButton(
-                    icon: Icons.desktop_windows,
-                    label: "Desktop",
-                    onTap: () => _navigateToFolder(getUserDirectory('Desktop')),
-                  ),
-                  NavButton(
-                    icon: Icons.folder,
-                    label: "Documents",
-                    onTap: () =>
-                        _navigateToFolder(getUserDirectory('Documents')),
-                  ),
-                  NavButton(
-                    icon: Icons.download,
-                    label: "Downloads",
-                    onTap: () =>
-                        _navigateToFolder(getUserDirectory('Downloads')),
-                  ),
-                  NavButton(
-                    icon: Icons.image,
-                    label: "Pictures",
-                    onTap: () =>
-                        _navigateToFolder(getUserDirectory('Pictures')),
-                  ),
-                  NavButton(
-                    icon: Icons.music_note,
-                    label: "Music",
-                    onTap: () => _navigateToFolder(getUserDirectory('Music')),
-                  ),
-                  NavButton(
-                    icon: Icons.video_library,
-                    label: "Videos",
-                    onTap: () => _navigateToFolder(getUserDirectory('Videos')),
-                  ),
-                  NavButton(
-                    icon: Icons.storage,
-                    label: "C: Drive",
-                    onTap: () => _navigateToFolder("C:/"),
-                  ),
-                ],
-              ),
-            ),
+          CustomNavigationDrawer(
+            navigateToFolder: (path) {
+              _navigateToFolder(path);
+            },
+            isSelectedPath: (path) {
+              return _isSelectedPath(path);
+            },
           ),
           VerticalDivider(thickness: 1, width: 1),
           // Middle content area
@@ -475,106 +379,32 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
                         ),
                       ),
                       Expanded(
-                        child: isCardView
-                            ? GridView.builder(
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount:
-                                      showSummary ? 7 : 8, // Adjust columns
-                                  childAspectRatio: 0.8,
-                                ),
-                                itemCount: filesAndFolders.length,
-                                itemBuilder: (context, index) {
-                                  FileSystemEntity entity =
-                                      filesAndFolders[index];
-                                  bool isFolder = entity is Directory;
-                                  IconData icon = _getIcon(entity);
-                                  return GestureDetector(
-                                    onTap: () {
-                                      // Show summary on single tap
-                                      setState(() {
-                                        selectedEntity = entity;
-                                        showSummary = true;
-                                      });
-                                    },
-                                    onDoubleTap: () {
-                                      // Open file or navigate to folder on double tap
-                                      if (isFolder) {
-                                        _navigateToFolder(entity.path);
-                                      } else {
-                                        _openFile(entity.path);
-                                      }
-                                    },
-                                    child: FileItemCard(
-                                      entity: entity,
-                                      name: path.basename(entity.path),
-                                      isFolder: isFolder,
-                                      isCardView: isCardView,
-                                      icon: icon,
-                                      onMenuItemSelected: (String value) {
-                                        _handleMenuSelection(entity, value);
-                                      },
-                                    ),
-                                  );
-                                },
-                              )
-                            : ListView.builder(
-                                itemCount: filesAndFolders.length,
-                                itemBuilder: (context, index) {
-                                  FileSystemEntity entity =
-                                      filesAndFolders[index];
-                                  bool isFolder = entity is Directory;
-                                  IconData icon = _getIcon(entity);
-                                  return GestureDetector(
-                                    onTap: () {
-                                      // Show summary on single tap
-                                      setState(() {
-                                        selectedEntity = entity;
-                                        showSummary = true;
-                                      });
-                                    },
-                                    onDoubleTap: () {
-                                      // Open file or navigate to folder on double tap
-                                      if (isFolder) {
-                                        _navigateToFolder(entity.path);
-                                      } else {
-                                        _openFile(entity.path);
-                                      }
-                                    },
-                                    child: ListTile(
-                                      leading: Icon(icon),
-                                      title: Text(path.basename(entity.path)),
-                                      trailing: PopupMenuButton<String>(
-                                        icon: Icon(Icons.more_vert),
-                                        onSelected: (String value) {
-                                          _handleMenuSelection(entity, value);
-                                        },
-                                        itemBuilder: (BuildContext context) =>
-                                            <PopupMenuEntry<String>>[
-                                          if (entity is Directory)
-                                            const PopupMenuItem<String>(
-                                              value: 'organize',
-                                              child: Text('Organize'),
-                                            ),
-                                          const PopupMenuItem<String>(
-                                            value: 'move',
-                                            child: Text('Move'),
-                                          ),
-                                          const PopupMenuItem<String>(
-                                            value: 'rename',
-                                            child: Text('Rename'),
-                                          ),
-                                          const PopupMenuItem<String>(
-                                            value: 'delete',
-                                            child: Text('Delete'),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
+                        child: FileListView(
+                          filesAndFolders: filesAndFolders,
+                          isCardView: isCardView,
+                          showSummary: showSummary,
+                          onEntityTap: (entity) {
+                            setState(() {
+                              selectedEntity = entity;
+                              showSummary = true;
+                            });
+                          },
+                          onEntityDoubleTap: (entity) {
+                            if (entity is Directory) {
+                              _navigateToFolder(entity.path);
+                            } else {
+                              FileSystemService.openFile(entity.path, context);
+                            }
+                          },
+                          onSecondaryTapDown: (details, entity, isFolder) {
+                            showPopupMenu(context, details.globalPosition, entity, isFolder);
+                          },
+                          onMenuItemSelected: (value, entity) {
+                            _handleMenuSelection(entity, value);
+                          },
+                        ),
                       ),
+
                     ],
                   ),
                 ),
@@ -639,25 +469,8 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
                             ),
                             Divider(),
                             Expanded(
-                              child: FutureBuilder<String>(
-                                future: _getSummary(selectedEntity!),
-                                builder: (context, snapshot) {
-                                  if (snapshot.connectionState ==
-                                      ConnectionState.waiting) {
-                                    return Center(
-                                        child: CircularProgressIndicator());
-                                  } else if (snapshot.hasError) {
-                                    return Text('Error: ${snapshot.error}');
-                                  } else {
-                                    return SingleChildScrollView(
-                                      padding: const EdgeInsets.all(16.0),
-                                      child: Text(
-                                        snapshot.data ?? '',
-                                        style: TextStyle(fontSize: 16),
-                                      ),
-                                    );
-                                  }
-                                },
+                              child: FileSummaryPanel(
+                                selectedEntity: selectedEntity!, database: database,
                               ),
                             ),
                           ],
@@ -672,3 +485,5 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
     );
   }
 }
+
+
