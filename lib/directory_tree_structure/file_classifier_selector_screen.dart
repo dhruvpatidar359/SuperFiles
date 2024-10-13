@@ -113,6 +113,7 @@ class _AddDocumentFormState extends State<AddDocumentForm> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Error during summarization: $e")),
       );
+      print("Error during summarization: ${e}");
     }
   }
 

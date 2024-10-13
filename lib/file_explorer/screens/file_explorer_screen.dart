@@ -41,21 +41,25 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
   Future<void> _handleFileAdded(String filePath) async {
     final file = File(filePath);
 
+    String currentTime = DateTime.now().toString();
+
     // Generate summary
     final summary = await _generateSummaryForFile(file);
 
     // Save summary to database
-    await DatabaseHelper.insertSummary(database, filePath, summary);
+    // await DatabaseHelper.insertSummary(database, filePath, summary, currentTime);
 
     // Refresh the UI
     _loadFilesAndFolders();
   }
 
   Future<void> _handleFileModified(String filePath) async {
+    String currentTime = DateTime.now().toString();
+
     final file = File(filePath);
     final summary = await _generateSummaryForFile(file);
     // Update summary in database
-    await DatabaseHelper.insertSummary(database, filePath, summary);
+    // await DatabaseHelper.insertSummary(database, filePath, summary, currentTime);
     // Refresh the UI if necessary
   }
 

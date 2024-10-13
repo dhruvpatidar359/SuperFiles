@@ -4,14 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fancy_tree_view/flutter_fancy_tree_view.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/rendering.dart';
+import 'package:sqflite_common/sqlite_api.dart';
 
+
+import '../file_explorer/services/Databases/database_helper.dart';
 import 'node.dart';
 
 class TreeStructure extends StatefulWidget {
   final List<dynamic> folderStructureData;
   final String srcPath;
   final VoidCallback onCompletion;
-  const TreeStructure({super.key, required this.folderStructureData, required this.srcPath, required this.onCompletion});
+  const TreeStructure(
+      {super.key,
+      required this.folderStructureData,
+      required this.srcPath,
+      required this.onCompletion});
 
   @override
   _TreeStructureState createState() => _TreeStructureState();
@@ -61,7 +68,7 @@ class _TreeStructureState extends State<TreeStructure> {
 
       for (String segment in segments) {
         Node? child = currentNode.children.firstWhere(
-              (child) => child.name == segment,
+          (child) => child.name == segment,
           orElse: () => Node(id: segment.hashCode, name: segment, summary: ""),
         );
 
@@ -72,7 +79,8 @@ class _TreeStructureState extends State<TreeStructure> {
         currentNode = child;
       }
 
-      if (!currentNode.children.any((child) => child.name == suggestedFileName)) {
+      if (!currentNode.children
+          .any((child) => child.name == suggestedFileName)) {
         Node fileNode = Node(
           id: suggestedFileName.hashCode,
           name: suggestedFileName,
@@ -85,7 +93,31 @@ class _TreeStructureState extends State<TreeStructure> {
     setState(() {});
   }
 
-  void copyTreeStructureToFileSystem(dynamic jsonData) async{
+  void saveSummary(String fileName, String filePath, String summary, String suggestedFileName) async {
+    String currentTime = DateTime.now().toString();
+
+    final db = DatabaseHelper.instance;
+    Database databaseHelper = await db.getDatabase();
+    await DatabaseHelper.insertSummary(databaseHelper,fileName, filePath, summary, suggestedFileName, currentTime);
+    print("Summary saved for $filePath");
+  }
+
+
+  //For debugging purposes
+  Future<void> getSummary(
+    String filePath,
+  ) async {
+    final db = DatabaseHelper.instance;
+    Database databaseHelper = await db.getDatabase();
+    String? summary = await DatabaseHelper.getSummary(databaseHelper, filePath);
+    if (summary != null) {
+      print('Summary for $filePath: $summary');
+    } else {
+      print('No summary found for $filePath');
+    }
+  }
+
+  void copyTreeStructureToFileSystem(dynamic jsonData) async {
     // Map<String, dynamic> processedJsonData = jsonDecode(jsonData);
 
     // Access the "files" field which is a List
@@ -93,8 +125,7 @@ class _TreeStructureState extends State<TreeStructure> {
     List<dynamic> files = jsonData;
 
     // Base directory (replace this with your actual path in string format)
-    String basePath = widget.srcPath;  // Replace with actual path
-
+    String basePath = widget.srcPath; // Replace with actual path
 
     // Iterate through the file entries and move files
     for (var fileEntry in files) {
@@ -102,10 +133,15 @@ class _TreeStructureState extends State<TreeStructure> {
       String srcPath = fileEntry['src_path'];
       String dstPath = fileEntry['dst_path'];
       String suggestedFileName = fileEntry["suggested_file_name"];
+      String summary = fileEntry["summary"];
 
       // Combine the base path with src_path and dst_path
       String absoluteSrcPath = '$basePath/$srcPath';
-      String absoluteDstPath = '$basePath/$dstPath/$suggestedFileName';
+      String absoluteDstPath = '$basePath/$dstPath/$suggestedFileName'.replaceAll("//", "/");
+
+      print("absoluteDstPath $absoluteDstPath");
+
+
 
       // Create the destination directory if it doesn't exist
       Directory dstDir = Directory(absoluteDstPath).parent;
@@ -121,10 +157,19 @@ class _TreeStructureState extends State<TreeStructure> {
       } else {
         print('Source file not found: $absoluteSrcPath');
       }
+
+
+      // Storing the summary in the database.
+
+      saveSummary(srcPath, absoluteDstPath, summary, suggestedFileName);
+
+      getSummary(absoluteDstPath);
     }
+
+
+
+
   }
-
-
 
   Widget _buildTreeView() {
     return Container(
@@ -137,7 +182,8 @@ class _TreeStructureState extends State<TreeStructure> {
               return TreeDragTarget<Node>(
                 node: entry.node,
                 onNodeAccepted: (details) {
-                  if (!entry.node.isLeaf || (entry.node.isLeaf && !entry.node.name.contains('.'))) {
+                  if (!entry.node.isLeaf ||
+                      (entry.node.isLeaf && !entry.node.name.contains('.'))) {
                     // Accept drop only if the target is a folder (not a file)
                     setState(() {
                       _moveNode(details.draggedNode, entry.node);
@@ -145,7 +191,8 @@ class _TreeStructureState extends State<TreeStructure> {
                     });
                   }
                 },
-                builder: (BuildContext context, TreeDragAndDropDetails<Node>? details) {
+                builder: (BuildContext context,
+                    TreeDragAndDropDetails<Node>? details) {
                   return TreeDraggable<Node>(
                     node: entry.node,
                     feedback: Material(
@@ -153,7 +200,8 @@ class _TreeStructureState extends State<TreeStructure> {
                       child: Container(
                         padding: EdgeInsets.all(8),
                         color: Colors.blue.withOpacity(0.5),
-                        child: Text(entry.node.name, style: TextStyle(color: Colors.white)),
+                        child: Text(entry.node.name,
+                            style: TextStyle(color: Colors.white)),
                       ),
                     ),
                     childWhenDragging: Opacity(
@@ -166,7 +214,10 @@ class _TreeStructureState extends State<TreeStructure> {
               );
             },
           ),
-          if (hoveredNode != null && hoveredNode!.isLeaf && hoveredNode!.name.contains('.') && hoverPosition != null)
+          if (hoveredNode != null &&
+              hoveredNode!.isLeaf &&
+              hoveredNode!.name.contains('.') &&
+              hoverPosition != null)
             Positioned(
               left: hoverPosition!.dx + 10,
               top: hoverPosition!.dy + 10,
@@ -222,7 +273,9 @@ class _TreeStructureState extends State<TreeStructure> {
         child: TreeIndentation(
           entry: entry,
           child: Container(
-            color: hoveredNode == entry.node ? Colors.grey[700] : Colors.transparent,
+            color: hoveredNode == entry.node
+                ? Colors.grey[700]
+                : Colors.transparent,
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
@@ -237,10 +290,10 @@ class _TreeStructureState extends State<TreeStructure> {
                     color: Colors.amber,
                   )
                 else if (!entry.isExpanded)
-                    Icon(
-                      Icons.folder,
-                      color: Colors.amber,
-                    ),
+                  Icon(
+                    Icons.folder,
+                    color: Colors.amber,
+                  ),
                 SizedBox(width: 8),
                 Expanded(
                   child: Text(
@@ -267,8 +320,6 @@ class _TreeStructureState extends State<TreeStructure> {
     nodeToMove.parent = newParent;
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -281,8 +332,10 @@ class _TreeStructureState extends State<TreeStructure> {
             onPressed: () {
               // Add button action here
               copyTreeStructureToFileSystem(widget.folderStructureData);
-              widget.onCompletion();
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("The Chosen Directory Structure is successfully implemented.")));
+              // widget.onCompletion(); // Uncomment in future version, commented for debugging
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text(
+                      "The Chosen Directory Structure is successfully implemented.")));
             },
             child: const Text(
               'Select this Structure',
