@@ -1,6 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:superfiles/dart_server/tree_generator_user_defined.dart';
 import 'package:superfiles/directory_tree_structure/tree_structure.dart';
 import 'package:superfiles/directory_tree_structure/tree_structure_selector.dart';
 import 'package:superfiles/restricted_directories/check_development_directories.dart';
@@ -83,6 +84,15 @@ class _AddDocumentFormState extends State<AddDocumentForm> {
         'AIzaSyDqXskrI3gT1axkZGkYRCBW8tBENIjlpNw', // Replace with your actual Google Generative AI API key
   ));
 
+
+  late final treeUserDefined = TreeGeneratorUserDefined(GenerativeModel(
+    model: 'gemini-1.5-flash-latest', // The model you are using
+    apiKey:
+    'AIzaSyDqXskrI3gT1axkZGkYRCBW8tBENIjlpNw', // Replace with your actual Google Generative AI API key
+  ));
+
+
+
   Future<void> _pickFolder() async {
     try {
       String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
@@ -101,11 +111,27 @@ class _AddDocumentFormState extends State<AddDocumentForm> {
 
   Future<void> summarizeAllFilesInDirectory(String selectedDirectory) async {
     try {
+
       // Load and summarize document content from the selected folder
       combinedSummariesJson =
-          await loader.loadAndSummarizeDocuments(selectedDirectory);
-      treeGenerator = await tree.createFileTree(combinedSummariesJson!);
+                await loader.loadAndSummarizeDocuments(selectedDirectory);
 
+
+
+      // To check how to generate the tree
+      // If user have defined the folders this function will work
+      // Otherwise else part will run
+      if(fieldControllers.isNotEmpty){
+
+        String folderNames = convertFieldControllersListToString(fieldControllers);
+
+        treeGenerator = await treeUserDefined.createFileTree(combinedSummariesJson!, folderNames);
+
+
+      }
+      else {
+        treeGenerator = await tree.createFileTree(combinedSummariesJson!);
+      }
       print("tree Generator");
       print(treeGenerator);
     } catch (e) {
@@ -115,6 +141,19 @@ class _AddDocumentFormState extends State<AddDocumentForm> {
       );
       print("Error during summarization: ${e}");
     }
+  }
+
+  String convertFieldControllersListToString(List<TextEditingController> fieldControllers){
+    String result = "";
+    int it = 0;
+    for( TextEditingController textEditingController in fieldControllers){
+      if(textEditingController.text.isNotEmpty){
+        result += "- Folder ${it++}: ${textEditingController.text.toString()} \n";
+      }
+    }
+
+    return result;
+
   }
 
   @override
