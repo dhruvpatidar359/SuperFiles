@@ -1,0 +1,1 @@
+mole as 0.7/22.4 we have to find the mass of hydrogen liberated so to find the mass from mole we have to multiply it by molar mass of hydrogen which is 2 g. so mass of hydrogen liberated = (0.7/22.4)*2.

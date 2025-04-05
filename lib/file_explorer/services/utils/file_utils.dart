@@ -12,30 +12,48 @@ class UtilServices{
   }
 
 
+
+
   static List<String> getAvailableDrives() {
     if (Platform.isWindows) {
-      // On Windows, generate A-Z drive letters and check if they exist
+      // On Windows, generate A-Z drive letters and safely check if a drive exists and is accessible
       return List.generate(26, (i) => String.fromCharCode(i + 65) + ':\\')
-          .where((drive) => Directory(drive).existsSync())
-          .toList();
-    } else if (Platform.isLinux) {
-      // On Linux, read from /proc/mounts to get mounted drives
-      List<String> drives = [];
-      File('/proc/mounts').readAsLinesSync().forEach((line) {
-        var parts = line.split(' ');
-        if (parts.isNotEmpty && parts[1].startsWith('/media') ||
-            parts[1] == '/') {
-          drives.add(parts[1]);
+          .where((drive) {
+        try {
+          var dir = Directory(drive);
+          // Check if the drive exists and can be listed (avoids unmounted CD/DVDs)
+          return dir.existsSync() && dir.listSync(recursive: false).isNotEmpty;
+        } catch (e) {
+          return false; // Drive is not accessible or does not exist
         }
-      });
-      return drives;
+      }).toList();
+    } else if (Platform.isLinux) {
+      // On Linux, filter out only mounted external/internal storage (excluding pseudo-filesystems)
+      List<String> drives = [];
+      try {
+        File('/proc/mounts').readAsLinesSync().forEach((line) {
+          var parts = line.split(' ');
+          if (parts.length > 1) {
+            var mountPoint = parts[1];
+            if ((mountPoint.startsWith('/media') || mountPoint == '/mnt' || mountPoint == '/') &&
+                Directory(mountPoint).existsSync()) {
+              drives.add(mountPoint);
+            }
+          }
+        });
+      } catch (_) {}
+      return drives.toSet().toList(); // Remove duplicates
     } else if (Platform.isMacOS) {
-      // On macOS, you can access mounted volumes under /Volumes
-      return Directory('/Volumes')
-          .listSync()
-          .whereType<Directory>()
-          .map((dir) => dir.path)
-          .toList();
+      try {
+        return Directory('/Volumes')
+            .listSync()
+            .whereType<Directory>()
+            .where((dir) => dir.listSync(recursive: false).isNotEmpty) // avoid empty volumes
+            .map((dir) => dir.path)
+            .toList();
+      } catch (_) {
+        return [];
+      }
     }
     return [];
   }
