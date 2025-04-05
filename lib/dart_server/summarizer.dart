@@ -62,7 +62,7 @@ class Summarizer {
 You will be provided with the contents of a file along with its metadata. Provide a summary of the contents. The purpose of the summary is to organize files based on their content. To this end provide a concise but informative summary. Make the summary as specific to the file as possible.
 
 ```{
-   "original_file_name" : "original name of the file as given by the user"
+   "original_file_name" : "original name of the file as given by the user",
    "suggested_file_name": "suggest a file name that best describes it",
    "summary": " summary of the content"
 }```
@@ -93,7 +93,7 @@ $content
 
     print("summarBuffer to String");
     String strBuf =
-        summaryBuffer.toString().substring(7, summaryBuffer.length - 3);
+        summaryBuffer.toString().substring(7, summaryBuffer.length - 4);
     print(strBuf);
 
     // Return the result as a JSON string
