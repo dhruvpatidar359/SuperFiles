@@ -1,0 +1,75 @@
+Which of the following is not a valid identifier?
+abc_123
+abc123_
+_abc123
+123_abc
+Which of the followings are similar in the way data is stored?
+List, tuple
+Dictionary, tuple
+Dictionary, list
+None of the above
+There are _  types of loops.
+2
+3
+4
+None of the above
+Which of the following is not a part of conditional statement?
+elif
+else
+if
+switch
+Choose the correct option.
+
+a->i, b->i
+a->i, b->ii
+a->ii, b->i
+a->ii, b->ii
+
+
+
+
+
+
+Which of the following is not a part of conditional statement?
+elif
+else
+if
+switch
+Which of the following is a valid conditional loop?
+For loop
+Do while
+While
+None of the above
+Python is a -
+Fully object oriented language
+Partially object oriented language
+Keyword used to create functions is
+void
+def
+defs
+int
+Which of the following is not a principle of OOP?
+Polymorphism
+Abstraction
+Inheritance
+None of the above
+The builtin library which contains all the math function is
+The numbers in python are divided into _  categories.
+State the difference between Immutable and Mutable data type.
+
+State all data types of python.
+
+Find and State the error in the program, the program is to print the numbers from 1 to n.
+
+
+
+
+
+
+ 
+
+
+
+
+
+

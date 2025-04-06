@@ -1,0 +1,4 @@
+What is ArrayList in Java?
+ArrayList is a Java class implemented using the List interface. Java ArrayList, as the name suggests, provides the functionality of a dynamic array where the size is not fixed as an array. Also, as a part of the Collections framework, it has many features not available with arrays.
+
+

@@ -1,0 +1,47 @@
+Shri G S Institute of Technology & Science
+DEPARTMENT OF COMPUTER ENGG.
+Attn : All B.Tech III students
+Following is the tentative Report/ Presentation details format for Project planning
+S. No. Topic
+No. of
+Slides
+1.Background Study of the
+domain /Literature Survey2-3
+2.Gaps Identified1
+3.Problem Statement1
+4.Existing Solutions, if any2
+5.Analysis3-4
+6.Design3-4
+7.Proposed Solution3-4
+8.
+Proposed Implementation
+Timeline chart and work
+division of Team
+Total Slides
+1
+Comments
+Explain the background /source of problem
+Discuss the existing fundamentals.
+Explain what more can be added to existing
+solution or what is lacking or can be solved.
+Justify the need of solving this problem and
+present intended sample Input and output
+Discuss already implemented solutions
+As per software engg. Models( Details of
+Analysis)
+As per software engg. Models (Proposed
+application architecture, Data design etc.)
+Correlate how the Gaps identified above can
+be filled by your proposed solution.
+As per software engg. models
+16 - 20
+1. The report will contain all these topics in detail where as in Presentation , they
+should be stated succinctly using bullet points only. Do not use entire paragraph
+text in any presentation.
+2. The final report will be prepared using LateX.
+3. Tables and figures can be used wherever required in the presentations and
+Report with appropriate numbering and Titles. If you are using any graphs,
+properly supply it with axis titles and data tables with appropriate explanation.
+Project In-charge
+Head
+

@@ -1,0 +1,184 @@
+DECLARATION
+
+I hereby declare that the project work entitled “Thermal Properties of Matter” submitted to SHREE KASERA BAZAR VIDYA NIKETAN [Indore], is a record of an original work done by me under the guidance of Mr. Jayesh Prajapat Sir, and this project has been submitted for examination purposes with the approval of supervisor.
+
+
+Vishesh Chouhan
+
+
+
+CERTIFICATE
+This is to certify that Vishesh Chouhan of class 11th of SHREE KASERA BAZAR VIDYA NIKETAN has completed his project file under my guidance. He has taken proper care and shown utmost sincerity in completing this project. 
+I certify that this project is up to my expectations and as per the guidelines issued by CBSE.
+
+Internal Teacher                   External Teacher 
+
+
+
+Principal Mam                       School Stamp					
+
+
+ACKNOWLEDGEMENT
+I express my gratitude to Mr. Jayesh Prajapat Sir, my Physics Teacher and Mrs. Manisha Holkar Mam, Principal Mam, who guided me through the project and also gave valuable suggestions and guidance for completing this project. They helped me to understand the intricate issues involved in making the project, besides effectively presenting it. These intricacies would have been lost otherwise. My project has been a success only because of her guidance.
+
+Vishesh  Chouhan		Sign
+	      
+
+
+Index
+	What is matter?	5
+	Properties of matter	5
+	Heat	6
+	Temperature	7
+	Thermal expansion	9
+	Thermal expansion of solid	10
+	Thermal expansion of liquid	11
+	Thermal expansion of gases	13
+	Anomalous expansion of water	13
+	Heat capacity	14
+	Calorimeter	15
+	Latent heat capacity	16
+	Heat transfer	16
+	Black body radiation	17
+	Wien’s displacement law	18
+	Stefan’s law	19
+	Greenhouse effect	19
+
+what is Matter?
+In classical physics and general chemistry, matter is any substance that has mass and takes up space by having volume. All everyday objects that can be touched are ultimately composed of atoms, which are made up of interacting subatomic particles, and in everyday as well as scientific usage, "matter" generally includes atoms and anything made up of them, and any particles (or combination of particles) that act as if they have both rest mass and volume. However it does not include massless particles such as photons, or other energy phenomena or waves such as light or sound. Matter exists in various states (also known as phases). These include classical everyday phases such as solid, liquid, and gas – for example water exists as ice, liquid water, and gaseous steam – but other states are possible, including plasma, Bose–Einstein condensates, fermionic condensates, and quark–gluon plasma.
+
+Properties of Matter
+Physical Properties-Physical properties can be measured without changing the chemical's identity. The freezing point of a substance is physical. When water freezes, it's still H2O.
+Chemical Properties-Chemical properties deal with how one chemical reacts with another. We know that wood is flammable because it becomes heat, ash, and carbon dioxide when heated in the presence of oxygen.
+
+Heat
+In thermodynamics, heat is energy in transfer to or from a thermodynamic system, by mechanisms other than thermodynamic work or transfer of matter. The mechanisms include conduction, through direct contact of immobile bodies, or through a wall or barrier that is impermeable to matter; or radiation between separated bodies; or isochoric mechanical work done by the surroundings on the system of interest; or Joule heating by an electric current driven through the system of interest by an external system; or a combination of these. When there is a suitable path between two systems with different temperatures, heat transfer occurs necessarily, immediately, and spontaneously from the hotter to the colder system. Thermal conduction occurs by the stochastic (random) motion of microscopic particles (such as atoms or molecules). In contrast, thermodynamic work is defined by mechanisms that act macroscopically and directly on the system's whole-body state variables; for example, change of the system's volume through a piston's motion with externally measurable force; or change of the system's internal electric polarization through an externally measurable change in electric field. The definition of heat transfer does not require that the process be in any sense smooth. For example, a bolt of lightning may transfer heat to a body.
+
+Temperature
+A temperature expresses hot and cold, as measured with a thermometer. In physics, hotness is a body's ability to impart energy as heat to another body that is colder. 
+In a body in which there are processes of chemical reaction and flow of matter, temperature may vary over its parts, and over time, as measured by a suitably small and rapidly responding thermometer, and may depend also on the match of the processes to the characteristics of the thermometer.
+There are various temperature scales that nearly or approximately agree with one another, but differ slightly because of the various characteristics of particular thermometric substances. The most commonly used scales are the Celsius scale (formerly called centigrade) (denoted °C), Fahrenheit scale (denoted °F), and Kelvin scale (denoted K).
+When a body has no macroscopic chemical reactions or flows of matter or energy, it is said to be in its own internal state of thermodynamic equilibrium. Its temperature is uniform in space and unchanging in time. Then, referring to the Boltzmann constant, a temperature scale is defined and said to be absolute because it is independent of the characteristics of particular thermometric substances and thermometer mechanisms. This is the Kelvin or thermodynamic scale, widely used in science and technology. The kelvin (the word is spelled with a lower-case k) is the unit of temperature in the International System of Units (SI). The thermodynamic temperature is always positive, relative to an absolute zero.
+
+For some conditions other than thermodynamic equilibrium, a suitable thermometer calibrated on the thermodynamic scale, including absolute zero, can register a negative temperature; such conditions are hotter than absolute zero.
+Temperature is important in all fields of natural science, including physics, chemistry, Earth science, medicine, and biology, as well as most aspects of daily life.
+
+
+
+
+
+
+
+
+
+
+
+
+Thermal Expansion
+Thermal expansion is the tendency of matter to change its shape, area, and volume in response to a change in temperature.
+Temperature is a monotonic function of the average molecular kinetic energy of a substance. When a substance is heated, the kinetic energy of its molecules increases. Thus, the molecules begin vibrating/moving more and usually maintain a greater average separation. Materials which contract with increasing temperature are unusual; this effect is limited in size, and only occurs within limited temperature ranges (see examples below). The relative expansion (also called strain) divided by the change in temperature is called the material's coefficient of thermal expansion and generally varies with temperature.
+
+
+
+
+Thermal expansion of solid
+When calculating thermal expansion it is necessary to consider whether the body is free to expand or is constrained. If the body is free to expand, the expansion or strain resulting from an increase in temperature can be simply calculated by using the applicable coefficient of Thermal Expansion.
+If the body is constrained so that it cannot expand, then internal stress will be caused (or changed) by a change in temperature. This stress can be calculated by considering the strain that would occur if the body were free to expand and the stress required to reduce that strain to zero, through the stress/strain relationship characterized by the elastic or Young's modulus. In the special case of solid materials, external ambient pressure does not usually appreciably affect the size of an object and so it is not usually necessary to consider the effect of pressure changes.
+Common engineering solids usually have coefficients of thermal expansion that do not vary significantly over the range of temperatures where they are designed to be used, so where extremely high accuracy is not required, practical calculations can be based on a constant, average, value of the coefficient of expansion.
+
+There are several types of expansions such as:
+1. Linear expansion
+2. Area expansion
+3. Volume expansion
+Thermal Expansion of Liquid
+Theoretically, the coefficient of linear expansion can be found from the coefficient of volumetric expansion (V ≈ 3L). For liquids, L is calculated through the experimental determination of V. Liquids, unlike solids have no definite shape and they take the shape of the container. Consequently, liquids have no definite length and area, so linear and areal expansions of liquids have no significance.
+
+Liquids in general, expand on heating. However water is an exception to this general behavior: below 4 °C it contracts on heating. For higher temperature it shows the normal positive thermal expansion. The thermal expansion of liquids is usually higher than in solids because of weak intermolecular forces present in liquids.
+
+Thermal expansion of solids usually shows little dependence on temperature, except at low temperatures, whereas liquids expand at different rates at different temperatures.
+
+Apparent and absolute expansion of a liquid - The expansion of liquids is usually measured in a container. When a liquid expands in a vessel, the vessel expands along with the liquid. Hence the observed increase in volume of the liquid level is not actual increase in its volume. The expansion of the liquid relative to the container is called its apparent expansion, while the actual expansion of the liquid is called real expansion or absolute expansion. The ratio of apparent increase in volume of the liquid per unit rise of temperature to the original volume is called its coefficient of apparent expansion.
+
+For small and equal rises in temperature, the increase in volume (real expansion) of a liquid is equal to the sum of the apparent increase in volume (apparent expansion) of the liquid and the increase in volume of the containing vessel. Thus a liquid has two coefficients of expansion.
+Measurement of the expansion of a liquid must account for the expansion of the container as well. For example, when a flask with a long narrow stem, containing enough liquid to partially fill the stem itself, is placed in a heat bath, the height of the liquid column in the stem will initially drop, followed immediately by a rise of that height until the whole system of flask, liquid and heat bath has warmed through. The initial drop in the height of the liquid column is not due to an initial contraction of the liquid, but rather to the expansion of the flask as it contacts the heat bath first. Soon after, the liquid in the flask is heated by the flask itself and begins to expand. Since liquids typically have a greater expansion over solids, the expansion of the liquid in the flask eventually exceeds that of the flask, causing the level of liquid in the flask to rise. A direct measurement of the height of the liquid column is a measurement of the apparent expansion of the liquid. The absolute expansion of the liquid is the apparent expansion corrected for the expansion of the containing vessel.
+
+
+Thermal expansion of gases
+The gas expands at constant pressure because the temperature increases. This, in turn, causes an increase in the force of impact and hence on the pressure that the particles exert on average onto the internal walls of the container. As soon as the pressure increases, the volume increases.
+For an ideal gas, the volumetric thermal expansion (i.e., relative change in volume due to temperature change) depends on the type of process in which temperature is changed. Two simple cases are constant pressure (an isobaric process) and constant volume (an isochoric process).
+
+Anomalous expansion of water
+Normally, liquids contract on cooling & the density increases. However, water is special. It contracts when cooled, down to a temperature of 4°C but thereafter begins to expand as it reaches 0°C and turns into ice.
+Water attains its maximum density at 4°C. This is caused by the hydrogen bonding between the oxygen atoms that are negatively charged and the hydrogen atoms that are positively charged, from two different molecules of water. The density of ice is lower, and so it floats on water. This anomalous expansion of water is an abnormal property of water whereby it expands instead of contracting when the temperature goes from 4°C to 0°C, and it becomes less dense. The density becomes less as it freezes because molecules of water normally form open crystal structures when in solid form. Water is denser than ice while almost all the other substances are denser in solid form than in liquid form.
+This phenomenon is useful for the preservation of marine life in very cold temperatures. During winter, the surface water in water lakes and rivers starts cooling. Upon reaching the temperature of 4°C, the surface water descends to the bottom as it denser. Upon further cooling to freezing point, a temperature gradient is set up in depths of the water body whereby, the bottom-most layer is at 4°C and the temperature gradually drops towards the surface where it is ice. . Further, water and ice are not good conductors of heat. All this help in the maintenance of temperature of the water at the bottom at 4°C. It is in this layer that marine life is able to sustain itself. Had water been like any other liquid, the whole depth of the water would have been frozen and aquatic life would have been destroyed completely.
+
+Heat capacity
+Heat capacity is a measurable physical quantity equal to the ratio of the heat added to an object to the resulting temperature change. The molar heat capacity is the heat capacity per unit amount (SI unit: mole) of a pure substance, and the specific heat capacity, often called simply specific heat, is the heat capacity per unit mass of a material. Heat capacity is a physical property of a substance, which means that it depends on the state and properties of the substance under consideration.
+The specific heats of monatomic gases, such as helium, are nearly constant with temperature. Diatomic gases such as hydrogen display some temperature dependence and triatomic gases (e.g., carbon dioxide) still more.
+Before the development of the laws of thermodynamics, heat was measured by changes in the states of the participating bodies.
+
+Calorimeter
+A calorimeter is an object used for calorimetry, or the process of measuring the heat of chemical reactions or physical changes as well as heat capacity. Differential scanning calorimeters, isothermal micro calorimeters, titration calorimeters and accelerated rate calorimeters are among the most common types. A simple calorimeter just consists of a thermometer attached to a metal container full of water suspended above a combustion chamber. It is one of the measurement devices used in the study of thermodynamics, chemistry, and biochemistry.
+
+
+
+
+Latent heat capacity
+Latent heat is energy released or absorbed, by a body or a thermodynamic system, during a constant-temperature process — usually a first-order phase transition.
+Latent heat can be understood as energy in hidden form which is supplied or extracted to change the state of a substance without changing its temperature. Examples are latent heat of fusion and latent heat of vaporization involved in phase changes, i.e. a substance condensing or vaporizing at a specified temperature and pressure.
+
+Heat transfer 
+Referring to conduction, Partington writes: "If a hot body is brought in conducting contact with a cold body, the temperature of the hot body falls and that of the cold body rises, and it is said that a quantity of heat has passed from the hot body to the cold body."
+
+Referring to radiation, Maxwell writes: "In Radiation, the hotter body loses heat, and the colder body receives heat by means of a process occurring in some intervening medium which does not itself thereby become hot."
+
+Maxwell writes that convection as such "is not a purely thermal phenomenon". In thermodynamics, convection in general is regarded as transport of internal energy. If, however, the convection is enclosed and circulatory, then it may be regarded as an intermediary that transfers energy as heat between source and destination bodies, because it transfers only energy and not matter from the source to the destination body.
+
+Black body radiation
+Black-body radiation is the thermal electromagnetic radiation within or surrounding a body in thermodynamic equilibrium with its environment, emitted by a black body (an idealized opaque, non-reflective body). It has a specific spectrum of wavelengths, inversely related to intensity that depends only on the body's temperature, which is assumed for the sake of calculations and theory to be uniform and constant.
+
+The thermal radiation spontaneously emitted by many ordinary objects can be approximated as black-body radiation. A perfectly insulated enclosure that is in thermal equilibrium internally contains black-body radiation and will emit it through a hole made in its wall, provided the hole is small enough to have negligible effect upon the equilibrium.
+
+A black body at room temperature appears black, as most of the energy it radiates is in the infrared spectrum and cannot be perceived by the human eye. Since, by definition, the human eye cannot perceive light waves below the visible frequency, a black body, viewed in the dark at the lowest just faintly visible temperature, subjectively appears grey, even though its objective physical spectrum peak is in the infrared range. When it becomes a little hotter, it appears dull red. As its temperature increases further it becomes yellow, white, and ultimately blue-white.
+
+Although planets and stars are neither in thermal equilibrium with their surroundings nor perfect black bodies, black-body radiation is used as a first approximation for the energy they emit. Black holes are near-perfect black bodies, in the sense that they absorb all the radiation that falls on them. It has been proposed that they emit black-body radiation (called Hawking radiation), with a temperature that depends on the mass of the black hole.
+
+Wien’s displacement law
+Wien's displacement law states that the black-body radiation curve for different temperatures will peak at different wavelengths that are inversely proportional to the temperature. The shift of that peak is a direct consequence of the Planck radiation law, which describes the spectral brightness of black-body radiation as a function of wavelength at any given temperature. However, it had been discovered by Wilhelm Wien several years before Max Planck developed that more general equation, and describes the entire shift of the spectrum of black-body radiation toward shorter wavelengths as temperature increases.
+
+
+Stefan’s law
+The Stefan–Boltzmann law describes the power radiated from a black body in terms of its temperature. Specifically, the Stefan–Boltzmann law states that the total energy radiated per unit surface area of a black body across all wavelengths per unit time j (also known as the black-body radiant emittance) is directly proportional to the fourth power of the black body's thermodynamic temperature T:
+J*=σT4
+The constant of proportionality σ, called the Stefan–Boltzmann constant.
+
+Greenhouse effect
+The greenhouse effect is the process by which radiation from a planet's atmosphere warms the planet's surface to a temperature above what it would be without this atmosphere.
+Radiatively active gases (i.e., greenhouse gases) in a planet's atmosphere radiate energy in all directions. Part of this radiation is directed towards the surface, warming it. The intensity of the downward radiation – that is, the strength of the greenhouse effect will depend on the atmosphere's temperature and on the amount of greenhouse gases that the atmosphere contains.
+Earth’s natural greenhouse effect is critical to supporting life, and initially was a precursor to life moving out of the ocean onto land. Human activities, however, mainly the burning of fossil fuels and clear cutting of forests, have accelerated the greenhouse effect and caused global warming.
+The planet Venus experienced runaway greenhouse effect, resulting in an atmosphere which is 96% carbon dioxide, with surface atmospheric pressure roughly the same as found 900 m (3,000 ft.) underwater on Earth. Venus may have had water oceans, but they would have boiled off as the mean surface temperature rose to 735 K (462 °C; 863 °F).
+The term "greenhouse effect" continues to see use in scientific circles and the media despite being a slight misnomer, as an atmosphere reduces radiative heat loss while a greenhouse blocks convective heat loss. The result, however, is an increase in temperature in both cases.
+
+
+
+
+
+
+
+
+
+	
+Bibliography
+www.clipartwiki.com
+www.google.com
+en.wikipedia.org 
+www.shaalaa.com 
+www.schoolphysics.co.uk
+mutuslab.cs.uwindsor.ca
+www.quora.com
+www.scientificamerican.com
+en.wikibooks.org
+NCERT book
+“Pradeep” reference 
+“H C Verma” reference
+

@@ -43,6 +43,7 @@ class DatabaseHelper {
         fileName TEXT UNIQUE NOT NULL,
         filePath TEXT UNIQUE NOT NULL,
         summary TEXT NOT NULL,
+        suggested_file_name TEXT,
         lastModified DATETIME NOT NULL
       )
       '''
