@@ -1,0 +1,6 @@
+
+
+Machine learning and deep learning are sub-disciplines of AI, and deep learning is a sub-discipline of machine learning.
+Both machine learning and deep learning algorithms use neural networks to ‘learn’ from huge amounts of data. These neural networks are programmatic structures modeled after the decision-making processes of the human brain. They consist of layers of interconnected nodes that extract features from the data and make predictions about what the data represents.
+Machine learning and deep learning differ in the types of neural networks they use, and the amount of human intervention involved. Classic machine learning algorithms use neural networks with an input layer, one or two ‘hidden’ layers, and an output layer. Typically, these algorithms are limited to supervised learning: the data needs to be structured or labeled by human experts to enable the algorithm to extract features from the data.
+Deep learning algorithms use deep neural networks—networks composed of an input layer, three or more (but usually hundreds) of hidden layers, and an output layout. These multiple layers enable unsupervised learning: they automate extraction of features from large, unlabeled and unstructured data sets. Because it doesn’t require human intervention, deep learning essentially enables machine learning at scale.

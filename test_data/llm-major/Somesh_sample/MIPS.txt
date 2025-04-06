@@ -1,0 +1,352 @@
+
+CO24009: COMPUTER ARCHITECTURE
+CONTENT PAGE
+S.No.
+Date of Experiment
+Name of Experiment
+Page No.
+Date of Submission
+Remarks
+1
+17/08/2022
+Lab00: To study and run various linux commands like: lscpu, cat /proc/cpuinfo, nproc --all, cpuid, dmidecode, inxi -C, hardinfo, dstat, iostat -c, vmstat, mpstat, top, htop, sar, perf, ps, collectd, ping, ifconfig
+
+24/08/2022
+
+2
+24/08/2022
+Lab01: Write basic assembly language code for MIPS32 processor.                                                                                                  Q1. Put the following bit pattern into register $1 :
+DEADBEEF
+A. Easy program: do this using just three instructions.
+B. Somewhat harder: do this one letter at a time, using ori to load each letter (each nibble) into a register, then shifting it into position. You will need to use ori, or, and sll instructions. Look at the contents of register $1 as you push F10 to single step the program.
+
+09/07/2022
+
+
+
+Q2. In each register $1 through $7 set the corresponding bit. That is, in register 1 set bit 1 (and clear the rest to zero), in $2 set bit 2 (and clear the rest to zero), and so on. Use only one ori instruction in your program, to set the bit in register $1.
+ori   $1,$0,0x01
+Don't use any ori instructions other than that one. Note: bit 1 of a register is the second from the right, the one that (in unsigned binary) corresponds to the first power of two.
+
+
+
+
+
+Q3. Start out a program with the instruction that puts a single one-bit into register one:
+ori   $1,$0,0x01
+Now, by using only shift instructions and register to register logic instructions, put the pattern 0xFFFFFFFF into register $1. Don't use another ori after the first. You will need to use more registers than $1. See how few instructions you can do this in. My program has 11 instructions.
+
+
+
+
+
+Q4. Put the bit pattern 0x55555555 in register $1. (Do this with three instructions.)Now shift the pattern left one position into register $2 (leave $1 unchanged).Put the the bit-wise OR of $1 and $2 into register $3. Put the the bit-wise AND of $1 and $2 into register $4. Put the the bit-wise XOR of $1 and $2 into register $5.
+Examine the results.
+
+
+
+
+
+Q5. Put the bit pattern 0x0000FACE into register $1. This is just an example pattern; assume that $1 can start out with any pattern at all in the low 16 bits (but assume that the high 16 bits are all zero).Now, using only register-to-register logic and shift instructions, rearrange the bit pattern so that register $2 gets the bit pattern 0x0000CAFE.Write this program so that after the low 16 bits of $1 have been set up with any bit pattern, no matter what bit pattern it is, the nibbles in $2 are the same rearrangement of the nibbles of $1 shown with the example pattern. For example, if $1 starts out with 0x00003210 it will end up with the pattern 0x00001230
+A. Moderately Easy program: do this using ori instructions to create masks, then use and and or instructions to mask in and mask out the various nibbles. You will also need rotate instructions.
+B. Somewhat Harder program: Use only and, or, and rotate instructions.
+
+
+
+
+
+Q6. Start out register $1 with any 32-bit pattern, such as 0x76543210. Now, put the reverse of that pattern into register $2, for the example, 0x01234567.
+
+
+
+3
+09/07/2022
+LAB02: To implement airthmetic operations- ADDITION & SUBSTRACTION in assembly language.
+
+14/09/2022
+
+
+
+Q1. Write a program that adds up the following integers:
+ 456
+-229
+ 325
+-552
+Leave the answer in register $8.
+
+
+
+
+
+Q2. Initialize the sum in register $8 to zero. Then add 409610 to $8 sixteen times. You don't know how to loop, yet, so do this by making 16 copies of the same instruction. The value 409610 is 0x1000.Next initialize register $9 to 409610. Shift $9 left by the correct number of positions so that registers $8 and $9 contain the same bit pattern.Finally, initialize aregister $10 to 409610. Add $10 to itself the correct number of times so that it contains the same bit pattern as the other two registers.
+
+
+
+
+
+Q3. Initialize register $9 to 0x7000. Shift the bit pattern so that $9 contains 0x70000000. Now use addu to add $9 to itself. Is the result correct?
+Now use the add instruction and run the program again. What happens?
+
+
+
+
+
+Q4. Let register $8 be x and register $9 be y. Write a program to evaluate:    3x - 5y
+Leave the result in register $10. Inspect the register after running the program to check that the program works. Run the program several times, initialize x and y to different values for each run
+
+
+
+
+
+Let register $8 be x. Write a program that computes 13x. Leave the result in register $10. Initialize x to 1 for debugging. Then try some other positive values.
+Extend your program so that it also computes -13x and leaves the result in register $11 (This will take one additional instruction.) Now initialize x to -1. Look at your result for 13x. Is it correct?
+
+
+
+4
+14/09/2022
+LAB03:  To implement airthmetic operations- MULTIPLICATION, DIVISION & ARITHMETIC SHIFT in assembly language.
+
+21/09/2022
+
+
+
+Q1. Write a program to evaluate a polynomial, similar to newMult.asm from the chapter. Evaluate the polynomial:
+3x2 + 5x - 12
+Pick a register to contain x and initialize it to an integer value (positive or negative) at the beginning of the program. Assume that x is small enough so that all results remain in the lo result register. Evaluate the polynomial and leave its value in a register.
+Verify that the program works by using several initial values for x. Use x = 0 and x = 1 to start since this will make debugging easy.
+
+
+
+
+
+Q2. Write a program similar to divEg.asm from the chapter to evaluate a rational function:(3x+7)/(2x+8)
+Verify that the program works by using several initial values for x. Use x = 0 and x = 1 to start since this will make debugging easy. Try some other values, then check what happens when x = -4.
+
+
+
+
+
+Q3. Write a program that multiplies the contents of two registers which you have initialized using an immediate operand with the ori instruction. Determine (by inspection) the number of significant bits in each of the following numbers, represented in two's complement. Use the program to form their product and then determine the number of significant bits in it.
+
+
+
+
+
+Q4. Write a program that determines the value of the following expression:(x*y)/z
+Use x = 1600000 (=0x186A00), y = 80000 (=0x13880), and z = 400000 (=61A80). Initialize three registers to these values. Since the immediate operand of the ori instruction is only 16 bits wide, use shift instructions to move bits into the correct locations of the registers.Choose wisely the order of multiply and divide operations so that the significant bits always remain in the lo result register.
+
+
+
+5
+21/09/2022
+LAB04: Memory Access: Loading and Storing Registers. 
+
+10/12/2022
+
+
+
+Q1: Modify exercise 1 of the previous chapter so that the value x is in memory. Store the value of the polynomial back to memory. The program will be similar to poly.asm from this chapter. Evaluate the polynomial: 3x2 + 5x - 12
+Use symbolic addresses x and poly. Assume that the value in x is small enough so that all results fit into 32 bits. Since load delays are turned on in SPIM be careful what instructions are placed in the load delay slot.
+Verify that the program works by using several initial values for x. Use x = 0 and x = 1 to start since this will make debugging easy. Then try some other values, such as x = 10 and x = -1.
+
+
+
+
+
+Q2: Evaluate the expression: 17xy - 12x - 6y + 12
+Use symbolic addresses x, y, and answer. Assume that the values are small enough so that all results fit into 32 bits. Since load delays are turned on in SPIM be careful what instructions are placed in the load delay slot.
+Verify that the program works by using several initial values for x and y. Use x=0, y=1 and x=1, y=0 to start since this will make debugging easy. Then try some other values. As an option, follow the precaution for multiplication, as above.
+
+
+
+
+
+Q3. Evaluate the polynomial:
+6x3 - 3x2 + 7x + 2
+Get the value for x from symbolic addresses x. Store the result at symbolic address poly. Assume that the values are small enough so that all results fit into 32 bits. Since load delays are turned on in SPIM be careful what instructions are placed in the load delay slot.Evaluate the polynomial by using Horner's Method. This is a way of building up values until the final value is reached. First, pick a register, say $7, to act as an accumulator. The accumulator will hold the value at each step. Use other registers to help build up the value at each step.
+
+
+
+
+
+Q4. Evaluate the following polynomial using Horner's method:
+ax3 + bx2 + cx + d
+Now the values for the coefficients a, b, c, d as well as for x come from the .data section of memory:
+       .data
+x:     .word    1
+a:     .word   -3
+b:     .word    3
+c:     .word    9
+d:     .word  -24
+Load a base register with the address of the first byte of the .data section. Calculate (by hand) the displacement needed for each of the values in memory and use it with a lw instruction to get values from memory. In a later chapter you will find a much more convenient way to load and store values using symbolic addresses.
+
+
+
+
+
+Q5. Your program has a data section declared as follows:
+      .data
+      .byte   12
+      .byte   97
+      .byte  133
+      .byte   82
+      .byte  236
+Write a program that adds the values up, computes the average, and stores the result in a memory location. Is the average correct?
+
+
+
+6
+10/12/2022
+LAB05: Jump and Branch Instructions.
+
+19/10/2022
+
+
+
+Q1. Write a program that computes the sum:
+1 + 2 + 3 + 4 + 5 + ...
+Do this by using the j instruction to implement a non-ending loop. Before the loop, initialize a register to zero to contain the sum, and initialize another register to one to be the counter. Inside the loop add the counter to the sum, increment the counter, and jump to the top of the loop.
+Execute the program by single-stepping (by pushing F10). After you have done this enough to confirm that the program works, look at SPIM's menu and select Simulator and Multiple Step. Enter a number of steps (such as 40) into the window and click "OK". Each step is the execution of one machine cycle. Once you see how this works you can do the same thing more easily by pushing F11.
+
+
+
+
+
+Q2. Write a program that adds $8 to itself inside a non-ending loop. Initialize $8 before the loop is entered. Use the add instruction so that when overflow is detected the program ends with a trap.
+Now change the add instruction to addu. Now when overflow occurs, nothing happens. Run the program and observe the difference.
+
+
+
+
+
+Q3. Write a program that computes the sum:
+1 + 2 + 3 + 4 + 5 + ... + 98 + 99 + 100
+Do this, as above, by using the j instruction to implement a non-ending loop. Before the loop, initialize a register to zero to contain the sum, initialize another register to one to be the counter, and another register to 10110. Inside the loop add the counter to the sum, increment the counter, and jump to the top of the loop.
+However, now, at the top of the loop put in a beq instruction that branches out of the loop when the counter equals 10110. The target of the branch should be something like this:
+exit:    j    exit      #  sponge for excess machine cycles
+         sll   $0,$0,0
+Now run the program by setting the value of the PC to 0x400000 (as usual) and entering 500 or so for the number of Multiple Steps (F11). Your program will not need so many steps, but that is OK. The excess steps will be used up repeatedly executing the statment labeled "exit".
+
+
+
+
+
+Q4. Write a program that computes terms of the Fibonacci series, defined as:
+1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...
+Each term in the series is the sum of the preceeding two terms. So, for example, the term 13 is the sum of the terms 5 and 8.
+Write the program as a counting loop that terminates when the first 100 terms of the series have been computed. Use a register for the current term and a register for the previous term. Each execution of the loop computes a new current term and then copies the old current term to the previous term register.
+
+
+
+7
+19/10/2022
+LAB06: Set Instructions and more Branch Instructions.
+
+11/02/2022
+
+
+
+Q1. Write a program that computes three sums:
+1 + 2 + 3 + 4 + ... + 99 + 100
+1 + 3 + 5 + 7 + ... + 97 + 99
+2 + 4 + 6 + 8 + ... + 98 + 100
+Use a register (say $8) for the sum of evens, a register (say $9) for the sum of odds, and another (say $10) for the sum of all numbers.
+Do this with one counting loop. The loop body contains logic to add the count to the proper sums.
+
+
+
+
+
+Q2. With an ori instruction, initialize $8 to a bit pattern that represents a positive integer. Now the program determines how many significant bits are in the pattern. The significant bits are the leftmost one bit and all bits to its right. So the bit pattern:
+0000 0000 0010 1001 1000 1101 0111 1101
+... has 22 significant bits. (To load register $8 with the above pattern, 0x00298D7D, use an ori followed by a left shift followed by another ori.)
+
+
+
+
+
+Q3. A temperature in $8 is allowed to be within either of two ranges: 20 <= temp <= 40 and 60 <= temp <= 80. Write a program that sets a flag (register $3) to 1 if the temperature is in an allowed range and to 0 if the temperature is not in an allowed range.
+
+
+
+
+
+Q4. Write a program that computes the median of three values in memory. After it has been found, store the median in memory.
+      .data
+A:    .word 23
+B:    .word 98
+C:    .word 17    
+The median of three integers is greater than or equal to one integer and less than or equal to the other. With the above three integers the median is "23". Assume that the data changes from run to run. Here is some more possible data:
+      .data
+A:    .word 9
+B:    .word 98
+C:    .word 9    
+With the new data, the median is "9".
+
+
+
+8
+11/02/2022
+LAB07: Structured Programming.  
+
+16/11/2022
+
+
+
+Q1. Write a program that stores the number 0 in the first four bytes of the .data section, then stores the number 1 in the next four bytes, then stores the number 2 in the four bytes after that and so on. Do this for numbers 0 through 24.
+Of course you will do this in a counting loop. The address in the data section is contained in a base register. Increment the base register each time a number is stored.
+The data section of your program should look like
+         .data
+array:   .space    100
+
+
+
+
+
+Q2. A perfect number is an integer whose integer divisors sum up to the number. For example, 6 is perfect because 6 is divided by 1, 2, and 3 and 6 = 1 + 2 + 3. Other perfect numbers are 28 and 496.
+Write a program that determines if an integer stored in memory is a perfect number. Set a location in memory to 1 if the number is perfect, to 0 if not.
+            .data
+N:          .word      496
+isperfect:  .word      0
+It would be enormously helpful to first do this by hand with a couple of examples. Then draw a flowchart. Check the flowchart by following it with a few examples. Then write the program.
+
+
+
+
+
+Q3. This exercise continues exercise 2.
+Write a program that searches for perfect numbers. It has an outer loop that counts upward from two to some limit. Each number is tested (as above) to see if it is a perfect number. If it is a perfect number it is stored at a memory location. Store perfect numbers at successive full-word memory locations. Look at exercise 1 for a way to do this.
+
+
+
+
+
+Q4. Write a program that determines if an integer is prime. An integer is prime if it cannot be divided by any positive integer other than one and itself. The integer N to be tested will be in memory. Set the location isprime to 1 if N is prime, 0 otherwise.
+          .data
+N:        .word     223
+isprime:  .word      0
+To determine if N is prime, try to divide it with trial divisors from 2 up to N/2. If one of them divides N without a remainder, then N is not prime. You only have to try trial divisors up to N/2 because if N = trial*X, then trial = N/X and the only integer X less than 2 is 1.
+
+
+
+
+
+Q5. Write a program that computes the greatest common divisor (GCD) of two integers. The two integers and the GCD will be in memory.
+
+
+
+
+
+Q6. Write a program that computes the Euler phi function. The phi function is important in cryptography and internet security.
+The phi function of an integer N is the number of positive integers less than N that do not share a common factor greater than one with N. Another way to say this is that phi( N ) is the number of positive integers less than N that are relatively prime to N.
+Two integers share a common factor if there is an integer greater than one that divides them both with no remainder. For example, 14 and 21 share a common factor of 7. Also, 7 and 21 share a common factor of 7. But 5 and 21 do not have a common factor.
+Two integers have a factor in common if they have greatest commmon divisor greater than one. The greatest common divisor of 14 and 21 is 7. The greatest common divisior of 5 and 21 is 1.
+So the phi function of N is the number of positive integers x less than N for which gcd(N,x) = 1.
+Write a program that computes phi(N) for an integer N in the data section. Store the result back into the data section
+
+
+
+
+
+

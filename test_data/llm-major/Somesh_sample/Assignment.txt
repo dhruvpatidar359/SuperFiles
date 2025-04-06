@@ -1,0 +1,334 @@
+Assignment
+Store value of counter in SharedPreferences and SQL.
+1. MainActivity
+package com.example.assignment_7;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    Button increment;
+    Button decrement;
+    Button reset;
+    TextView textView;
+    Button setSF;
+    Button getSF;
+    int counter = 0;
+
+    private DBManager dbManager;
+    Button inSql;
+    Button delSql;
+    Button getSql;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        dbManager = new DBManager(this);
+
+        increment = findViewById(R.id.increment);
+        decrement = findViewById(R.id.decrement);
+        textView = findViewById(R.id.textView);
+        reset = findViewById(R.id.reset);
+        setSF = findViewById(R.id.sf_set);
+        getSF = findViewById(R.id.sf_get);
+        inSql = findViewById(R.id.inSql);
+        delSql = findViewById(R.id.delSql);
+        getSql = findViewById(R.id.getSql);
+
+
+        increment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                counter++;
+                textView.setText(counter + "");
+            }
+        });
+
+        decrement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                counter--;
+                textView.setText(counter + "");
+            }
+        });
+
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                counter=0;
+                textView.setText(counter + "");
+            }
+        });
+
+        SharedPreferences sharedPreferences = getSharedPreferences("SF",MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+
+        setSF.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edit.putInt("counter",counter);
+                edit.commit();
+                Toast.makeText(getApplicationContext(),"Your Shared preference are stored",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        getSF.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sh = getSharedPreferences("SF",MODE_PRIVATE);
+                int count = sh.getInt("counter",counter);
+                textView.setText(count + "");
+            }
+        });
+
+        inSql.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbManager.insertData(Integer.toString(counter));
+                Toast.makeText(getApplicationContext(),"Your DATA stored in SQL ",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        delSql.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbManager.deleteAllData();
+            }
+        });
+
+        getSql.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Cursor cursor = dbManager.getData();
+
+                // Move cursor to the last row
+                if (cursor.moveToLast()) {
+                    // Retrieve the value from the "name" column of the last row
+                    String name = cursor.getString(cursor.getColumnIndex("name"));
+                    textView.setText(name);
+                } else {
+                    // Handle the case where the cursor is empty
+                    textView.setText("No data found");
+                }
+
+                // Close the cursor after use
+                cursor.close();
+            }
+        });
+
+    }
+}
+4, Activity.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.462" />
+
+    <Button
+        android:id="@+id/increment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Increment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.124"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.462" />
+
+    <Button
+        android:id="@+id/inSql"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="INSERT_SQL"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.748" />
+
+    <Button
+        android:id="@+id/delSql"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DELETE_SQL"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.748" />
+
+    <Button
+        android:id="@+id/getSql"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GET_SQL"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.748" />
+
+    <Button
+        android:id="@+id/sf_set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SET_SF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.62" />
+
+    <Button
+        android:id="@+id/sf_get"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GET_SF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.822"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.62" />
+
+    <Button
+        android:id="@+id/decrement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Decrement"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.462" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="237dp"
+        android:layout_height="239dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.032"
+        app:srcCompat="@android:drawable/radiobutton_off_background" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="134dp"
+        android:layout_height="95dp"
+        android:gravity="center"
+        android:text="Counter"
+        android:textColor="#FF0202"
+        android:textColorHighlight="#F60404"
+        android:textColorLink="#FF0505"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.541"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+2. DBHelper
+package com.example.assignment_7;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class DBHelper extends SQLiteOpenHelper {
+    private static final String DATABASE_NAME = "my_database";
+    private static final int DATABASE_VERSIOM = 1;
+
+    public DBHelper(Context context){ super(context,DATABASE_NAME,null,DATABASE_VERSIOM,null);}
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        String createTableQuery = "CREATE TABLE my_table (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)";
+        db.execSQL(createTableQuery);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS my_table");
+        onCreate(db);
+    }
+}
+3. DBManager
+package com.example.assignment_7;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+public class DBManager {
+
+    private DBHelper dbHelper;
+
+    public DBManager(Context context){
+        dbHelper = new DBHelper(context);
+    }
+
+    public long insertData(String name){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("name",name);
+        long id = db.insert("my_table",null,values);
+        db.close();
+        return id;
+    }
+
+    public Cursor getData() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * from my_table",null);
+        return cursor;
+    }
+
+    public void deleteAllData(){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.delete("my_table",null,null);
+        db.close();
+    }
+}
+
+
+

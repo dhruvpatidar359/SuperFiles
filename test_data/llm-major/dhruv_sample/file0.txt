@@ -1,0 +1,1 @@
+Comparison with existing methods: The lack of temporal and/or spatial resolution of traditional neuroscience imaging techniques call attention to a need for a technique capable of providing high spatio temporal resolution. LSFM, which is capable of acquiring high resolution volumetric images is increasingly becoming an interesting imaging technique for neuroscience.

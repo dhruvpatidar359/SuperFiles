@@ -17,8 +17,14 @@ class Loader {
     final Directory directory = Directory(folderPath);
     final List<FileSystemEntity> entities = directory.listSync(recursive: true);
 
-    final List<String> allowedExtensions = ['.txt','.c','.cpp','.py','.java', '.js', '.html','.css','.php','.swift','.dart','.rb', '.pdf', '.png', '.jpg', '.jpeg','.docx','.csv','.odt'];
-    final List<Map<String, dynamic>> summariesList = [];
+    final List<String> allowedExtensions = [
+      '.txt', '.c', '.cpp', '.py', '.java', '.js', '.html', '.css',
+      '.php', '.swift', '.dart', '.rb', '.pdf', '.png', '.jpg',
+      '.jpeg', '.docx', '.csv', '.odt'
+    ];
+
+    final List<Map<String, String>> filesData = [];
+    final List<Map<String, dynamic>> allSummaries = [];
 
     for (FileSystemEntity entity in entities) {
       if (entity is File) {
@@ -27,23 +33,46 @@ class Loader {
         if (allowedExtensions.contains(fileExtension)) {
           String fileContent = await extractTextFromFile(entity.path);
 
-          // extracting the first 500 characters of a file
           if (fileContent.length > 500) {
-            fileContent =  fileContent.substring(0, 500);  // Extract the first 500 characters
+            fileContent = fileContent.substring(0, 500);
           }
-          String fileName = p.basename(entity.path);
-          print("entity.path ${entity.path}");
 
-          String summaryJson = await summarizer.summarizeFile(entity.path, fileName, fileContent);
-          print("summaryJson ${summaryJson}");
-          Map<String, dynamic> summaryMap = jsonDecode(summaryJson);
-          summariesList.add(summaryMap);  // Add the JSON object to the list
+          filesData.add({
+            "filePath": entity.path,
+            "fileName": p.basename(entity.path),
+            "content": fileContent,
+          });
+
+          print("Collected: ${entity.path}");
+
+          // When we have 10 files collected, summarize them
+          if (filesData.length == 10) {
+            String batchJson = jsonEncode({"files": filesData});
+            String summaryJson = await summarizer.summarizeFile(batchJson);
+            print("summaryJson (batch): $summaryJson");
+
+            List<dynamic> batchSummaries = jsonDecode(summaryJson);
+            allSummaries.addAll(batchSummaries.cast<Map<String, dynamic>>());
+
+            filesData.clear(); // Clear the batch
+          }
         }
       }
     }
 
-    return summariesList.isNotEmpty ? jsonEncode(summariesList) : null;  // Return the list as JSON string
+    // Summarize remaining files (less than 10)
+    if (filesData.isNotEmpty) {
+      String batchJson = jsonEncode({"files": filesData});
+      String summaryJson = await summarizer.summarizeFile(batchJson);
+      print("summaryJson (final batch): $summaryJson");
+
+      List<dynamic> batchSummaries = jsonDecode(summaryJson);
+      allSummaries.addAll(batchSummaries.cast<Map<String, dynamic>>());
+    }
+
+    return allSummaries.isNotEmpty ? jsonEncode(allSummaries) : null;
   }
+
 
 
   void saveSummary(String fileName, String filePath, String summary, String suggestedFileName) async {

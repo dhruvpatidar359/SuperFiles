@@ -1,0 +1,193 @@
+DECLARATION
+I hereby declare that the project work entitled “Contents responsible for flavor of tea” submitted to SHREE KASERA BAZAR VIDYA NIKETAN [Indore], is a record of an original work done by me under the guidance of Mrs. Kshiti Mandloi Mam, and this project has been submitted for examination purposes with the approval of supervisor.
+
+
+Vishesh Chouhan
+
+
+
+
+CERTIFICATE
+This is to certify that Vishesh Chouhan of class 11th of SHREE KASERA BAZAR VIDYA NIKETAN has completed his project file under my guidance. He has taken proper care and shown utmost sincerity in completing this project. 
+I certify that this project is up to my expectations and as per the guidelines issued by CBSE.
+
+Internal Teacher                    External Teacher 
+
+
+
+Principal Mam                        School Stamp					
+
+
+ACKNOWLEDGEMENT
+I express my gratitude to Mrs. Kshiti Mandloi, my Chemistry Teacher and Mrs. Manisha Holkar, Principal who guided me through the project and also gave valuable suggestions and guidance for completing this project. They helped me to understand the intricate issues involved in making the project, besides effectively presenting it. These intricacies would have been lost otherwise. My project has been a success only because of her guidance.
+
+Vishesh Chouhan		                  Sign
+	      
+
+
+
+Index
+Introduction    	1
+Composition of tea 	2
+Contents of tea 	4
+Biochemical Compounds Responsible For color 	7
+Biochemical Compounds Responsible For taste	7
+Biochemical Compounds Responsible For flavor	8
+Experiment 1  	9
+Experiment 2  	11
+Experiment 3  	13
+Conclusion 	15
+
+
+INTRODUCTION
+Tea is an aromatic beverage commonly prepared by pouring hot or boiling water over cured leaves of the Camellia sinensis, an evergreen shrub (bush) native to East Asia. After water, it is the most widely consumed drink in the world. There are many different types of tea; some, like Darjeeling and Chinese greens, have a cooling, slightly bitter, and astringent flavour, while others have vastly different profiles that include sweet, nutty, floral or grassy notes.
+Tea originated in Southwest China during the Shang dynasty, where it was used as a medicinal drink. An early credible record of tea drinking dates to the 3rd century AD, in a medical text written by Hua Tuo. It was popularized as a recreational drink during the Chinese Tang dynasty, and tea drinking spread to other East Asian countries. Portuguese priests and merchants introduced it to Europe during the 16th century. During the 17th century, drinking tea became fashionable among Britons, who started large-scale production and commercialization of the plant in India. Combined, China and India supplied 62% of the world's tea in 2016.
+The term herbal tea refers to drinks not made from Camellia sinensis: infusions of fruit, leaves, or other parts of the plant, such as steeps of rosehip, chamomile, or rooibos. These are sometimes called tisanes or herbal infusions to prevent confusion with tea made from the tea plant.
+CHEMICAL COMPOSITION
+Tea chemistry is complex. Just how complex? Well, on the bush, tea leaves contain thousands of chemical compounds. When tea leaves are processed, the chemical compounds within them break down, form complexes with one another and form new compounds. When steeping tea leaves, our senses are tingled by the thousands of volatile compounds (collectively known as the “aroma complex”) rising from the tea liquor and the thousands of non-volatile compounds that are floating within the tea liquor. Because of this, tea is known as the master of chemical diversity.” Much of tea chemistry from field to cup is yet unknown!
+So all of this makes it very difficult to generalize and say that x chemical is responsible for taste. Many tea chemicals have been categorized into broad groups, and collectively we have some idea of what happens to these groups during processing and what flavors and aromas they are responsible for. Undoubtedly, as tea gains popularity, more research will be done on tea chemistry and we’ll have a clearer picture of what is going on chemically from the field to the cup.
+Plant leaves are made up of mostly water, and they begin to wilt and lose water when they are removed from the plant. Tea leaves are no exception to this. Once they are plucked, the leaves begin to lose water and wilt, a process called withering in the tea industry. As tea leaves wither, their cell walls begin to break down. The chemical components inside come in contact with oxygen, spurring on a group of reactions we call oxidation. Over the years, tea producers have learned to control the natural tendency of tea leaves to wither and oxidize in order to produce a finished tea that has a desirable appearance, aroma and taste. This is accomplished using methods we’ll refer to as tea processing.
+Amazingly, for hundreds of years tea makers have produced drinkable teas using principles of withering and oxidation with no knowledge of the underlying chemistry. From what we know today, the most important compounds in fresh tea leaves are polyphenols, amino acids, enzymes, pigments, carbohydrates, methyl xanthines, minerals and many volatile flavor and aroma compounds. These components are responsible for producing teas with desirable appearance, aroma, and taste. During tea processing the various compounds undergo changes to produce what we’ll call a finished or made tea – one that has been processed and is ready for packaging or steeping.
+
+
+
+
+
+
+
+
+
+
+
+CONTENTS OF TEA
+Caffeine
+Caffeine is a purine derivative, which is 1,3,7-tri-methyl xanthine. Caffeine content in black tea is around 3 - 4% of dry weight. It has stimulating property and removes mental fatigue. The contribution of caffeine to the infusion is the briskness and creamy property resulting from the complex formed by caffeine with polyphenols. Briskness is a taste and sensation while creaming is the turbidity that develops from a good cup of tea when cooled. On the contrary their excessive use is harmful to digestion and their long use leads to mental retardation.
+
+Polyphenols
+In steeped teas, polyphenols are largely responsible for astringency, a taste experience that causes a drying sensation on the tongue and bitterness. The term polyphenol simply refers to a categorization of compounds composed of many phenolic groups, hence the name poly-phenol. These compounds are plant metabolites produced as a defense against insects and other animals, and they are the most abundant compounds in tea. Polyphenols comprise as much as 30–40% of freshly plucked tea leaves and solids in tea liquor. Polyphenols are derived from amino acids via sunlight, and therefore tea grown in the shade has a smaller concentration of polyphenols and a higher concentration of amino acids. The bud and first leaf have the highest concentration of polyphenols, and polyphenol levels decrease in each leaf moving down the plant. There are an estimated 30,000 polyphenolic compounds in tea. There are several known categories within polyphenols. Flavonoids are arguably the most important category; they are the reason for many health claims surrounding tea because they contain antioxidants.
+
+Amino Acids
+Amino acids give finished tea its sweetness and brothiness, otherwise known as umami. In the tea field, sunlight converts amino acids to polyphenols; shade-grown tea contains more amino acids than tea grown in direct sunlight. Some tea bushes are even deliberately shaded for several weeks before harvest to increase the amino acid content in the leaves, a process that results in finished tea with strong umami. Tea plants that are shaded for 22 days contain 4 times more amino acids than non-shaded plants.
+
+
+Enzymes
+Polyphenol oxidase and peroxidase are the most important enzymes in tea leaves. They are responsible for the enzymatic browning of tea leaves that takes place when the cell walls in the leaves are broken and the polyphenols are exposed to oxygen – otherwise known as oxidation. These same enzymes are responsible for the browning of apples, potatoes, avocados and bananas. Polyphenol oxidase and peroxidase may be denatured or deactivated using heat so that browning cannot occur. In fact, this is one of the first steps in green tea production; it is why finished green tea leaves remain green. Polyphenol oxidase and peroxidase are deactivated and thus rendered inactive at around 150 degrees Fahrenheit. The enzymes may also be deactivated by simply depriving them of moisture for a time; this is what happens during the long withering period in white tea production.
+Pigments
+Plant pigments give leaves their color and are responsible for absorbing light for photosynthesis. There are two major groups of pigments in fresh tea leaves: chlorophylls and carotenoids. These pigments condense during withering and oxidation, causing them to become darker. During oxidation, green chlorophylls degrade and become black pigments known as pheophytins. This degradation leads to the dark appearance of finished oxidized teas. Tea carotenoids, another pigment group found in tea leaves, can be characterized into two smaller groups: orange carotenes and yellow xanthophylls.
+
+Biochemical Compounds Responsible For Color
+
+Biochemical Compounds Responsible For Taste
+
+
+Biochemical Compounds Responsible For Flavour
+
+
+
+
+
+
+
+
+
+
+Experiment-1
+Aim:
+Compare the water soluble polyphenol content in the various samples of tea leaves.
+Requirements:
+Beakers, conical flasks, funnels, heating arrangement, tea bags of different brands of tea.
+Theory:
+Tea contains up to 30% of the water soluble polyphenols. These are largely responsible for the flavour of the tea. To estimate the extent of these compounds in a given sample, the tea leaves are immersed in hot water for equal time and loss in the weight of tea leaves in determined.
+Procedure:
+1. Weigh the different samples of tea and place them in teabags.
+2. Take three or four conical flasks and put 100ml of hot water to each of them.
+3. Put tea bags of different samples of tea in the different conical flasks. After 10 minutes remove the tea bags and dry them by placing in an oven.
+4. When the tea bags become dry, reweigh them.
+5. Note the flavour of the tea solution obtained. 
+
+Observation
+
+Result:
+The tea having better flavour has more polyphenol content.
+
+
+
+
+
+
+
+
+Experiment2
+Aim:
+Compare the tannic acid content of various samples of tea.
+Requirements:
+Beakers, conical flasks, funnel, heating arrangement, various samples of tea, calcium carbonate, conc. HCL.
+Theory:
+The tannic acid present in tea leaves is precipitated as calcium tannate by treatment of aqueous solution of tea with calcium carbonate. Calcium tannate is then hydrolyzed with conc. HCL andre-crystallised from water. 
+Procedure:
+1. Weigh 5g of each of the given samples of tea leaves.
+2. Take 100ml of distilled water in a 400ml beaker and boil it. Then add the first sample of tea leaves to it and boil for 10minutes. Cool and filter the solution.
+3. To the filtrate add about 2g of solid calcium carbonate and boil the contents. Tannic acid gets precipitated as calcium tannate. Separate the precipitate of calcium tannate by filtration.
+4. Calcium tannate obtained is hydrolyzed by warming with 4-5ml of conc. HCL. The tannic acid obtained is crystallized from water and weighed. 
+5. Repeat the steps 2, 3 and 4 with the other samples of tea and record the observations.
+Observations:
+
+Result:
+The tea sample containing higher percentage of tannic acid gives better flavour.
+
+
+
+
+
+
+Experiment3
+Aim:
+Compare the caffeine content of the different samples of tea.
+Requirements:
+Beakers, Conical flasks, heating arrangement, different samples of tea, sulphuric acid and chloroform.
+Theory:
+Tea contains caffeine up to 4%. It is more soluble in chloroform than in water. Therefore, it can be extracted from the aqueous extract of the tea with chloroform. However, tannic acid and lead interfere in the extraction and these have to be removed first. Tannic acid is removed as calcium tannate and lead as lead sulphate.  After the removal of tannic acid and lead, caffeine is extracted with chloroform. 
+Procedure:
+1. To the filtrate from Experiment 2 add about 1ml of dil.H2SO4. Lead gets precipitated as lead sulphate.
+2. Remove the ppt. by filtration and extract the filtrate with chloroform 3-4 times. 
+3. Combine the chloroform extract and remove the solvent by heating on a stream bath. The residue left behind is caffeine.
+4. Weigh the residue left behind.
+5. Similarly, determine the amount of caffeine in other samples of tea.
+Observations:
+
+Result:
+The tea sample containing higher percentage of caffeine gives better flavour.
+
+
+
+
+
+
+
+
+
+CONCLUSIONS
+Tea is made from the young leaves and buds of the tea plant. Besides caffeine, tea leaves contain tannic acid and colouring matter, such as polyphenolic compounds. The relative amounts of these substances are different in different varieties of tea leaves, which is why, their taste and flavor are different. The brownish colour of the tea is due to the presence of polyphenolic compounds and somein organic icons like Mn2+, Fe3+etc. Tea contains up to 30% of the water soluble polyphenols. These are largely responsible for the flavour of the tea. It contains caffeine up to 4%. It is more soluble in chloroform than in water. Therefore, it can be extracted from the aqueous extract of the tea with chloroform. However, tannic acid and lead interfere in the extraction and these have to be removed first.
+Tea acts as a stimulant for central nervous system and skeletal muscles and removes fatigue, tiredness and headache. The principle constituent of tea, which is responsible for all these properties, is the alkaloid-caffeine. The amount of caffeine in tealeaves varies from sample to sample. The conclusions from the three experiments are as follows:  
+1. The tea having better flavour has more polyphenol content.
+2. The tea sample containing higher percentage of tannic acid gives                       better flavour.
+3. The tea sample containing higher percentage of caffeine gives better flavor.
+
+
+
+Bibliography
+www.google.com
+scholar.google.co.in
+bobcatcaffeine.weebly.com
+en.wikipedia.org
+dokumen.tips
+www.scribd.com
+www.slideshare.net
+brainly.in
+www.meritnation.com
+www.learncbse.in
+www.academia.edu
+“Comprehensive” practical book
+“Arihant” practical book
+
+

@@ -1,0 +1,625 @@
+Assignment 1
+Matrix:
+#include<iostream>
+using namespace std;
+
+
+// class MATRIX
+class Matrix {
+    // m is row and n is columns
+    int m=3 , n=3;
+    int a[3][3] ,  b[3][3] , c[3][3] , sum[3][3]={0};
+
+
+    public:
+
+    // Show Matrix
+    void output(){
+        for(int i=0 ; i<m ; i++){
+            for(int j=0 ; j<n ; j++){
+                cout<<sum[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+    }
+
+
+    // Input one Matrix
+    void In_one(){
+        cout<<"Enter First Matrix:"<<endl;
+        for(int i=0 ; i<m ; i++){
+            for(int j=0 ; j<n ; j++){
+                cin>>a[i][j];
+            }
+        }
+    }
+
+    //Input two Matrix
+    void In_two(){
+        cout<<"Enter First Matrix:"<<endl;
+        for(int i=0 ; i<m ; i++){
+            for(int j=0 ; j<n ; j++){
+                cin>>a[i][j];
+            }
+        }
+        cout<<"Enter Second Matrix:"<<endl;
+        for(int i=0 ; i<m ; i++){
+            for(int j=0 ; j<n ; j++){
+                cin>>b[i][j];
+            }
+        }
+    }
+    
+
+
+    //Addition
+    void addition(){
+        In_two();
+        for(int i=0 ; i<m ; i++){
+            for(int j=0 ; j<n ; j++){
+                sum[i][j]=a[i][j]+b[i][j];
+            }
+        }
+        output();
+    }
+
+    //Substraction
+    void substraction() {
+        In_two();
+        for(int i=0 ; i<m ; i++){
+            for(int j=0 ; j<n ; j++){
+                sum[i][j]=a[i][j]-b[i][j];
+            }
+        }
+        output();
+    }
+
+    //Multiplication
+    void multiplication() {
+        In_two();
+        for(int i=0 ; i<m ; i++){
+            for(int j=0 ; j<n ; j++){
+                for(int k=0 ; k<n ; k++){
+                    sum[i][j]=sum[i][j]+a[i][k]*b[k][j];
+                }
+            }
+        }
+        output();
+    }
+
+
+    //Determinant
+    int determinant(){
+        In_one();
+        int sum=0;
+        int p=co_factor(0,0);
+        int q=co_factor(0,1);
+        int r=co_factor(0,2);
+        sum=a[0][0]*p - a[0][1]*q + a[0][2]*r;
+        cout<<"Determinant is "<<sum<<endl;
+        return sum;
+
+
+    }
+
+
+    // minor co-factor
+    int co_factor(int r , int c){
+        int k=0;
+        int co_fac[4];
+        for(int i=0 ; i<m ; i++){
+            for(int j=0 ; j<n ; j++){
+                if(i!=r and j!=c){
+                    co_fac[k]=a[i][j];
+                    ++k;
+                }
+            }
+        }
+        return ((co_fac[0]*co_fac[3]) - (co_fac[1]*co_fac[2]));
+    }
+
+    // Inverse
+    void Inverse(){
+        int deter=determinant();
+        if(deter==0) cout<<"Inverse Does Not Exist";
+        else{
+            float inverse[m][n];
+            for(int i=0 ; i<m ; i++){
+                for(int j=0 ; j<n ; j++){
+                    int co_fac;
+                    if((i+j)%2!=0){
+                        co_fac=co_factor(i,j)*-1;
+                    }
+                    else co_fac=co_factor(i,j);
+                    inverse[j][i]=co_fac;
+                }
+            }
+            for(int i=0 ; i<m ; i++){
+                for(int j=0 ; j<n ; j++){
+                    cout<<inverse[i][j]/deter<<" ";
+                }
+                cout<<endl;
+            }
+        }
+    }
+
+    // Transpose
+    void Transpose(){
+        In_one();
+        int transpose[m][n];
+        for(int i=0 ; i<m ; i++){
+            for(int j=0 ; j<n ; j++){
+                transpose[j][i]=a[i][j];
+            }
+        }
+        for(int i=0 ; i<m ; i++){
+            for(int j=0 ; j<n ; j++){
+                cout<<transpose[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+    }
+
+
+    // TRACE
+    void Trace(){
+        In_one();
+        int sum=0;
+        for(int i=0 ; i<m ; i++){
+            for(int j=0 ; j<n ; j++){
+                if(i==j){
+                    sum+=a[i][j];
+                }
+            }
+        }
+        cout<<sum;
+    }
+    
+} s;
+
+void Matrix_OPTIONS(){
+    cout<<"Enter Operation to perform :"<<endl<<"Matrix is 3x3"<<endl;
+    cout<<"1. Addition"<<endl;
+    cout<<"2. Substraction"<<endl;
+    cout<<"3. Multiplication"<<endl;
+    cout<<"4. Determinant"<<endl;
+    cout<<"5. Inverse"<<endl;
+    cout<<"6. Transpose"<<endl;
+    cout<<"7. Trace"<<endl;
+    cout<<"ENTER CHOICE:";
+    int i;
+    cin>>i;
+    switch(i){
+        case 1: s.addition();
+        break;
+
+        case 2: s.substraction();
+        break;
+
+        case 3: s.multiplication();
+        break;
+
+        case 4: s.determinant();
+        break;
+
+        case 5: s.Inverse();
+        break;
+
+        case 6: s.Transpose();
+        break;
+
+        case 7: s.Trace();
+        break;
+
+        default: cout<<"Invalid Choice";
+        break;
+    }
+
+}
+
+int main(){
+    Matrix_OPTIONS();
+}
+
+Assignment -2
+Latex:
+\documentclass[12pt]{article}
+\usepackage{graphicx} %LaTeX package to import graphics
+\graphicspath{{images/}} %configuring the graphicx package
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{SOMESH PANDEY}
+\rhead{0801CS211087}
+\title{JEE ADVANCED}
+\author{IIT KGP}
+\date{\today}
+\begin{document}
+	\maketitle
+	
+	\framebox[15cm][c]{SECTION : 1 PHYSICS}
+	\begin{itemize}
+		\item This section contains 15 questions.
+		\item Answer to each question will be according to the following marking scheme:
+		\begin{enumerate}
+			\item +3 : For every correct answer
+			\item  0 : For NOT attempting
+			\item -1 : For Wrong Answer
+		\end{enumerate}	
+	\end{itemize}
+	Q.1 A football of radius R is kept on a hole of radius r, where r is less than R ,  made on a plank kept horizontally. One
+	end of the plank is now lifted so that it gets tilted making an angle $\theta$ from the horizontal as shown in
+	the figure below. The maximum value of $\theta$ so that the football does not start rolling down the plank
+	satisfies (figure is schematic and not drawn to scale)
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.75\textwidth]{q1.png}
+	\end{figure}
+	
+	\begin{enumerate}
+		\item $\displaystyle{\sin \theta = \frac{r}{R}} $
+		\item $\displaystyle{\tan \theta = \frac{r}{R}} $
+		\item $\displaystyle{\sin \theta = \frac{r}{2R}} $
+		\item $\displaystyle{\cos \theta = \frac{r}{2R}} $
+	\end{enumerate}	
+	\\
+	Q.2 A light disc made of aluminium (a nonmagnetic material) is kept horizontally and is free to rotate 
+	about its axis as shown in the figure. A strong magnet is held vertically at a point above the disc away
+	from its axis. On revolving the magnet about the axis of the disc, the disc will (figure is schematic
+	and not drawn to scale) 
+	//
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.75\textwidth]{q2.png}
+	\end{figure}
+	\\
+	\begin{enumerate}
+		\item rotate in the direction opposite to the direction of magnet’s motion
+		\item rotate in the same direction as the direction of magnet’s motion
+		\item not rotate and its temperature will remain unchanged
+		\item not rotate but its temperature will slowly rise
+	\end{enumerate}	
+	
+	Q.3 A parallel beam of light strikes a piece of transparent glass having cross section as shown in the figure
+	below. Correct shape of the emergent wavefront will be (figures are schematic and not drawn to
+	scale)
+	\\
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.75\textwidth]{q3.png}
+	\end{figure}
+	\\
+	\begin{enumerate}
+		% fill this
+	\end{enumerate}	
+	
+	Q.4 Put a uniform meter scale horizontally on your extended index fingers with the left one at 0.00 cm
+	and the right one at 90.00 cm. When you attempt to move both the fingers slowly towards the center,
+	initially only the left finger slips with respect to the scale and the right finger does not. After some
+	distance, the left finger stops and the right one starts slipping. Then the right finger stops at a distance
+	xR from the center (50.00 cm) of the scale and the left one starts slipping again. This happens
+	because of the difference in the frictional forces on the two fingers. If the coefficients of static and
+	dynamic friction between the fingers and the scale are 0.40 and 0.32, respectively, the value of R
+	cm) is .\\
+	\\
+	\\
+	\\
+	\\
+	\\
+	\\
+	Q.5 In the balanced condition, the values of the resistances of the four arms of a Wheatstone bridge are shown in the figure below. The resistance 𝑅3 has temperature coefficient 0.0004 degree celcius−1 . If the temperature of 𝑅3 is increased by 100 degree celcius, the voltage developed between 𝑆 and 𝑇 will be 
+	volt.
+	\\
+	\\
+	\\
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.75\textwidth]{q5.png}
+	\end{figure}
+	\\
+	\\
+	\framebox[15cm][c]{SECTION : 2 CHEMISTRY}
+	\\
+	\\
+	\\
+	\\
+	Q.6 A colorless aqueous solution contains nitrates of two metals, X and Y. When it was added to an
+	aqueous solution of NaCl, a white precipitate was formed. This precipitate was found to be partly
+	soluble in hot water to give a residue P and a solution Q. The residue P was soluble in aq. NH3 and
+	also in excess sodium thiosulfate. The hot solution Q gave a yellow precipitate with KI. The metals
+	X and Y, respectively, are
+	\\
+	\begin{enumerate}
+		\item Ag and Pb
+		\item Ag and Cd
+		\item Cd and Pb
+		\item Cd and Zn
+	\end{enumerate}	
+	
+	Q.7 In the chemical reaction between stoichiometric quantities of KMnO\textsubscript{4} and KI in weakly basic solution,
+	what is the number of moles of I\textsubscript{2} released for 4 moles of KMnO\textsubscript{4} consumed?\\
+	\\
+	Q.8 Which of the following liberates O2 upon hydrolysis?
+	\\
+	\begin{enumerate}
+		\item Pb\textsubscript{3}O\textsubscript{4}
+		\item KO\textsubscript{2}
+		\item Na\textsubscript{2}O\textsubscript{2}
+		\item Li\textsubscript{2}O\textsubscript{2}
+	\end{enumerate}	
+	Q.9 Newman projections P, Q, R and S are shown below:
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.75\textwidth]{q8.png}
+	\end{figure}
+	\\
+	\begin{enumerate}
+		\item P and Q
+		\item Q and S
+		\item Q and R
+		\item R and S
+	\end{enumerate}
+	
+	Q.10 In the reaction scheme shown above, Q, R, and S are the major products.\\
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=15cm\textwidth]{q9.png}
+	\end{figure}
+	\\
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=15cm\textwidth]{q9_1.png}
+	\end{figure}
+	\\
+	\\
+	\framebox[15cm][c]{SECTION : 3 MATHEMATICS}
+	\\
+	Q.11 Let $C\textsubscript{1}$ and $C\textsubscript{2}$ be two biased coins such that the probabilities of getting head in a single toss are $\frac{2}{3}$ and $\frac{1}{3}$, respectively. Suppose 𝛼 is the number of heads that appear when C\textsubscript{1} is tossed twice, independently, and suppose $\beta$ is the number of heads that appear when ��\textsubscript{2} is tossed twice,
+	independently. Then the probability that the roots of the quadratic polynomial $x^2 -\alpha.x + \beta $ are
+	real and equal, is \\
+	\\
+	\begin{enumerate}
+		\item $\frac{40}{81}$
+		\item $\frac{20}{81}$
+		\item $\frac{1}{2}$
+		\item $\frac{1}{4}$
+	\end{enumerate} \\
+	Q.12 Let 𝑆 be the set of all complex numbers z satisfying $|z^2 + z + 1| = 1$. Then which of the following statements is/are TRUE?
+	\begin{enumerate}
+		\item $\mod{|z + \frac{1}{2}|} \le \frac{1}{2} $ for all $z \in S$
+		\item $\mod{|z|} \le 2 $ for all $z \in S$
+		\item $\mod{|z + \frac{1}{2}|} \ge \frac{1}{2} $ for all $z \in S$
+		\item The set 𝑆 has exactly four elements
+	\end{enumerate} \\
+	Q.13 Let 𝑥, 𝑦 and 𝑧 be positive real numbers. Suppose 𝑥, 𝑦 and 𝑧 are the lengths of the sides of a triangle
+	opposite to its angles 𝑋, 𝑌 and 𝑍, respectively. If
+	
+	\displaystyle{\tan{\frac{X}{2} } + \tan{\frac{Z}{2}} = \frac{2y}{x+y+z}} 	
+	
+	then which of the following statements is/are TRUE? \\
+	\begin{enumerate}
+		\item $2Y = X + Z$
+		\item $Y = X + Z$
+		\item $\tan{\frac{X}{2}} = \frac{x}{y+z}$
+		\item $x^2 + z^2 - y^3 = xz $
+	\end{enumerate} 
+	Q.14 In a hotel, four rooms are available. Six persons are to be accommodated in these four rooms in
+	such a way that each of these rooms contains at least one person and at most two persons. Then the
+	number of all possible ways in which this can be done is \\
+	
+	Q.15 An engineer is required to visit a factory for exactly four days during the first 15 days of every
+	month and it is mandatory that no two visits take place on consecutive days. Then the number of all
+	possible ways in which such visits to the factory can be made by the engineer during 1-15 June
+	2021 is
+	
+\end{document}
+Assignment 3:
+Python:
+1.
+mport os 
+path = "/home/jarvis/"
+dir_list = os.listdir(path) 
+print("Files and directories in '", path, "' :") 
+# print the list 
+print(dir_list) 
+
+
+
+2.
+from playsound import playsound
+# for playing note.wav file
+playsound('/home/jarvis/Music/Heat_Waves.mp3')
+print('playing sound using playsound')
+
+
+
+4.
+marks  = 0 
+print("Enter 5 values:")
+for i in range(5):
+    score = int(input("Enter value:"))
+    marks+=score
+avg = marks/5
+print("The average is :",avg)
+
+
+5 .
+name = input("Enter your name:")
+date = input("Enter date:")
+print("\"Dear "+name+",")
+print("You are selected!")
+print(date+"\"")
+
+6
+marks = [10,20,30,40,50,60,70,80,90,100]
+print(marks)
+sum=0
+for score in marks:
+    sum=sum+score
+print("The total score is:",sum)
+
+6.
+marks = (10,0,8,0,0,1,0)
+print("The number of zeros are:", marks.count(0))
+ 
+ 7.
+myDict = {
+    "aam":"mango",
+    "angoor": "grapes",
+    "seb":"apple",
+    "aanar":"pomogranade",
+    "Surajmukhi":"Sunflower"
+} 
+print("Options are:",myDict.keys())
+a=input("please enter the hindi word:\n")
+print("The english meaning of word is:",myDict.get(a))
+
+
+
+
+
+10.
+n = int(input("Enter size:"))
+for i in range(n):
+    for j in range(n):
+        if (i==0 or i==n-1 or j==0 or j==n-1): 
+             print("* " ,end="")
+        else:
+            print("  ", end="")
+        
+    print("\n")
+
+  
+
+
+
+11.
+def recursion(n):
+   if n <= 1:
+       return n
+   else:
+       return (n*n*n) + recursion(n-1)
+
+
+num = int(input("Enter any number:"))
+print("The sum is",recursion(num))
+
+
+
+
+
+
+
+
+
+
+
+
+12.
+numbers = [-1,-2,-3,-4,1,2,3,4,5,6,7,8]
+positive=0
+negative=0
+for num in numbers:
+    if num>=0:
+        positive+=1
+    else:
+        negative+=1
+print("Total positives are:",positive)
+print("Total negatives are:", negative)
+    
+ 
+
+
+
+
+
+
+
+
+13.
+numbers = [1,1,1,2,2,3,3,3,3,4,4,4,4,5,5,5,5,5,5,5,6,6,6,7,8,8,8,8,8,8,8,8]
+print(numbers)
+uni_numbers = set(numbers)
+print(uni_numbers)
+k = int(input("Enter the frequency:"))
+for number in uni_numbers:
+    if numbers.count(number) >= k:
+        print(number)
+
+ 
+
+14.
+number = int(input("Enter any Number:"))
+print("In Decimal:",number)
+print("In Binary:",bin(number))
+print("In octal:",oct(number))
+print("In hexadecimal:",hex(number))
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+15.
+import numpy
+
+print("Creating 5X2 array using numpy.arange")
+sampleArray = numpy.arange(100, 200, 10)
+sampleArray = sampleArray.reshape(5,2)
+print (sampleArray)
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+17.
+numbers = {}
+for i in range(20):
+    j=i+1
+    numbers[j]=j*j
+print(numbers)
+
+
+ 
+
+
+
+
+
+18.
+line = input("Enter a String:")
+print(line)
+number = []
+for word in line:
+    if word.isnumeric():
+        number.append(word)
+print(number)
+
+ 
+20.
+
+from timeit import Timer
+t = Timer("for i in range(100):1+1")
+print(t.timeit())
+
+Output:1.2823561780096497
+
+
+

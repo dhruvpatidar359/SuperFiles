@@ -1,0 +1,123 @@
+8759915224
+https://www.irctc.co.in/nget/print-ticket
+Electronic Reservation Slip (ERS)-Normal User
+Booked From
+To
+BHOPAL JN (BPL)BHOPAL JN (BPL)
+Start Date* 06-Dec-2022Departure* 19:50 06-Dec-2022
+ATARRA (ATE)
+Arrival* 04:00 07-
+Dec-2022
+N ICHECK TIMINGS BEFORE BOAR
+DING
+PNRTrain No./NameClass
+875991522422129 / TULSI EXPRESSSLEEPER
+CLASS (SL)
+QuotaDistanceBooking Date
+GENERAL (GN)515 KM27-Nov-2022 13:26:20
+HRS
+Passenger Details
+# Name
+Age
+1. RAJ KISHOR PANDE 61
+1 of 2
+Acronyms:
+Gender
+M
+RLWL: REMOTE LOCATION WAITLIST
+Booking Status
+CNF/S4/68/LOWER
+PQWL: POOLED QUOTA WAITLIST
+Current Status
+CNF /S4/68/LOWER
+RSWL: ROAD-SIDE WAITLIST
+Transaction ID: 100003806292609
+IR recovers only 57% of cost of travel on an average.
+Payment Details
+Ticket Fare₹ 345.00
+IRCTC Convenience Fee (Incl. of GST)₹ 11.80
+Total Fare (all inclusive)₹ 356.80
+PG Charges as applicable (Additional)
+IRCTC Convenience Fee is charged per e-ticket irrespective of number of passengers on the ticket.
+* The printed Departure and Arrival Times are liable to change. Please Check correct departure,
+arrival from Railway Station Enquiry or Dial 139 or SMS RAIL to 139.
+No Linen will be provided in AC Economy (3E) class.
+• This ticket is booked on a personal User ID, its sale/purchase is an oﬀence u/s 143 of the Railways
+Act,1989.
+• Prescribed original ID proof is required while travelling along with SMS/ VRM/ ERS otherwise will be
+treated as without ticket and penalized as per Railway Rules.
+Indian Railways GST Details:
+Invoice Number:
+PS22875991522411Address:Indian Railways New
+Delhi
+996421GSTIN:07AAAGM0289C1ZL
+Supplier
+Information:
+SAC Code:
+27/11/22, 13:278759915224
+2 of 2
+https://www.irctc.co.in/nget/print-ticket
+Recipient
+Information:
+GSTIN:
+NA
+Name:NA
+Taxable Value:341
+CGST Rate:2.5%
+SGST/UGST Rate:
+IGST Rate:
+Total Tax:
+Place of Supply: NA
+Address:
+CGST Amount:
+0.0
+SGST/UGST Amount:
+5.0%
+IGST Amount:
+0.0
+State Name/Code of Supplier: Delhi/DL
+INSTRUCTIONS:
+1.
+Prescribed Original ID proofs are:- Voter Identity Card / Passport / PAN Card / Driving License / Photo ID card issued by
+Central / State Govt. / Public Sector Undertakings of State / Central Government ,District Administrations , Municipal
+bodies and Panchayat Administrations which are having serial number / Student Identity Card with photograph issued by
+recognized School or College for their students / Nationalized Bank Passbook with photograph /Credit Cards issued by
+Banks with laminated photograph/Unique Identiﬁcation Card "Aadhaar", m-Aadhaar, e-Aadhaar. /Passenger showing the
+Aadhaar/Driving Licence from the "Issued Document" section by logging into his/her DigiLocker account considered as
+valid proof of identity. (Documents uploaded by the user i.e. the document in "Uploaded Document" section will not be
+considered as a valid proof of identity).
+2. PNRs having fully waitlisted status will be dropped and automatic refund of the ticket amount after deducting the
+applicable CLERKAGE by Railway shall be credited to the account used for payment for booking of the ticket. Passengers
+having fully waitlisted e-ticket are not allowed to board the train. However, the names of PARTIALLY waitlisted/conﬁrmed
+and RAC ticket passenger will appear in the chart and will be allowed to board the train.
+3. Passengers travelling on a fully waitlisted e-ticket will be treated as Ticketless.
+4. Obtain certiﬁcate from the TTE /Conductor in case of (a) PARTIALLY waitlisted e-ticket when LESS NO. OF
+PASSENGERS travel, (b)A.C FAILURE, (c)TRAVEL IN LOWER CLASS. This original certiﬁcate must be sent to GGM (IT),
+IRCTC, Internet Ticketing Centre, IRCA Building, State Entry Road, New Delhi-110055 after ﬁling TDR online within
+prescribed time for claiming refund.
+5. In case, on a party e-ticket or a family e-ticket issued for travel of more than one passenger, some passengers have
+conﬁrmed reservation and others are on RAC or waiting list, full refund of fare, less clerkage, shall be admissible for
+conﬁrmed passengers also subject to the condition that the ticket shall be cancelled online or online TDR shall be ﬁled
+for all the passengers upto thirty minutes before the scheduled departure of the train.
+6. In case of train cancellation on its entire run, full refund is granted automatically by the system. However, if the train is
+cancelled partially on its run or diverted and not touching boarding/destination station, passengers are required to ﬁle
+online TDR within 72 hours of scheduled departure of the train from passengers boarding station.
+7. Never purchase e-ticket from unauthorized agents or persons using their personal IDs for commercial purposes. Such
+tickets are liable to be cancelled and forfeited without any refund of money, under section (143) of the Indian Railway Act
+1989. List of authorized agents are available on www.irctc.co.in under 'Find NGet Agents' option.
+8. For detail, Rules, Refund rules, Terms & Conditions of E-Ticketing services, Travel Insurance facility etc. Please visit
+www.irctc.co.in
+9. While booking this ticket, you have agreed of having read the Health Protocol of Destination State of your travel. You are
+again advised to clearly read the Health Protocol advisory of destination state before start of your travel and follow them
+properly.
+10. The FIR forms are available with on board ticket checking staﬀ, train guard and train escorting RPF/GRP staﬀ.
+11. Variety of meals available in more than 1500 trains. For delivery of meal of your choice on your seat log on to
+www.ecatering.irctc.co.in or call 1323 Toll Free. For any suggestions/complaints related to Catering services, contact Toll
+Free No. 1800-111-321 (07.00 hrs to 22.00 hrs)
+12. National Consumer Helpline (NCH) Toll Free Number: 1800-11-400 or 14404
+13. You can book unreserved ticket from UTS APP or ATVMs (Automatic Ticket Vending Machines) located in Railway
+Stations.
+Contact us on: - care@irctc.co.in OR 24*7 Hrs Customer Support at 14646 OR 0755-6610661, 0755-4090600
+Print ERS Without Advertisements [X]
+27/11/22, 13:27
+

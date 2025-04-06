@@ -1,0 +1,240 @@
+ACKNOWLEDGEMENT
+
+I express my gratitude to Mrs. Kshiti Mandloi, my Chemistry Teacher and Mrs. Manisha Holkar, Principal who guided me through the project and also gave valuable suggestions and guidance for completing this project. They helped me to understand the intricate issues involved in making the project, besides effectively presenting it. These intricacies would have been lost otherwise. My project has been a success only because of her guidance.
+
+
+
+
+Vishesh Chouhan		 				Sign
+	      
+CERTIFICATE
+
+This is to certify that Vishesh Chouhan of class 12th of SHREE KASERA BAZAR VIDYA NIKETAN has completed his project file under my guidance. He has taken proper care and shown utmost sincerity in completing this project. 
+I certify that this project is up to my expectations and as per the guidelines issued by CBSE.
+
+Internal Examiner                         External Examiner
+
+
+
+Principal                                             School Stamp					
+
+
+DECLARATION
+
+I hereby declare that the project work entitled “Contents responsible for flavor of tea” submitted to SHREE KASERA BAZAR VIDYA NIKETAN [Indore], is a record of an original work done by me under the guidance of Mrs. Kshiti Mandloi , and this project has been submitted for examination purposes with the approval of supervisor.
+
+
+
+
+
+
+
+Vishesh Chouhan
+
+INDEX
+
+FERMENTATION	5
+BIOCHEMICAL ROLE	7
+FACTORS AFFECTING THE RATE OF FERMENTATION	9
+CONCENTRATION OF YEAST	9
+pH	9
+TEMPETATURE	10
+HISTORY OF FERMENTATION	11
+THE PHASES OF	13
+FERMENTATION	13
+LAG PHASE:--	13
+EXPONENTIAL GROWTH PHASE:--	13
+STATIONARY PHASE OF YEAST GROWTH:--	14
+Experiment-1	16
+Experiment-2	18
+Experiment-3	20
+Experiment-4	22
+Result	24
+
+
+FERMENTATION
+
+Fermentation is a metabolic process that produces chemical changes in organic substrates through the action of enzymes. In biochemistry, it is narrowly defined as the extraction of energy from carbohydrates in the absence of oxygen. In food production, it may more broadly refer to any process in which the activity of microorganisms brings about a desirable change to a foodstuff or beverage. The science of fermentation is known as zymology.
+
+In microorganisms, fermentation is the primary means of producing Adenosine Triphosphate (ATP) by the degradation of organic nutrients anaerobically. Humans have used fermentation to produce foodstuffs and beverages since the Neolithic age. For example, fermentation is used for preservation in a process that produces lactic acid found in such sour foods as pickled cucumbers, and yogurt, as well as for producing alcoholic beverages such as wine and beer. 
+
+
+
+
+
+
+
+
+
+
+BIOCHEMICAL ROLE
+
+Along with photosynthesis and aerobic respiration, fermentation is a method to extract energy from molecules. This method is the only one common to all bacteria and eukaryotes. It is therefore considered the oldest metabolic pathway, suitable for primeval environments before plant life on Earth, that is, before oxygen in the atmosphere.
+
+Yeast, a form of fungus, occurs in almost any environment capable of supporting microbes, from the skins of fruits to the guts of insects and mammals to the deep ocean. Yeasts convert (break down) sugar-rich molecules to produce ethanol and carbon dioxide.
+
+Basic mechanisms for fermentation remain present in all cells of higher organisms. Mammalian muscle carries out fermentation during periods of intense exercise where oxygen supply becomes limited, resulting in the creation of lactic acid. In invertebrates, fermentation also produces succinate and alanine.
+
+Fermentative bacteria play an essential role in the production of methane in habitats ranging from the rumens of cattle to sewage digesters and freshwater sediments. They produce hydrogen, carbon dioxide, formate and acetate and carboxylic acids. Then consortia of microbes convert the carbon dioxide and acetate to methane. Acetogenic bacteria oxidize the acids, obtaining more acetate and either hydrogen or formate. Finally, methanogens convert acetate to methane.
+
+
+
+
+
+
+
+
+FACTORS AFFECTING THE RATE OF FERMENTATION
+
+CONCENTRATION OF YEAST
+If the yeast concentration (g/L) increases then the rate of fermentation will increase till an optimum is reached.
+
+pH
+pH affects the shape of proteins. In the case of fermentation a collection of enzymes is responsible for the metabolic processes that occur. - An enzyme is a protein which performs a metabolic process. In the case of fermentation, you say the rate increases when it gets more acidic - when the pH is lower. This is because the organisms - the yeast - producing the enzymes to ferment glucose, have adapted to acidic conditions. This means that through natural selection the enzymes today have been selected because they work best in acidic conditions, which bend the protein into the correct shape to allow fermentation to occur.
+TEMPETATURE 
+As temperature increases, fermentation rate accelerates. With increased fermentation rate, more aromatic compounds are produced because the metabolic intermediates are excreted from the yeast cells just like people getting sweaty and stinky during vigorous exercise.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+HISTORY OF FERMENTATION
+
+Louis Pasteur (1822–1895), during the 1850s and 1860s, repeated Schwann's experiments and showed fermentation is initiated by living organisms in a series of investigations. In 1857, Pasteur showed lactic acid fermentation is caused by living organisms. In 1860, he demonstrated how bacteria cause souring in milk, a process formerly thought to be merely a chemical change. His work in identifying the role of microorganisms in food spoilage led to the process of pasteurization.
+
+Although showing fermentation resulted from the action of living microorganisms was a breakthrough, it did not explain the basic nature of fermentation; nor, prove it is caused by microorganisms which appear to be always present. Many scientists, including Pasteur, had unsuccessfully attempted to extract the fermentation enzyme from yeast.
+
+Success came in 1897 when the German chemist Eduard Buechner ground up yeast, extracted a juice from them, then found to his amazement this "dead" liquid would ferment a sugar solution, forming carbon dioxide and alcohol much like living yeasts.
+
+Buechner's results are considered to mark the birth of biochemistry. The "unorganized ferments" behaved just like the organized ones. From that time on, the term enzyme came to be applied to all ferments. It was then understood fermentation is caused by enzymes produced by microorganisms. In 1907, Buechner won the Nobel Prize in chemistry for his work.
+
+Advances in microbiology and fermentation technology have continued steadily up until the present. For example, in the 1930s, it was discovered microorganisms could be mutated with physical and chemical treatments to be higher-yielding, faster-growing, tolerant of less oxygen, and able to use a more concentrated medium. Strain selection and hybridization developed as well, affecting most modern food fermentations.
+THE PHASES OF
+FERMENTATION
+
+LAG PHASE:--
+When yeast is pitched into beer they begin a process of acclimation to the environment known as the lag phase. Yeast begins to uptake minerals and amino acids from wort. Amino acids are used to build proteins. The amino acids that yeast either can’t obtain or can’t get fast enough from wort need to be manufactured by the yeast. Much the same way that humans need 100 percent of essential vitamins and minerals to make it through the day, yeast cells also need 100 percent of their vitamins and minerals   (nutrients) to make it through a fermentation properly nourished.
+EXPONENTIAL GROWTH PHASE:--
+As the yeast comes out of the lag phase, it starts to consume the sugars in solution. CO2 is produced, which starts to dissipate through the airlock and create a surface layer of foam on the beer. The exponential, or logarithmic, phase of yeast growth is now starting. During this phase, the cell count increases rapidly and ethanol and flavor compounds are produced. Airlocks bubble like crazy during this time frame. The aroma that escapes from the airlock of most neutral ale yeast fermentations has an olive smell.
+
+The exponential phase occurs because yeast rapidly consumes sugar. Wort sugar is consumed by yeast in a certain pattern. Glucose is used first, then fructose and sucrose. These are simple sugars and can be quickly shuttled into metabolism. The glucose concentration in wort is roughly 14 percent of wort sugars.
+
+STATIONARY PHASE OF YEAST GROWTH:--
+At this point yeast growth slows down, and yeast enters into a stationary phase of growth. Most of the flavor and aroma compounds have been produced, including fusel alcohols, esters, and sulfur compounds. The beer is referred to as green because it does not yet have the acceptable balance of flavors.
+Beer is matured in the stationary phase of growth, also known as the conditioning phase. Yeast reabsorbs diacetyl that was produced during fermentation, and hydrogen sulphide escapes from the top of the fermenter as a gas. The kraeusen falls, and yeast begin to settle out, or flocculate. It is important to check the degree of attenuation at this point (by measuring gravity) to confirm that the yeast has completed fermentation. Some strains of yeast begin to flocculate before terminal gravity has been reached and need to be “roused” back into solution
+
+
+
+
+
+
+
+
+Experiment-1
+Aim:--
+To compare the rate of fermentation of given sample of wheat flour.
+Theory:--
+Wheat flour contains starch as the major constituent. Starch present in these food materials is first brought into solution.in the presence of enzyme diastase, starch undergo fermentation to give maltose. Starch gives blue-violet colour with iodine whereas product of fermentation starch do not gives any characteristic colour. When the fermentation is complete the reaction mixture stops giving blue-violet colour with iodine solution. By comparing the time required for completion of fermentation of equal amounts of different substances containing starch the rates of fermentation can be compared. The enzyme diastase is obtained by germination of moist barley seeds in dark at 15 degree Celsius. When the germination is complete the temperature is raised to 60 degree Celsius to stop further growth. The seeds are crushed into water and filtered. The filtrate contains enzyme diastase and is called malt extract.
+Materials required :--
+Iodine, wheat flour, filter paper, conical flask, funnel, NaCl solution, water bath, etc.
+Procedure:--
+Take 5 grams of wheat flour in 100 ml conical flask and add 30 ml of distilled water.
+Boil the contents of the flask for about 5 minutes.
+Filter the above contents after cooling, the filtrate obtained is wheat flour extract.
+To the wheat flour extract taken in a conical flask. Add 5 ml of 1% aq. NaCl solution.
+Keep this flask in a water bath maintained at a temperature of 50-60 degree Celsius. Add 2 ml of malt extract.
+After 2 minutes take 2 drops of the reaction mixture and add to diluted iodine solution.
+Repeat step 6 after every 2 minutes. When no bluish colour is produced the fermentation is complete.
+Record the total time taken for completion of fermentation.
+CONCLUSION:--
+Wheat flour takes _______ time for fermentation.
+Experiment-2
+Aim:--
+To compare the rate of fermentation of given sample of gram flour.
+Theory:--
+Gram flour contains starch as the major constituent. Starch present in these food materials is first brought into solution in the presence of enzyme diastase, starch undergo fermentation to give maltose. Starch gives blue-violet colour with iodine whereas products of fermentation starch do not give any characteristic colour. When the fermentation is complete the reaction mixture stops giving blue-violet colour with iodine solution. By comparing the time required for completion of fermentation of equal amounts of different substances containing starch the rates of fermentation can be compared. The enzyme diastase is obtained by germination of moist barley seeds in dark at 15 degree Celsius. When the germination is complete the temperature is raised to 60 degree  Celsius to stop further growth. The seeds are crushed into water and filtered. The filtrate contains enzyme diastase and is called malt extract.
+Materials required:--
+Iodine, gram flour, filter paper, conical flask, funnel, NaCl solution, water bath, etc.
+Procedure:--
+Take 5 grams of gram flour in 100 ml conical flask and add 30 ml of distilled water.
+Boil the contents of the flask for about 5 minutes.
+Filter the above contents after cooling, the filtrate obtained is gram flour extract.
+To the gram flour extract taken in a conical flask. Add 5 ml of 1% aq. NaCl solution.
+Keep this flask in a water bath maintained at a temperature of 50-60 degree Celsius. Add 2 ml of malt extract.
+After 2 minutes take 2 drops of the reaction mixture and add to diluted iodine solution.
+Repeat step 6 after every 2 minutes. When no bluish colour is produced the fermentation is complete.
+Record the total time taken for completion of fermentation.
+CONCLUSION:--                                       Gram flour takes _______ time for fermentation.
+Experiment-3
+Aim:--
+To compare the rate of fermentation of given sample of rice flour.
+Theory:--
+Rice flour contains starch as the major constituent. Starch present in these food materials is first brought into solution.in the presence of enzyme diastase, starch undergo fermentation to give maltose. Starch gives blue-violet colour with iodine whereas product of fermentation starch do not gives any characteristic colour. When the fermentation is complete the reaction mixture stops giving blue-violet colour with iodine solution. By comparing the time required for completion of fermentation of equal amounts of different substances containing starch the rates of fermentation can be compared. The enzyme diastase is obtained by germination of moist barley seeds in dark at 15 degree Celsius. When the germination is complete the temperature is raised to 60 degree Celsius to stop further growth. The seeds are crushed into water and filtered. The filtrate contains enzyme diastase and is called malt extract.
+Materials required:--
+Iodine, rice flour, filter paper, conical flask, funnel, NaCl solution, water bath, etc.
+Procedure:--
+Take 5 grams of rice flour in 100 ml conical flask and add 30 ml of distilled water.
+Boil the contents of the flask for about 5 minutes.
+Filter the above contents after cooling, the filtrate obtained is rice flour extract.
+To the rice flour extract taken in a conical flask. Add 5 ml of 1% aq. NaCl solution.
+Keep this flask in a water bath maintained at a temperature of 50-60 degree Celsius. Add 2 ml of malt extract.
+After 2 minutes take 2 drops of the reaction mixture and add to diluted iodine solution.
+Repeat step 6 after every 2 minutes. When no bluish colour is produced the fermentation is complete.
+Record the total time taken for completion of fermentation.
+CONCLUSION:--                                                  Rice flour takes _______ time for fermentation.
+Experiment-4
+Aim:--
+To compare the rate of fermentation of given sample of potato flour.
+Theory:--
+Potato flour contains starch as the major constituent. Starch present in these potato flour is first brought into solution in the presence of enzyme diastase, starch undergo fermentation to give maltose. Starch gives blue-violet colour with iodine whereas products of fermentation starch do not give any characteristic colour. When the fermentation is complete the reaction mixture stops giving blue-violet colour with iodine solution. By comparing the time required for completion of fermentation of equal amounts of different substances containing starch the rates of fermentation can be compared. The enzyme diastase is obtained by germination of moist barley seeds in dark at 15 degree Celsius. When the germination is complete the temperature is raised to 60 degree Celsius to stop further growth. The seeds are crushed into water and filtered. The filtrate contains enzyme diastase and is called malt extract.
+Materials required:--
+Iodine, potato flour, filter paper, conical flask, funnel, NaCl solution, water bath, etc.
+Procedure:--
+Take 5 grams of potato flour in 100 ml conical flask and add 30 ml of distilled water.
+Boil the contents of the flask for about 5 minutes.
+Filter the above contents after cooling, the filtrate obtained is potato flour extract.
+To the potato flour extract taken in a conical flask. Add 5 ml of 1% aq. NaCl solution.
+Keep this flask in a water bath maintained at a temperature of 50-60 degree Celsius. Add 2 ml of malt extract.
+After 2 minutes take 2 drops of the reaction mixture and add to diluted iodine solution.
+Repeat step 6 after every 2 minutes. When no bluish colour is produced the fermentation is complete.
+Record the total time taken for completion of fermentation.
+CONCLUSION:--                                                                       Potato flour takes _______ time for fermentation.
+Result
+Rice flour takes maximum time for fermentation and wheat flour takes the minimum time for fermentation.
+Whereas gram flour and potato flour take some time in between that of wheat flour and rice flour.
+
+
+
+
+
+
+
+
+
+
+
+Bibliography
+Websites:--
+www.wikipedia.org
+www.oyo.com
+www.britannica.com
+www.sciencedirect.com
+www.seminarsonly.com
+www.springer.com
+www.ukessays.com
+Books:--
+Class 12th Chemistry Practical Book 
+Principles of Fermentation
+Basic Fermentation Technology
+Principles and Applications of Fermentation Technology
+

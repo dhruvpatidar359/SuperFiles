@@ -1,0 +1,19 @@
+LAN (Local Area Network) is a data communication network that locally connects network devices such as workstations, servers, routers, etc. to share the resources within a small area such as a building or campus. Physical or wireless connections are set up between workstations to share the resources. Ethernet and Wi-fi are the most important technologies of LAN. Personal networks at home, school, office, etc. are examples of LAN. These are generally privately-owned networks.
+
+Requirements to set up LAN Network:
+
+    Workstation/Personal devices: laptop, computer, mobile phones, etc.
+    Network devices: router, switch, modem (if not already present in the router)
+    Sharing resources: printers, disk drives, etc.
+    Cables: Ethernet cables, wires for connecting other devices (in case of wired LAN)
+    Internet connection: Wi-Fi (in case of wireless LAN)
+
+Instructions to set up LAN Network:
+
+Following steps should be followed to set up a LAN network:
+
+    Identify services: Identify the network services such as printers, disk drives, data, etc. that will be shared among workstations.
+    Identify devices: Identify devices such as computers, mobile phones, laptops, etc. with a unique address that will be connected to the network.
+    Plan connections: Design the network by laying out cable wires between network devices or by making wireless connections. Wired LAN is set up using Ethernet cables while wireless LAN is set up using Wi-Fi that connects network devices without making any physical connection. A wired LAN network is more secure than a wireless LAN network but it is difficult to relocate.
+    Select networking device: Select switch or router with enough ports to connect all workstations within the network. The choice of networking device is based on the requirements of the network.
+    Configure ports: Configure WAN ports according to the information provided by ISP (Internet Service Provider). Also, configure LAN ports of cable routers such that there are enough addresses available for all the workstations within the network. A cable router acts as DHCP (Dynamic Host Configuration 

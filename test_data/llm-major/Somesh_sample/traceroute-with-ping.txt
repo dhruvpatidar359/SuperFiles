@@ -1,0 +1,36 @@
+Traceroute with Ping
+#!/bin/bash
+
+# Check if the destination is provided
+if [ -z "$1" ]; then
+    echo "Usage: $0 <destination>"
+    exit 1
+fi
+
+destination="$1"
+
+# Perform traceroute-like functionality
+for ttl in {1..60}; do
+    # Send an ICMP packet with the specified TTL
+    ping -c 1 -t $ttl "$destination" -4
+
+    # Check the exit status
+    if [ $? -eq 0 ]; then
+        # Successful ping (destination reached)
+	echo "Time-To-Live: $ttl"
+        echo "$ttl: $destination"
+        break
+    else
+        # Unsuccessful ping (hop along the route)
+	echo "Time-To-Live: $ttl"
+        echo "$ttl: $(ping -c 1 -t $ttl -n "$destination" -4)"
+    fi
+done
+
+# Cleanup (optional)
+echo "Traceroute completed."
+ 
+ 
+ 
+ 
+

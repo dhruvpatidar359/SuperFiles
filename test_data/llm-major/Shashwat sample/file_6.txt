@@ -1,0 +1,8 @@
+In this tutorial, we will learn about Subnetting in Computer Networks Subject. First and foremost, the most crucial concept we are going to learn today is that while studying the subject of computer networks is subnetting. The most crucial idea known as Subnetting will help to lessen or disperse the pressure that the networks' heavy load causes. Let's now quickly go through the idea of subnetting for everyone.
+
+Now, let us know the definition of Subnetting. But before going into the Subnetting concept let us know the overview of the concept named Subnetting in Computer Networks.
+
+Subnetting is a part of Network Layer. The duty of the network layer is to divide the received message into separate components and activities. The Network layer can be called as the heart of Computer Networks.
+Basic idea of the Concept
+
+Finding a network and delivering data to it was simpler when the IP (Internet Protocol) system was initially implemented since there were fewer individuals online. Sending a data packet to the desired machine in a network is getting more and more challenging these days due to the rise in internet users. Network performance becomes a major issue once a network is large enough to serve an enterprise.
