@@ -1,0 +1,168 @@
+aKNOWLEDGEMENT
+
+I express my gratitude to Mrs. Himanshu Ghosh, my Chemistry Teacher and Mrs. Manisha Holkar, Principal who guided me through the project and also gave valuable suggestions and guidance for completing this project. They helped me to understand the intricate issues involved in making the project, besides effectively presenting it. These intricacies would have been lost otherwise. My project has been a success only because of her guidance.
+
+
+
+
+Paridhi Chouhan		 				Sign
+	
+
+DECLARATION
+
+I hereby declare that the project work entitled “Contents responsible for flavor of tea” submitted to SHREE KASERA BAZAR VIDYA NIKETAN [Indore], is a record of an original work done by me under the guidance of Mrs. Himanshu Ghosh , and this project has been submitted for examination purposes with the approval of supervisor.
+
+
+
+
+
+
+
+Paridhi Chouhan
+CERTIFICATE
+
+This is to certify that Paridhi Chouhan of class 12th of SHREE KASERA BAZAR VIDYA NIKETAN has completed his project file under my guidance. He has taken proper care and shown utmost sincerity in completing this project. 
+I certify that this project is up to my expectations and as per the guidelines issued by CBSE.
+
+Internal Examiner                         External Examiner
+
+
+
+Principal                                             School Stamp	
+
+
+INDEX
+
+Introduction
+Water is the major constituent of all living beings. Water is necessary to sustain all types of life. The water used for drinking purpose by human beings should fulfill the following conditions: 
+It should be colourless.
+It should not possess any smell.
+It should not contain any harmful dissolved salts such as nitrates, nitrites, mercury salts, lead salts.
+It should not contain any living organisms such as algae, fungi, bacteria, etc.
+Water is an important and essential ingredient in our quest for survival on this planet. It is very essential for carrying out various metabolic processes in our body and also to carry out Hemoglobin throughout the body. A daily average of 1 gallon per man is sufficient for drinking and cooking purposes. A horse, bullock, or mule drinks about 11 gallons at a time. Standing up, an average allowance of 5 gallons should be given for a man, and 10 gallons for a horse or a camel. An elephant drinks 25 gallons, each mule or ox drinks 6 to 8 gallons, each sheep or pig 6 to 8 pints. These are minimum quantities. One cubic foot of water = 6 gallons (a gallon = 10 lbs.). In order to fulfill such a huge demand of water, it needs to be purified and supplied in an orderly and systematic way. But with the increasing world population, the demand for drinking water has also increased dramatically and therefore it is very essential to identify resources of water from which we can use water for drinking purposes. Many available resources of water do not have it in drinkable form. Either the water contains excess of Calcium or Magnesium salts or any other organic impurity or it simply contains foreign particles which make it unfit and unsafe for drinking.
+Purification of Water
+According to a 2007 World Health Organization (WHO) report, 1.1 billion people lack access to an improved drinking water supply; 88% of the 4 billion annual cases of diarrheal disease are attributed to unsafe water and inadequate sanitation and hygiene, while 1.8 million people die from diarrheal disease each year. The WHO estimates that 94% of these diarrheal disease cases are preventable through modifications to the environment, including access to safe water.[1] Simple techniques for treating water at home, such as chlorination, filters, and solar disinfection and for storing it in safe containers could save a huge number of lives each year.[2] Reducing deaths from waterborne diseases is a major public health goal in developing countries. Visual inspection which cannot determine if water meets their quality standards. Simple procedures such as boiling or the use of a household activated carbon filter are not sufficient for treating all possible contaminants that may be present in water from an unknown source. Even natural spring water – considered safe for all practical purposes in the 19th century – must now be tested before determining what kind of treatment, if any, is needed. Chemical and microbiological analysis, while expensive, are the only way to obtain the information necessary for deciding on the appropriate method of purification. 
+There are many methods for the purification of water. Some of them are: 
+Boiling 
+Filtration 
+Bleaching powder treatment 
+SODIS (Solar Water Disinfection) And the list goes on.... 
+Boiling is perhaps the most commonly used water purification technique in use today. While in normal households it is an efficient technique; it cannot be used for industrial and large scale purposes. It is because in normal households, the water to be purified is very small in quantity and hence the water loss due to evaporation is almost negligible. But in Industrial or large scale purification of water the water loss due to evaporation will be quite high and the amount of purified water obtained will be very less. Filtration is also used for removing foreign particles from water. One major drawback of this purification process is that it cannot be used for removing foreign chemicals and impurities that are miscible with water.
+
+SODIS or Solar Water Disinfection is recommended by the United Nations for disinfection of water using soft drink bottles, sunlight, and a black surface-at least in hot nations with regularly intensity sunlight. Water-filled transparent bottles placed in a horizontal position atop a flat surface in strong sunlight for around five hours will kill microbes in the water. The process is made even more safe and effective if the bottom half of the bottle or the surface it's lying on is blackened, and/or the flat surface are made of plastic or metal. It's the combination of heat and ultraviolet light which kills the organisms. The major drawback of this purification technique is that it cannot be used in countries with cold weather. Also, the time consumed for Purification process is more and it also needs a 'blackened' surface, much like solar cookers.
+Need for a stable purification technique
+ Therefore we need a purification technique which can be used anytime and anywhere, does not require the use of any third party content and which is also economically feasible on both normal scale and large scale. Hence we look at the method of purification of water using the technique of treatment by bleaching powder commonly known as "Chlorination". 
+THEORY
+The process of chlorination has been used for a long time to purify the drinking water. Bleaching powder in aqueous solution will produce Cl- and OCl- ions. Bleaching powder when exposed to moisture will release chlorine and this chlorine kills off the germs and disinfects the area. Bleaching powder when exposed to moisture will release chlorine and this chlorine kills off the germs and disinfects the area. If this is added to water, the chlorine released will react with water and will cause production of oxygen in the atomic state which is highly reactive. If any coloured cloth is dipped in this water, the oxygen will react with the chemicals that give the colour and makes them colourless. This is called the bleaching process.
+Also, bleaching powder on exposure to air reacts with CO2 and liberates chlorine gas which is aqueous solution known as bleaching agent and kills the germs and bacteria.
+History of water purification in different parts of the world
+In 1854 it was discovered that a cholera epidemic spread through water. The outbreak seemed less severe in areas where sand filters were installed. British scientist John Snow found that the direct cause of the outbreak was water pump contamination by sewage water. He applied chlorine to purify the water, and this paved the way for water disinfection. Since the water in the pump had tasted and smelled normal, the conclusion was finally drawn that good taste and smell alone do not guarantee safe drinking water.
+ This discovery led to governments starting to install municipal water filters (sand filters and chlorination), and hence the first government regulation of public water. In the 1890s America started building large sand filters to protect public health. These turned out to be a success. Instead of slow sand filtration, rapid sand filtration was now applied. Filter capacity was improved by cleaning it with powerful jet steam. Subsequently, Dr. Fuller found that rapid sand filtration worked much better when it was preceded by coagulation and sedimentation techniques. Meanwhile, such waterborne illnesses as cholera and typhoid became less and less common as water chlorination won terrain throughout the world. But the victory obtained by the invention of chlorination did not last long. After some time the negative effects of this element were discovered. Chlorine vaporizes much faster than water, and it was linked to the aggravation and cause of respiratory disease. Water experts started looking for alternative water disinfectants. In 1902 calcium hypo chlorite and ferric chloride were mixed in a drinking water supply in Belgium, resulting in both coagulation and disinfection. The treatment and distribution of water for safe use is one of the greatest achievements of the twentieth century. Before cities began routinely treating drinking water with chlorine (starting with Chicago and Jersey City in US in 1908), cholera, typhoid fever, dysentery and hepatitis A killed thousands of U.S. residents annually. Drinking water chlorination and filtration have helped to virtually eliminate these diseases in the U.S. and other developed countries. Meeting the goal of clean, safe drinking water requires a multi-barrier approach that includes: protecting source water from contamination, appropriately treating raw water, and ensuring safe distribution of treated water to consumers' taps. During the treatment process, chlorine is added to drinking water as elemental chlorine (chlorine gas), sodium hypochlorite solution or dry calcium hypochlorite. When applied to water, each of these forms "free chlorine," which destroys pathogenic (disease-causing) organisms. Almost all systems that disinfect their water use some type of chlorine-based process, either alone or in combination with other disinfectants. In addition to controlling disease-causing organisms, chlorination offers a number of benefits including: 
+Reduces many disagreeable tastes and odors
+Eliminates slime bacteria, molds and algae that commonly grow in water supply reservoirs, on the walls of water mains and in storage tanks 
+Removes chemical compounds that have unpleasant tastes and hinder disinfection and 
+Helps remove iron and manganese from raw water
+As importantly, only chlorine-based chemicals provide "residual disinfectant" levels that prevent microbial re-growth and help protect treated water throughout the distribution system. For more than a century, the safety of drinking water supplies has been greatly improved by the addition of bleaching powder. Disinfecting our drinking water ensures it is free of the microorganisms that can cause serious and life-threatening diseases, such as cholera and typhoid fever. To this day, bleaching powder remains the most commonly used drinking water disinfectant, and the disinfectant for which we have the most scientific information. Bleaching powder is added as part of the drinking water treatment process. However, bleaching powder also reacts with the organic matter, naturally present in water, such as decaying leaves. This chemical reaction forms a group of chemicals known as disinfection by-products. Current scientific data shows that the benefits of bleaching our drinking water (less disease) are much greater than any health risks from THMs and other by-products. Although other disinfectants are available, bleaching powder remains the choice of water treatment experts. When used with modern water filtration methods, chlorine is effective against virtually all microorganisms. Bleaching powder is easy to apply and small amounts of the chemical remain in the water as it travels in the distribution system from the treatment plant to the consumer's tap, this level of effectiveness ensures that microorganisms cannot recontaminate the water after it leaves the treatment.
+
+
+But what is bleaching powder and how is it prepared?
+Bleaching powder or Calcium hypochlorite is a chemical compound with formula Ca(ClO)2. It is widely used for water treatment and as a bleaching agent bleaching powder). This chemical is considered to be relatively stable and has greater available chlorine than sodium hypochlorite (liquid bleach). 
+Bleaching Powder, also known as chloride of lime, is solid in texture and yellowish-white in colour. Bleaching powder can be recognized by the smell of chlorine. Bleaching powder is generally used for the removal of colour, as indicated by its name. It is also known as a bleaching agent.
+
+Structure of Bleaching Powder
+The structural formula of bleaching powder contains two atoms of chlorine. Among these two atoms, one of them is properly bonded to the atoms of the chemical compound Calcium. The other atom of Chlorine results in the formation of a bond with the atom of Oxygen.
+ 
+It is prepared by either calcium process or sodium process. 
+Calcium Process
+2 Ca(OH)2 +  2 Cl2                Ca(ClO)2 +  CaCl2 + 2 H2O 
+Sodium Process 
+2 Ca(OH)2 + 3 Cl2 + 2 NaOH           Ca(ClO)2 + CaCl2 + 2 H2O + 2 NaCl 
+But how can this chemical be used to sterilize water? This chemical can be used for sterilizing water by Using 5 drops of bleach per each half gallon of water to be purified, and allowing it to sit undisturbed for half an hour to make it safe for drinking. Letting it sit several hours more will help reduce the chlorine taste, as the chlorine will slowly evaporate out. A different reference advises when using household bleach for purification; add a single drop of bleach per quart of water which is visibly clear, or three drops per quart of water where the water is NOT visibly clear. Then allow the water to sit undisturbed for half an hour. What are the actual processes involved in disinfecting and purifying water? The combination of following processes is used for municipal drinking water treatment worldwide: Pre-chlorination - for algae control and arresting any biological growth Aeration - along with pre-chlorination for removal of dissolved iron and manganese Coagulation - for flocculation Coagulant aids also known as polyelectrolyte's - to improve coagulation and for thicker floc formation Sedimentation - for solids separation, that is, removal of suspended solids trapped in the floc Filtration - for removal of carried over floc Disinfection - for killing bacteria Out of these processes, the role of Bleaching powder is only in the last step i.e. for Disinfection of water.
+EXPERIMENT
+Aim: To determine the dosage of bleaching powder required for sterilization or disinfection of different samples of water. 
+Requirements: Burette, titration flask, 100ml graduated cylinder, 250ml measuring flask, weight box, glazed tile, glass wool. Bleaching Powder, Glass wool, 0.1 N Na2S2O3 solution, 10% KI solution, different samples of water, starch solution. 
+Pre-Requisite Knowledge: 
+A known mass of the given sample of bleaching powder is dissolved in water to prepare a solution of known concentration. This solution contains dissolved chlorine, liberated by the action of bleaching powder with water. 
+CaOCl2 + H2O           Ca(OH)2 + Cl2
+The amount of Chlorine present in the above solution is determined by treating a known volume of the above solution with excess of 10% potassium iodide solution, when equivalent amount of Iodine is liberated. The Iodine, thus liberated is then estimated by titrating it against a standard solution of Sodium thiosulphate, using starch solution as indicator.
+Cl2 + 2KI          2KCl + I2
+I2 + 2Na2S2O3          Na2S4O6 + 2NaI
+A known Volume of one of the given samples of water is treated with a known volume of bleaching powder solution. The amount of residual chlorine is determined by adding excess potassium iodide solution and then titrating against standard sodium thiosulphate solution. 
+From the readings in 2 and 3, the amount of chlorine and hence bleaching powder required for the disinfection of a given volume of the given sample of water can be calculated. 
+Procedure: 
+Preparation of bleaching powder solution. Weigh accurately 2.5g of the given sample of bleaching powder and transfer it to a 250ml conical flask. Add about 100-150ml of distilled water. Stopper the flask and shake it vigorously. The suspension thus obtained is filtered through glass wool and the filtrate is diluted with water (in a measuring flask) to make the volume 250ml. The solution obtained is 1% bleaching powder solution.
+Take 10ml of bleaching powder solution in a stoppered conical flask and add it to 20ml of 10% KI solution. Stopper the flask and shake it vigorously. Titrate this solution against 0.1N Na2S2O3 solution taken in the burette. When the solution in the conical flask becomes light yellow in color, add about 2ml starch solution. The solution now becomes blue in colour. Continue titrating till the blue color just disappears. Repeat the titration to get a set of three concordant readings.
+ Take 100ml of the water sample in a 250ml stoppered conical flask and add it to 10ml of bleaching powder solution. Then add 20ml of KI solution and stopper the flask. Shake vigorously and titrate against 0.1N Na2S2O3 solution using starch solution as indicator as described in step 2. 
+Repeat the step 3 with other samples of water and record the observations.
+Observations:
+Weight of the bleaching powder dissolved to prepare 250 ml of solution = 2.5g
+Titration 1 Bleaching powder solution against 0.1 Na2S2O3 solution
+Volume of bleaching powder solution taken for each titration = 10.0 ml
+Volume of KI solution added = 20.0 ml
+Titration table for distilled water:
+Mean volume = 8.2 ml
+Titration 2
+Volume of water sample 1 taken for each titration = 100ml
+Volume of bleaching powder solution added = 10ml
+Volume of KI solution added = 20ml
+Titration table for tank water
+Mean volume = 10.1 ml
+Titration 3
+Volume of water sample 1 taken for each titration = 100ml
+Volume of bleaching powder solution added = 10ml
+Volume of KI solution added = 20ml
+Titration table for Pond water:
+Mean volume = 4.8
+Calculations:
+For Sample 1 (Tank water)
+Amount of bleaching powder used to disinfect 100ml of tap water = (8.2 – 10.1) ml of 0.2 N of Na2S4O6  solution = 1.9ml. Of 0.2 N of Na2S4O6 solution
+Since, 250ml bleaching powder solution contains 2.5g bleaching powder
+Thus, 1 ml of bleaching powder solution contains bleaching powder = 2.5/250 = 0.01 g
+Also, 20ml of bleaching powder solution = 8.2 ml of 0.2 N of Na2S2O3
+So 1ml of Na2S2O3 solution = 20/8.2 ml of bleaching powder solution.
+Volume of bleaching powder solution used to disinfect 100 ml of water = 1.9 x 20/8.2 ml.
+1.9 x 20/8.2 ml. of bleaching powder solution = 1.9 x 20 x 0.01/8.2 (gm) Bleaching Powder
+Amount of bleaching powder used to disinfect 1 litre of water = 1.9 x 20 x 0.01 x 1000/8.2 x 100 = 0.4634 gm
+For Sample 2 (Pond water)
+Amount of bleaching powder used to disinfect 100 ml of water = (8.2 – 4.8) ml of 0.2 N Na2S2O3 solution = 3.4ml
+Accordingly,
+Volume of Ca(OCl)2 solution required to disinfect 1lt. of water = 3.4 x 20 x 0.01 x 1000/8.2 x 100 = 0.8293 gm.
+
+Result 
+Amount of the given sample of bleaching powder required to disinfect one litre of water
+Sample I = 0.4634 g
+Sample II = 0.8293 g
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bibliography
+
+http://www.vlib.us/medical/sancamp/water.htm 
+http://www.icbse.com
+http://www.jmooneyham.com/watp.html 
+http://en.wikipedia.org/wiki
+www.edstrom.com/doclib/mi4174.pdf 
+www.epa.gov/safewater/mcl.html 
+www.awwa.org/Advocacy/bluethumb98/consumer.cfm 
+https://medlineplus.gov/antibiotics.html
+https://www.webmd.com/a-to-z-guides/what-are-antibiotics
+
+
+
+
+
+

@@ -1,0 +1,618 @@
+SHRI VAISHNAV COLLEGE OF COMMERCE
+INDORE (M.P.)
+
+
+
+
+https://svcc.edu.in/
+EMPLOYMENT ORIENTED PROJECT WORK
+
+TITLE OF PROJECT………………………	INTERNSHIP REPORT
+NAME OF THE TRAINING 
+INSTITUTE………………………………...	PARIDHI EDUCATIONAL				
+STUDENT’S NAME	………………………SHRATIKA CHOUHAN
+CLASS………………………………………M.COM 4 SEM (TAXATION)
+NAME OF GUIDE……………				
+DAVV ROLL NO………………………….210100033
+ENROLLMENT NO.	………………………DC1817944
+
+
+
+
+CERTIFICATE
+This is 	to certify that Ms. Shratika Chouhan has worked and completed her project work for the degree of Master In Commerce in the faculty of commerce on Title of project work to be written      ……………….. under my supervision. It is her own work and facts reported by her personal job training report.
+
+Date of submission				Name and Signature of Guide
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Acknowledgement
+First of all I am grateful to the almighty, who graces us, and without blessing from whom, we cannot think of breathing to learn.
+This is my internship training report after completion of internship training at Paridhi Educational, Shikshak Nagar. I wish to express my sincere thanks to Mr. Nilesh Chouhan head of Paridhi Educational as he is the supervisor for the internship training. 
+I also thank him to provide me the golden opportunity to follow the particular practical internship training in the Paridhi Educational and been guidance, necessary support, co-operation, encouragement, fullest effort of them to the success of this opportunity, all are grateful and unforgettable. 
+My special thanks are due to the head of Paridhi Educational Mr. Nilesh Chouhan and staff of Paridhi Educational for their fullest support which contributed immensely for successful completion of this internship training. I wish to express my profound gratitude to all of them.
+
+Thank you
+Preface
+The objective of internship is to get the practical knowledge. As a student M.com in Shri Vaishnav College of Commerce I get a chance to do internship at Paridhi Educational. An internship tends to develop one’s soft skills like personal effectiveness, presentation skills, communication skills, influencing skills and creative problem solving. Internship is a great opportunity to talk directly to people and experience the role, one aspires to be and understand what it’s all about and how the progress in that particular field can be achieved. It also shows the true realities of the job. Internship provides itself as a ‘try before you buy’ option and embark why you want to pursue a particular profession.
+We, the students of Master of Commerce (M.Com) study the subject’s related to commerce. The school of commerce familiarizes each student as they move comfortably in the business environment but only the theoretical study in the classroom in not enough rather a practical experience and the only means of practical experience is internship program. In the business environment there are lots of financial institutions, business firms and industries that provide this facility towards us. If we could not get this facility of internship then a wide gap will take place between our study and experience, I think this is valuable for us.
+
+
+
+Declaration by student
+I Miss Shratika Chouhan student of M.com IV semester of Shri Vaishnav College of Commerce, Indore here by, declare that this project work entitled “…………………..” is a result of my own work and has not been previously submitted to any other university for any other examination. I hereby further declare that all information of this document has been obtained and presented in accordance with academic rules and ethical conduct.
+DAVV Roll No.	-
+Enrollment No.	-
+Date	-
+Place 	-
+
+
+
+
+
+
+
+Conducts of the Internship Training
+
+Place of internship	Paridhi Educational,
+15, Airport Road, Opposite Shikshak Nagar Park, Parihar Market, Shikshak Nagar, Indore, Madhya Pradesh  (452005)
+
+Supervisor	Mr.Nilesh Chouhan
+Chairperson of Paridhi Educational, Indore (M.P.)
+THE ORGANISATION
+Introduction
+Paridhi Educational is an educational institute that is working to provide knowledge of computer. It mainly teaches basics of computer, DCA( diploma in computer accounting). Apart from this, they also teach graphical designing, computer hardware, languages.
+The trainees are usually under graduates or graduates students so that they can apply this knowledge for their career opportunities.
+Vision
+Our goal is to help students in their career by providing them practical knowledge of working in the real environment.
+Service offerings
+Technology has become an intregral part of our lives. And in those technologies computer is one of the most important. The institute provides knowledge   of basics of computer, accounting in computer using tally, graphical designing, hardware and networking, and languages (C, C++, Java, Oracle).
+
+Organizational Structure
+A hierarchy is an arrangement of items (objects, names, values, categories, etc.) in which the items are represented as being “above”, “Below”, or at “the same level as” one another and with only one neighbor above and below each level. These classification are made with regard to rank, importance, seniority, power status, power status, or authority. A hierarchy of power is called a power structure.
+Chairman
+Principal
+Vice principal
+Secretariat
+
+
+Field work and information collection and implementation of policies by adopting changes in rules and regulations is the main responsibility of supervisors and trainees. They use different kind of techniques for error and fraud detection.
+Firm emphasis on delivering high quality services to clients, adding value to their business through identification of existing and  potential control risks and suggesting best possible measures in the given circumstances. Firm always place priority in deploying audit teams to clients who are well equipped with the specific industry knowledge, experience and are professionally sound.
+In doing, so firm not only identify the non-compliances but also assists clients in its rectification, designing remedial measures and provides guidance to adhere with the laws and regulations. 
+Department handles the computer related matters and assists other departments in working properly and efficiently. Department deals with online filing of returns of income for tax department and finalize audit reports in proper format in a presentable manner. It deals with networking of computers in office and all other problems which may be faced by computer users time to time.
+
+
+Future prospects
+To Develop, Setup & Upgrade laboratories as per the revised syllabus & recent industry trends.
+To Organize State/National level paper presentation & project competition.
+To Organize various short term courses, workshops, seminars, as per today need.
+Faculty Development.
+To start various activities under Research & Development Cell.
+To improve placement ratio
+Enhance Industry Institution Interaction
+To develop useful softwares through Software Consultancy Cell
+To improve processes carried out at department
+Delivering quality education to students through postgraduate faculties
+Developing innovative students’ projects
+To excel in the processes carried out at department
+To open branches of Paridhi Educational 
+
+
+Available Courses
+
+
+
+
+
+WORKING PROCESS OF PARIDHI EDUCATIONAL
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DCA (Diploma in Computer Accounting)
+
+Overview of Tally ERP 9
+Journal entry
+Journal Vouchers are used to adjust the debit and credit amounts without involving the cash or bank accounts. Hence, they are referred to as adjustment entries.
+Creating a Journal Entry
+Journal entries are usually used for finalization of accounts.
+To pass a Journal Voucher,
+Go to Gateway of Tally > Accounting Vouchers
+Click on F7 : Journal on the Bottom Bar or press F7.
+For example, there may be entries made for interest accrued of interest due. If you have to receive Interest from a party, the same can be entered using Journal Voucher.
+Debit the Party
+Credit the Interest Receivable Account
+Special keys for voucher narration field
+ALT+R: Recalls the last narration saved for the first ledger in the voucher, irrespective of the voucher type.
+CTRL+R: recalls the last narration saved for a specific voucher type, irrespective of the ledger.
+Allowing cash Accounts in Journals
+Journals are adjustment entries, which do not involve cash account and bank account. However in exceptional cases where the user would like to account Journal entries involving Cash/Bank Account, Tally ERP 9 has the flexibility of passing such entries by enabling the option under F12 configuration.
+To enable Cash Accounts in Journal voucher,
+Set allow cash Accounts in Journals to Yes in F12 : Configure (Voucher Entry Configuration).
+To pass a Journal voucher with Cash/Bank Ledger.
+Go to Gateway of Tally > Accounting Vouchers > Select F7 : Journal
+Press the spacebar at the Debit or Credit field.
+Debit Note Entry
+Debit Note is a document issued to a party stating that you are debiting their account in your books of accounts for the stated reason of vise versa. It is commonly used in case of purchase returns, Escalation/De-escalation in price, any other expenses incurred by you on behalf of the party etc.
+Debit Note can be entered in voucher or Invoice mode.
+You need to enable the feature in F11: Accounting or Inventory features.
+To use it in Voucher mode you need to enable the feature in F11 :Accounting Features -
+Use Debit/Credit Notes.
+To make the entry in Invoice mode enable the option F11: Accounting Features Use Terms of Service and Privacy Policy invoice mode for Debit Notes,
+To go to Debit Note Entry Screen,
+Go to Gateway of Tally Accounting Vouchers
+Click on Ctrl+19: Debit Note on the Button Bar or press Ctrl+F9
+You can toggle between voucher and Invoice mode by clicking Ctrl+V
+Pass an entry for the goods purchased returned to Supplier A
+
+
+Credit Note Entry
+Credit Note is a document issued to a party stating that you are crediting their Account in your Books of Accounts for the stated reason or vise versa. It is commonly used in case of Sales Returns.
+A Credit Note can be entered in voucher or Invoice mode.
+You need to enable the feature in F11 Accounting or Inventory features
+To use it in Voucher mode you need to enable the feature in F11 Accounting
+
+Features Use Debit/Credit Notes.
+To make the entry in Invoice mode enable the option F11 Accounting Features 
+Use invoice mode for Debit Notes.
+To go to Credit Note Entry Screen:
+Go to Gateway of Tally > Accounting Vouchers
+Click on Ctrl+F8: Credit Note on the Button Bar or press Ctrl+F8.
+You can toggle between voucher and Invoice mode by clicking Ctrl+V
+
+
+
+
+
+
+
+
+
+
+Overview of Ms Word
+Microsoft Word is a word processing software developed by Microsoft. It was first released on October 25, 1983, under the name Multi-Tool Word for Xenix systems. Subsequent versions were later written for several other platforms including: IBM PCs running DOS (1983), Apple Macintosh running the Classic Mac OS (1985), AT&T UNIX PC (1985), Atari ST (1988), OS/2 (1989), Microsoft Windows (1989), SCO Unix (1990), macOS (2001), Web browsers (2010), iOS (2014) and Android (2015). Using Wine, versions of Microsoft Word before 2013 can be run on Linux.
+Commercial versions of Word are licensed as a standalone product or as a component of Microsoft Office suite of software, which can be purchased either with a perpetual license or as part of a Microsoft 365subscription.
+
+File formats 
+DOC	Legacy Word document
+DOT	Legacy Word templates
+WBK	Legacy Word document backup
+DOCX	XML Word document
+DOCM	XML Word macro-enabled document
+DOTX	XML Word template
+DOTM	XML Word macro-enabled template
+
+
+
+
+Filename extensions
+Microsoft Word's native file formats are denoted either by a .doc or .docx filename extension.
+Although the .doc extension has been used in many different versions of Word, it actually encompasses four distinct file formats:
+Word for DOS
+Word for Windows 1 and 2; Word 3 and 4 for Mac OS
+Word 6 and Word 95 for Windows; Word 6 for Mac OS
+Word 97 and later for Windows; Word 98 and later for Mac OS
+(The classic Mac OS of the era did not use filename extensions.) 
+The newer .docx extension signifies the Office Open XML international standard for Office documents and is used by default by Word 2007 and later for Windows as well as Word 2008 and later for macOS.
+
+
+
+
+
+
+
+
+
+
+
+Microsoft Excel
+Microsoft Excel is a spreadsheet developed by Microsoft for Windows, macOS, Android, iOS and iPadOS. It features calculation or computation capabilities, graphing tools, pivot tables, and a macro programming language called Visual Basic for Application (VBA). Excel forms part of the Microsoft 365 suite for software.
+File formats
+Filename extension		.xls, (.xlsx, .xlsm, .xlsb - Excel 2007)
+Internet media type		application/vnd.ms-excel
+Uniform Type Identifier (UTI)	com.microsoft.excel.xls
+Developed by		Microsoft
+Type of format		Spreadsheet
+Microsoft Excel up until 2007 version used a proprietary binary file format called Excel Binary File Format (.XLS) as its primary format. Excel 2007 uses Office Open XML as its primary file format, an XML-based format that followed after a previous XML-based format called "XML Spreadsheet" ("XMLSS"), first introduced in Excel 2002. 
+Although supporting and encouraging the use of new XML-based formats as replacements, Excel 2007 remained backwards-compatible with the traditional, binary formats. In addition, most versions of Microsoft Excel can read CSV, DBF, SYLK, DIF, and other legacy formats. Support for some older file formats was removed in Excel 2007. The file formats were mainly from DOS-based programs.
+
+
+
+
+
+Ms Powerpoint
+MS PowerPoint is a program that is included in the Microsoft Office suite. It is used to make presentations for personal and professional purposes.
+Given below are a few important things that one must know about the development and introduction of Microsoft PowerPoint:
+
+The program was created in a software company named Forethought, Inc. by Robert Gaskins and Dennis Austin. 
+It was released on April 20, 1987, and after 3 months of its creation, it was acquired by Microsoft.
+The first version of this program, when introduced by Microsoft was MS PowerPoint 2.0 (1990).
+It is a presentation-based program that uses graphics, videos, etc. to make a presentation more interactive and interesting.
+The file extension of a saved Powerpoint presentation is “.ppt”.
+A PowerPoint presentation comprising slides and other features is also known as PPT.
+Gradually, with each version, the program was more creative and more interactive. Various other features were added in PowerPoint which massively increased the requirement and use of this MS Office program.
+
+
+
+
+
+
+
+
+Graphic Designing
+Graphic design is a profession, academic discipline and applied art whose activity consists in projecting visual communications intended to transmit specific messages to social groups, with specific objectives. Graphic design is an interdisciplinary branch of design and of the fine arts. Its practice involves creativity, innovation and lateral thinking using manual or digital tools, where it is usual to use text and graphics to communicate visually.
+The role of the graphic designer in the communication process is that of encoder or interpreter of the message. They work on the interpretation, ordering, and presentation of visual messages. Usually, graphic design uses the aesthetics  ends up being established linguistically, either orally or in writing, that is, that of typography and the compositional arrangement of the text, ornamentation, and imagery to convey ideas, feelings, and attitudes beyond what language alone expresses. The design work can be based on a customer's demand, a demand that graphic design transforms a linguistic message into a graphic manifestation.
+Graphic design has, as a field of application, different areas of knowledge focused on any visual communication system. For example, it can be applied in advertising strategies, or it can also be applied in the aviation world or space exploration. In this sense, in some countries graphic design is related as only associated with the production of sketches and drawings, this is incorrect, since visual communication is a small part of a huge range of types and classes where it can be applied.
+
+
+
+
+
+
+Hardware and networking
+Networking hardware, also known as network equipment or computer networking devices, are electronic devices which are required for communication and interaction between devices on a computer network. Specifically, they mediate data transmission in a computer network. Units which are the last receiver or generate data are called hosts, end systems or data terminal equipment.
+Networking devices includes a broad range of equipment which can be classified as core network components which interconnect other network components, hybrid components which can be found in the core or border of a network and hardware or software components which typically sit on the connection point of different networks.
+The most common kind of networking hardware today is a copper-based Ethernet adapter which is a standard inclusion on most modern computer systems. Wireless networking has become increasingly popular, especially for portable and handheld devices.
+Other networking hardware used in computers includes data center equipment (such as file servers, database servers and storage areas), network services (such as DNS, DHCP, email, etc.) as well as devices which assure content delivery.
+Taking a wider view, mobile phones, tablet computers and devices associated with the internet of things may also be considered networking hardware. As technology advances and IP-based networks are integrated into building infrastructure and household utilities, network hardware will become an ambiguous term owing to the vastly increasing number of network capable endpoints.
+
+
+
+YouTube Channel of Paridhi Educational
+Youtube Is the major platform to share your original content videos or advertisements. As per Wikipedia, YouTube, LLC is an American video-Sharing website headquartered in San Bruno, California, Three former PayPal employees—Chad Hurley, Steve Chen, and Jawed Karim -  created the service in February 2005. Google bought the site in November 2006 for US$1.65 billion; YouTube now operates as one of the Google’s subsidiaries.
+The institution has started their YouTube Channel during Lockdown period. It aims to provide educational during lockdown period also. During Lockdown period, schools and colleges are being closed. They get permission to get open at last. In this lockdown period learning get disturbed to a large extent.
+Thinking about this problem Paridhi Educational tries to overcome this disturbance of learning. And started teaching at their YouTube channel named “Paridhi Educational”. 
+
+
+Major functions of the organization
+The main function of the organization is to provide training to students (usually graduates and post graduates) to use computer applications used for accounting and make them proficient in doing office work. The organization not only teaches the theoretical part but also teaches the practical uses with suitable examples. Students working towards their career achievement got help from this a lot. Learning through real examples builds a confidence among students. Students with this confidence can perform better and can easily adjust in the new environment. In this institution students get updated knowledge. This helps students to compete with the present environment.  
+One of the major functions of this institution is to be updated as today is the world of technology. Technology get changed or revised now and then. To be with this upgradation is one of the key functions of the organization. In accounting tax rates changes as per government. Computer needs to be repair and changes according to the need which again need capital again and again. To ensure regularity of power supply in again a difficult task. 
+
+
+
+
+
+
+
+
+
+Need to plan for the future
+You can plan for the future by setting many smaller, easily achievable goals that directly and immediately impact your current life and keep doing so until you ultimately accomplish the larger goals. You can also set larger goals that may take years to accomplish and actively work toward them a little each day. Here's a step-by-step guide on how to plan for the future:
+1. Consider your ultimate personal life goals
+Consider whether what you'd like to accomplish in your personal life is something that requires making a plan for the future. For instance, if you know you want to own a home soon, you can make the needed preparations for doing so and outline these steps in your plans. Once you've established your ultimate personal life goals, you can determine the smaller steps to take to reach them. For instance, if you want to own a home, you can make smaller goals, such as saving money from each paycheck you receive to go toward a house fund.
+2. Set short- and long-term goals
+Having short- and long-term goals can help you plan for what you want your future to be. Setting clear short- and long-term goals can help you continuously work toward your plans, and it can ensure you're on track to reach your goals. For example, if you're working toward becoming more mindful, you may set a goal to meditate and journal when you wake up each morning. Over time, you may become more mindful and reach your future goal of being a well-rounded and considerate individual.
+3. Review your career goals
+Your career goals may play a large part in your life and future, so reviewing them can help you adequately prepare for your future. Determining what career you'd like to pursue, how you plan to reach that goal and how long you plan to stay in the career can help guide your plans. If you plan to pursue multiple career paths, you can review how you plan to follow them and for how long. Reviewing your goals also allows you to be comprehensive in what you hope to achieve and can ensure you include every benchmark you want to pass.
+4. Consider your time frame
+Determine time frames for different goals you'd like to accomplish can help you plan your future. Settings dates by which you want to accomplish goals can help you plan certain items and allow you to prepare for them adequately. For instance, if you know you'd like to work part-time instead of full-time by a certain age, you can ensure you've saved enough money to support yourself and that you've budgeted in a way that allows you to do it by that age.
+5. Create a budget
+Once you know what you want from your personal and professional life, you can create a budget that can allow you to pursue these things. Consider determining a weekly, monthly and yearly budget, which can help you allocate money toward certain endeavors. For instance, if you plan to have kids and want to pay for their college education, you can create a budget that saves money toward their college funds each time you receive a paycheck. This can set you up for financial stability in the future.
+6. Write your goals and plans down
+Clearly writing your plans for the future can help solidify them in your mind. Noting all dates and times which you hope to reach certain goals in the future is important, and describing your plan in great detail can ensure you're always aware of how to accomplish a goal at any point in time. You may share your documented plans with a family member, partner or close friend. This may help you remember them or have someone who can keep you accountable for these plans.
+7. Actively work toward your goals
+Some aspects of your future can't happen unless you plan for it now, so actively working toward some aspects of it now can have significant benefits. For instance, if you're interested in becoming a master gardener so you can master this hobby by the time you retire, you can start taking courses and conducting research to become one now. If you're interested in having an extensive travel fund available by the time you're 40, you can start with your next paycheck to save any extra money into a travel savings account.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SWOT analysis
+ The SWOT analysis consists of analyzing organizational streghths and weakness, and its environmental opportunities and threat. It helps to identify a strategic niche that the organization might exploit. SWOT analysis is needed for every organization to identify their strength, weakness, opportunities and threats as well as every individual for their success. Here the strength and weakness are generally related with internal environment of the organization on the other hand opportunities and threats are generally related with external environment of the organization. SWOT analysis of Paridhi Educational is as follow:
+Strength
+Fees are affordable.
+Very good quality of education
+Friendly and flexible environment
+Build good relationship with students
+Students are satisfied with the quality of education
+Organization is registered under     …………
+Various subject are available
+The learning institution has a conducive learning environment. ...
+The learning institution has a team of dedicated teachers. ...
+Positive teacher-student communication in the learning institution. ...
+Effective self-discipline and good habits nurtured among the students.
+Fair-minded, passionate, honest, well-mannered, inspirer, skilled, and supportive mentors
+Creative and innovative developmental plans for students
+Creative and innovative developmental plans for students
+An open line of communication with children and their parents and relevant families
+Developing a healthy and fruitful relationship with the society and the other competitors
+The syllabus and institute courses have an excellent academic record
+Arranging events and programs for students throughout the year regularly
+The environment of the institute is open, moral, and ethical for students to participate and learn from it
+Parents and students have confidence and trust in the education system of the school
+Professional and well-trained teachers’ staff
+Strong financial capabilities to maintain the smooth functioning of various programs both in the short/long term
+Parents and families have easy access to come and visit
+Increasing use of technology
+Some programs need revision to keep up with changes in the field and improve course sequencing to help student progression especially as student numbers have grown.
+
+Weaknesses
+The enrollment rate of students is not certain as when corona is prevailing no students can get access to education
+Extracurricular activities have got no involvement
+Limited campus space
+Limited teaching faculty and staff for the management and education of students
+Administration and management are dealing with more students than their capabilities
+Students perform poor in their tests
+No advertising of the institute
+Its difficult to keep an eye to all students when the number of students are many.
+Website out of date and not responsive to user needs.
+Inadequate and aging facility (labs, teaching space)
+No enrolment control
+During exam time many student take leave and they do not continue their computer classes
+
+Opportunities
+With the increasing demand for technology users, number of enrollment of students can improve
+Making the online education program possible
+Limiting the flaws and weaknesses of the institute
+Can start with franchises
+Acting on the feedback and reviews of families and parents for improvement
+Focusing on the growth of new programs
+
+Threats
+Students are making demand in terms of infrastructure and equipment
+Over communication is creating problems
+Opening of institutes of competitors
+Complaints of the students
+Lockdown and pandemic protocol
+Turnover in institutional leadership personnel threatens faculty and program stability
+Outside of the department many misperceptions and myths exist related to an understanding of what the department does in terms of its academic and scholarly activities.
+External threats, changing priorities, and limited funding can potentially create internal tension over limited resources.
+Competition for other educational institiution who have more diverse programming opportunities and resources for students
+
+The results generated by a SWOT analysis makes up part of your business planning. It can also help you to
+Better understanding of your business
+Identify areas of the business that need improving
+Decide if you can make any changes
+Understand your market and  competitors
+Predict changes you will need to deal with to ensure your business is successful.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Limitations of the SWOT analysis
+A SWOT analysis is not a perfect tool—it has some limitations.
+A SWOT analysis covers only one stage of your business planning. You will need to conduct more thorough research to make the best decisions for more complex matters.
+This analysis only addresses situations classified as strengths, weaknesses, opportunities, or threats. Consequently, utilizing a SWOT analysis to handle two-sided elements is challenging, such as factors that might be a strength, a weakness, or both.
+A SWOT analysis:
+will not prioritise issues—it must be reviewed to produce meaningful results
+will not provide solutions or offer alternative decisions—you must look at the issues noted and work to generate solutions
+can generate too many ideas but will not help you choose which one is best—when this occurs, try to limit the scope of the analysis to only a few solutions
+can produce a lot of information, but it may not all be useful—you must review the data generated to determine what is relevant.
+Conclusion   
+There are many benefits of a SWOT analysis, and the biggest one is the ability to derive valuable insights and strategies for reaching your organizational goals. However, although there are many benefits of a SWOT analysis, it has certain limitations that you can overcome by pairing it with other analyses’. For example, you can  use PESTEL, MOST, and SCRS analysis. 
+
+
+
+Industry Analysis (Porters Five Forces) 
+It is extremely crucial to analyze competitive forces in the industry environment to identify opportunities and threats. Michael E. Porter’s well-known framework, known as the five forces model helps with this sort of analysis. The model focuses on five forces that shape competition within an industry. The stronger the five forces, the more limited is the ability of established companies to raise prices and earn greater profits. Therefore, we can conclude that a strong competitive force can be considered as a threat because it depresses profit, whereas, a weak competitive force can be viewed as an opportunity as it facilitates the companies to earn higher profits. The situation of the industry changes over time. The influence of the five forces in the banking industry has been discussed below:
+a. Threat of Potential Entrants:
+Potential competitors are companies that are not currently competing in an industry but have the capability to get into the industry. The IT Industry of Bangladesh seriously faces the threat of new entrants. However the threat comes from two directions. The first threat comes with the arrival of the local companies like Sailor Info Tech. or Devs Team. Secondly, the continuous entries of foreign companies like Orange, GP IT etc. also possess a severe threat to this industry. But PORTONICS is aware of these potential competitors. So it is trying to expand countrywide to make the sector unattractive and to create entry barrier. Government policies for IT industry are not so strong in this country. We do not have strong rules and regulation from Bangladesh Government for regulating the private ITsectors. If government does not regulate the IT sector strongly, then lots of new IT companies will come and will make the competition more intense.
+
+b. Rivalry among Established Companies:
+Although in the U.S., IT companies offer a wide range of activities, including website management, Credit management, Automation, Client management, portfolio management, etc, but, in case of our country, these services may differ. In Bangladesh, an IT firm can perform multiple operations including website creation and management, portfolio management, etc. This scenario is true for all the IT companies operating in Bangladesh. The prime competitors of this sector are
+1. Portonics Ltd.
+2. ORANGEBD
+3. GP IT
+4. Sailor Info Tech. Ltd.
+5. Devs Team Ltd.
+c. Threat of Substitute
+In IT sector, the types of services provided are similar to each other. That’s why everything depends on the service provided. The best the service is, the more reputation the company has. Thus, threat of substitute is less in this sector. Moreover, Portonics provides Social Media Solutions to companies which is a unique feature. This makes the business of Portonics more sustainable in the market and reduces the level of substitutes.
+: d. Bargaining Power of Buyers
+Bargaining power of the buyer can be viewed as a competitive threat when they are in a position to demand lower prices from the company or when they are in a position to demand better service that can increase operating costs. On the other hand, when buyers are weak, a company can raise its prices and earn greater profits. For IT industry, buyer means the organization who want to take the service from a company. Here, service is the most prominent feature and mostly demanded. Price sometimes does not matter most if the service is best provided. Portonics has the reputation of providing the best service to its customer and thus has the supreme bargaining power over its Buyers.
+e. Bargaining Power of Suppliers:
+Bargaining power of suppliers can be viewed as a threat when they are able to force up the price that a company must pay for its inputs or reduce the quality of the inputs they supply, thereby depressing the company’s profitability. On the other hand, if suppliers are weak, this gives the company the opportunity to force down prices and demand higher input quality. For IT companies, the main supplier of organization are marketing persons. They goes to various organizations and describe our services.Portonics has the reputation of providing the best service to its customer and thus has the supreme bargaining power over its Buyers.
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Importance of Internship
+
+Experience is the mother of all learning and an internship program suggests of expertise learning, which indeed is the best kind of learning. An internship is a period of work which is offered by an institute or office, for the purpose of industrial learning, to students. On the other hand, students too can put the institute or industry on benefit while taking exposure to working environment, relating to their specific field or study.
+An internship tends to develop one’s soft skills like personal effectiveness, presentation skills, communication skills, influencing skills and creative problem solving. Internship is a great opportunity to talk directly to people and experience the role, one aspires to be and understand what it’s all about and how the progress in that particular field can be achieved. It also shows the true realities of the job. Internship provide itself as a  ‘try before you buy’ option and embark why you want to pursue a particular profession.
+One needs to have an interactive approach in an internship. In its simplest form, it’s the “movement Learning based on first-hand experience”.
+We, the students of Master of Commerce (M.Com) study the subject’s related to commerce. The school of commerce familiarizes each student as they move comfortably in the business environment but only the theoretical study in the classroom in not enough rather a practical experience and the only means of practical experience is internship program. In the business environment there are lots of financial institutions, business firms and industries that provide this facility towards us. If we could not get this facility of internship then a wide gap will take place between our study and experience, I think this is valuable for us.
+As a intern I also get an opportunity to learn computer accounting that is how to use tally. 
+We, the students of commerce do this usually for three months.
+As I did my internship in an educational institution I learnt following
+Internship in a school need punctuality and disciplined behavioral approach.
+Leads to result that is as valuable as one’s studies.
+Employees in an educational institute values time and knowledge.
+Teachers give real time efforts to the overall goals of education.
+The process of teaching has to be interactive, though some teachers are still finding it difficult.
+Teaching is a responsible job.
+Technology has helped the whole process of knowledge building and we are all dependent on it, less or more, but we are.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Opportunities 
+During my internship, I was given the opportunity to perform the following fuctions:
+To work as a receptionist
+Working as a receptionist, I learnt how our thoughts can be conveyed to others. What should be our behavior, tone, and expression so that customers get a satisfied response. As the receptionist is the one who get communicated to the costumer first. It became very important for a receptionist to be sincere in his/her job.
+
+Office management
+Keeping all the records of all the students, is one of the fuctions I performed there. It gives me the sense of handling data in an appropriate manner. The data to be classified in a way he get the necessary information as and when required without any delay.
+
+Account handling
+Recording the daily transactions of monetary terms. It helps to known the receipts and expenses of the particular month. The received amount of fees, the due amount of fees, expenses and all financial information one can get from accouting.
+
+Teaching to new admissions
+In the organization I am working for doing my internship, admissions are continuous there was no fixes period of time to take admissions. Therefore admission could take place any time. The students who are newer need to be parallel with the classes they are meant to study in.
+Making their syllabus equal to that class was one of my duties.
+
+Doubt solving
+As it was an educational institution, students may have doubts relating to the subject or apart from the subject. It was our duty to solve their problems relating to any aspect.
+
+Learn to handle clients
+To deal with the person you no nothing about is a difficult job. To reply him so that he could satisfied is what I get opportunity to learn. The group of students are from different backgrounds and culture. Even some of them are comfortable with English and some of them are comfortable in hindi. Maintaining balance between them is most important. Language barriers can some students feel inferior and some students feel superior. Making them realize all of them are equal is one of the task which need a proper surveillance.
+
+
+
+
+
+
+
+
+
+
+
+Learnings
+The period of internship exposed me to various aspects of working in the real environment. I spent initial week to understand the working of the instituitions. During my internship I get opportunity to interact with many people having different point of views. 
+I was given a crucial responsibility to interact with people who are coming for enquiries. To make them believe that they are at right place and choosing this institution to study is their right decision, is one of the most difficult job. As First impression is the last impression, so I learnt many things how to communicate in a way that can be effectively convey my message to others in a way in want.
+I learnt that working under pressure is difficult, but one can only do is to give their 100%. And that’s what I learnt there
+I learnt to work in a real environment. As it is not a game that if you lose you will have a another life. But its reality if one fail, they have to face huge losses. They can spoil all their goodwill. Again we need to start from scratch.
+ Things you'll learn from doing an internship
+How to put my knowledge and skills into practice
+Having knowledge but don’t know how to apply that knowledge, then the knowledge has no use. Using what your learnt is important. As and intern I learnt how to put my knowledge and skills into practice.
+
+The benefits of networking. ...
+During my internship, I learned how to communicate and build relationships with the people I worked with. I learned how to introduce myself, talk about my interests, knowledge and skills with entrepreneurs and business owners, as well as how to ask questions and gain a better understanding of businesses not only in the co-working space, but also others in the market. This process overall helped me develop my professional network and emphasised the importance of creating these connections.
+
+Understanding workplace culture. ...
+Culture influences communication, and as an intern, I learned that every company or organisation has its own culture. It’s essential to observe others and learn how they engage and interact with co-workers, or help them with projects and tasks. I quickly learned that whenever something is unclear for me, or I don’t understand, it’s fine to ask for clarification.
+
+Enthusiasm is invaluable. ...
+As an intern, I discovered it’s essential to be enthusiastic and open to learning new skills, asking for more work and being curious to learn and ask questions. This attitude will show that you enjoy being part of the team and that you're keen to help. Having curiosity and enthusiasm also means that, as an intern, you get a lot out of what you’re doing, which opens lots of opportunities.
+
+Keeping a journal is great for personal growth. ...
+During my internship, I had a journal and took notes every day about new things I learned, feedback I was given by my manager, strengths and weaknesses I noticed, and things I wanted to research and learn more about. This helped me understand myself more and identify the areas that I needed to improve in.
+
+How important good communication is. ...
+Communication is the key to success in a professional environment. I learned that it’s important to communicate with my manager via phone, email or SMS if I have questions or if I don’t know how to work on a task. Asking for help and clarification is better than pretending you’ve understood what you need to do, no matter what. However, I also found that if you can Google something, then do. Avoiding asking questions if you can find answers elsewhere is part of being a good communicator – keep in mind that everyone’s time is valuable. As an intern, good communication will help with productivity, efficiency, engagement and growth.
+
+The benefits of taking on feedback.
+Asking for and receiving professional feedback is very important. It is essential to take note of both the positive and negative points for the future, so you can grow and excel in your career. I learned that sometimes asking for feedback or receiving feedback is difficult to hear, but it will have a significant impact on your future career and success.
+I am really grateful to have had the opportunity to do an internship and have received so much value from what I learned.
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+CHALLENGES FACED
+Working in any field in full of obstacles, which can be act as hurdles for some people and for some people it can act as a opportunity to learn. In my internship, I too faced many challenges.
+Communication problem
+To communicate with any one was difficult for me in the initial days. As I was not aware of all the working habits of the organization. And also don’t know the particular way of responses for different people.
+
+Time management for my studies
+To manage time for internship and study together needs an extra efforts of mine. I have to pay extra attention on my routine. So that I can manage the both effectively and efficiently.
+
+Multitasking
+During my internship, I was supposes to do many task in one point of time. It may be because the staff was absent or of the overburden of work make all of us busy. In this situation speed with accuracy can only work. As our main work to communicate to different group of people. Giving priority to most important I try to complete the work.
+
+Time management in the institution
+During my internship, I was supposes to do many task in one point of time. It may be because the staff was absent or of the overburden of work make all of us busy. In this situation speed with accuracy can only work. As our main work to communicate with different group of people. Giving priority to most important I try to complete the work.
+
+Coping with Unfamiliar Office Culture
+It takes time to understand the organizational culture since it varies from office to office. While some have a rigid structure, others are flexible and trying to observe organizational structure during the first weeks of socializing poses a challenge for many. Based on your observation of the prevailing culture, you can decide to be friendly or reserved in your conduct.
+
+Competition from Co-Interns
+If you're not the only intern working at a company, you might experience a competitive environment. Often, it’s not that your co-interns are competitive and trying to outdo you but they're just being hardworking and high-spirited. So instead of taking it for granted, try to work harder as your competition will make your internship much better
+
+Your Work Unnoticed, Unappreciated 
+This internship problem can be heartbreaking. People often do well in their fields of work and other places to be recognized. The motivation to do well dies when the recognition doesn’t come. It is the same in internships too. 
+There are times when you're given a project that you finally feel will make use of your college education, but it ends up never getting published or lost in their desks or the project being scrapped totally. Not only is this frustrating because of your seemingly wasted time and effort, but it makes you less motivated for projects in the future.
+
+
+
+
+Conclusion
+
+Paridhi Educational provides education to the students through planning, delivering, monitoring, and improving academic programs in which clearly defined academic content standards provide the basis for content in instruction and assessment. This institution follows standards- based education which helps to ensure that students learn what is important, rather than allowing textbooks to dictate classroom practice. Student learning is the focus of standards-based education. It aims for a high and deep level of student understanding that goes beyond traditional textbook-based or lesson- based instruction.
+I ensured my best ability and attempts to represent details of the functions.

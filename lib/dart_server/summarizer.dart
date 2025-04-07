@@ -12,115 +12,102 @@ class Summarizer {
 
   Summarizer(this.model);
 
-  // Summarize a single file's content and return a JSON string
-  Future<String> summarizeFile(
-      String filePath, String fileName, String content) async {
-
-    print("debug 1");
-    // final db = DatabaseHelper.instance;
-    //
-    // Database database = await db.getDatabase();
-    //
-    // // Delete the entire summaries table
-    // await DatabaseHelper.deleteTable(database);
-
-    // To read the dateTime when file is last modified.
-    File file = File(filePath);
-    DateTime lastModified = file.lastModifiedSync();
-
-    //Checking if the summary already exists or not
-    Map<String, dynamic>? alreadyExistingFileData = await getAllColumnsValues(filePath);
-    if (alreadyExistingFileData != null) {
-      String? lastSummaryGenerated = alreadyExistingFileData['lastModified'];
-      DateTime? lastSummaryGeneratedInDateTime = DateTime.parse(lastSummaryGenerated!);
-      if (lastSummaryGeneratedInDateTime!.isAfter(lastModified) ||
-          lastSummaryGeneratedInDateTime!.isAtSameMomentAs(lastModified)) {
-        print("**************************");
-        print("summary not generated for $filePath $fileName");
-        print("**************************");
-
-        Map<String, dynamic> toReturn = <String, dynamic>{
-            "original_file_name": alreadyExistingFileData["original_file_name"],
-            "suggested_file_name" : alreadyExistingFileData["suggested_file_name"],
-            "summary" : alreadyExistingFileData["summary"]
-        };
-
-        String result = jsonEncode(toReturn);
-        return result;
 
 
+    Future<String> summarizeFile(String batchJson) async {
+      final Map<String, dynamic> batchMap = jsonDecode(batchJson);
+      final List<dynamic> files = batchMap['files'];
 
-        String inString = jsonEncode(alreadyExistingFileData);
-        return inString;
-      }
-    }
+      final List<Map<String, dynamic>> summariesList = [];
 
-    print("debug 2");
+      for (var file in files) {
+        String filePath = file['filePath'];
+        String fileName = file['fileName'];
+        String content = file['content'];
 
-    // Define the prompt with the file content
-    final prompt = '''
+        final fileStats = await File(filePath).stat();
+        final lastModified = fileStats.modified;
+
+        Map<String,
+            dynamic>? alreadyExistingFileData = await getAllColumnsValues(
+            filePath);
+        if (alreadyExistingFileData != null) {
+          String? lastSummaryGenerated = alreadyExistingFileData['lastModified'];
+          DateTime? lastSummaryGeneratedInDateTime = DateTime.tryParse(
+              lastSummaryGenerated ?? "");
+
+          if (lastSummaryGeneratedInDateTime != null &&
+              (lastSummaryGeneratedInDateTime.isAfter(lastModified) ||
+                  lastSummaryGeneratedInDateTime.isAtSameMomentAs(
+                      lastModified))) {
+            print("**************************");
+            print("Summary already exists for $filePath ($fileName)");
+            print("**************************");
+
+            summariesList.add({
+              "original_file_name": alreadyExistingFileData["original_file_name"],
+              "suggested_file_name": alreadyExistingFileData["suggested_file_name"],
+              "summary": alreadyExistingFileData["summary"]
+            });
+
+            continue; // Skip summarizing
+          }
+        }
+
+        print("Summarizing new/updated file: $filePath ($fileName)");
+
+        final prompt = '''
 You will be provided with the contents of a file along with its metadata. Provide a summary of the contents. The purpose of the summary is to organize files based on their content. To this end provide a concise but informative summary. Make the summary as specific to the file as possible.
 
+Return in JSON format:
 ```{
    "original_file_name" : "original name of the file as given by the user",
    "suggested_file_name": "suggest a file name that best describes it",
-   "summary": " summary of the content"
+   "summary": "summary of the content"
 }```
 
-    
-Below is the file's data with file path and its content:
+Below is the file's data:
 $fileName
 $content
-    ''';
+''';
 
-    print('Summarizing file: $fileName');
-    final contentToSummarize = [Content.text(prompt)];
+        final contentToSummarize = [Content.text(prompt)];
 
-    // Count tokens in the request content
-    final tokenCount = await model.countTokens(contentToSummarize);
-    print('Token count for the prompt: ${tokenCount.totalTokens}');
+        final tokenCount = await model.countTokens(contentToSummarize);
+        print('Token count: ${tokenCount.totalTokens}');
 
-    // Generate content stream (summary)
-    final responses = model.generateContentStream(contentToSummarize);
-    final StringBuffer summaryBuffer = StringBuffer();
+        final responses = model.generateContentStream(contentToSummarize);
+        final StringBuffer summaryBuffer = StringBuffer();
 
-    await for (final response in responses) {
-      summaryBuffer.write(response.text);
+        await for (final response in responses) {
+          summaryBuffer.write(response.text);
+        }
+
+        print("Raw summaryBuffer: $summaryBuffer");
+
+        // Remove triple-backtick and trim
+        String cleanJson = summaryBuffer.toString().trim();
+        cleanJson =
+            cleanJson.replaceAll(RegExp(r'^```({|json)?'), '').replaceAll(
+                RegExp(r'```$'), '');
+
+        Map<String, dynamic> summaryMap = jsonDecode(cleanJson);
+
+        String summary = summaryMap["summary"];
+        String suggestedFileName = summaryMap["suggested_file_name"];
+        String originalFileName = summaryMap["original_file_name"];
+
+        saveSummary(
+            originalFileName, filePath, summary, suggestedFileName);
+
+        summariesList.add(summaryMap);
+      }
+
+      return jsonEncode(summariesList);
     }
 
-    print("summarBuffer");
-    print(summaryBuffer);
 
-    print("summarBuffer to String");
-    String strBuf =
-        summaryBuffer.toString().substring(7, summaryBuffer.length - 4);
-    print(strBuf);
-
-    // Return the result as a JSON string
-    // Map<String, dynamic> result = {
-    //   "file_path": fileName,
-    //   "original_file_name": fileName
-    //   "summary": summaryBuffer.toString()
-    // };
-
-    Map<String, dynamic> summaryMap = jsonDecode(strBuf);
-
-    String summary = summaryMap["summary"];
-    String suggestedFileName = summaryMap["suggested_file_name"];
-    String originalFileName = summaryMap["original_file_name"];
-
-    print("summarizer summary ${summary}");
-
-    //Saving the summary of the file
-    saveSummary(originalFileName,filePath, summary, suggestedFileName);
-    getSummary(filePath);
-
-    return strBuf;
-    // return jsonEncode(strBuf);  // Convert to JSON string
-    // return summaryBuffer.toString();
-  }
-
-  void saveSummary(String fileName, String filePath, String summary, String suggestedFileName) async {
+    void saveSummary(String fileName, String filePath, String summary, String suggestedFileName) async {
     String currentTime = DateTime.now().toString();
 
     final db = DatabaseHelper.instance;

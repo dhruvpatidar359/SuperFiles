@@ -1,0 +1,80 @@
+Empathy Map:
+
+1.Competitive Programmerer
+
+think:
+What are the top programming contests available that I can enter?
+What are the most beneficial CP sessions I can attend to further my knowledge?
+
+
+Say: 
+I want to take part in a lot of CP competitions.
+I'd like to be informed about every event. 
+
+Does:
+subscribes to various newsletters and conducts searches on various websites for event information.
+
+Feels:
+Exhausted
+Frustated
+Confused
+
+2.Open Source
+
+Think:
+which are the best ongoing projects I can contribute to? 
+What projects can I learn from and what are the current top issues ?
+
+Say:
+open source activities I can take part in 
+I want to learn more about all the upcoming open source events and full details about it
+
+Does:
+Look for these kinds of events on various websites and communities. 
+Visit the event's official websites for more information.
+
+Feels:
+Exhausted
+Frustated
+Confused
+
+3. Developer
+
+Think:
+what are the new frameworks available in the web and are they stable or not ?
+any developer meet ups that I can attend .
+
+Say:
+I want to learn as much as I can and develop my own program.
+I want to participate in various meet ups
+
+Does:
+Search various websites on the internet and shortlist various events
+Get information about the hackathons, designing contents.
+
+Feels:
+Exhausted
+Frustated
+Confused
+
+4.Aspiring Coders
+
+Think:
+I'm interested in learning more about the development, competitive programming, and open source contributing fields.
+I want to take part in a lot of coding activities that will be good for me.
+
+Says:
+Tell me about different coding-related events.
+Keep me informed of important technical developments.
+
+Does:
+searches the internet for various details regarding the technical events
+requests advice and assistance from seniors and mentors
+
+Feels:
+Excited
+Exhausted
+Frustated
+Confused
+
+

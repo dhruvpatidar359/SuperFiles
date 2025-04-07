@@ -1,0 +1,95 @@
+Executive Summary
+About us:
+1st member: Abhay Gupta, Final year IT undergrad at Shri G.S. Institute of technology and
+Science. I have experience in developing full stack web applications based on javascript
+frameworks. I am passionate about solving real world problems using my skills.
+In my free time, I enjoy reading books .
+2nd member : Somesh Pandey , Final year CSE undergrad at Shri G.S. Institute of
+technology and Science ,Indore . I specialise in app development technologies like flutter
+and also have experience of web development tech stack like MERN. I am a tech enthusiast
+passionate about exploring various technologies.I like to go to the gym and watch movies in
+my free time.
+Problem Statement :
+Financial literacy is an important skill that helps people make smart decisions with their
+money. Many young people, particularly those supported by NGOs, lack access to quality
+financial education. This deficiency can hinder their ability to manage finances effectively,
+leading to economic instability. This problem is especially pronounced among students from
+underprivileged backgrounds, who may not have the necessary resources or guidance to
+learn these skills.
+Proposed Solution :
+The website should feature two engaging modes: Role Playing and Real Life :
+1. Role playing : In this scenario, users can choose their respective roles, such as
+Ram (M, age 25) and Aditi (F, age 25). Users will engage in activities that mirror
+real-life responsibilities and decisions, such as earning salary , planning monthly
+budget based on salary, paying taxes, managing assets and liabilities, investing in
+stocks or mutual funds, and taking out loans. This immersive experience allows
+users to navigate financial and career decisions, providing a realistic glimpse into
+adult life.
+Also there will be some more advanced challenges like financial challenges or
+unexpected events like medical expenses , car repair , etc , Real estate investment
+which enable users to invest in virtual real estate properties, understanding the
+complexities of property management, rental income, and market fluctuations ,
+Entrepreneurship which introduces a path for users to start their own virtual
+businesses in which they can make decisions on business planning, funding,
+marketing, and operational management and many others.2. Real Life :
+●
+●
+●
+Integrate Expense and savings tracker with user friendly interface.
+Encourage regular use through gamified incentives like virtual
+money/points that you can use to invest within the app, badges, levels
+for consistent tracking and savings milestones.
+Engage in daily quests centred around financial topics and terms.
+Completing these quests not only enhances your financial knowledge
+but also rewards you with virtual money. You can then use this virtual
+money in our investment simulator, allowing you to practise and refine
+your investment strategies.
+Implement an investment simulator on which you can buy or sell
+shares of virtual companies using the virtual money/points earned by
+completing quests, or by achieving milestones.
+Software Requirements :
+Node js , v20.9.0
+Dependencies:
+name,version
+@clerk/nextjs, ^4.29.9 ,
+@radix-ui/react-avatar ^1.0.4
+,@radix-ui/react-progress, ^1.0.3 ,
+@radix-ui/react-slot, ^1.0.2 ,
+clsx, ^2.1.0 ,
+drizzle-orm, ^0.30.2 ,
+next,14.1.3 ,
+ra-data-simple-rest,^4.16.17 ,
+react-admin,^4.16.17 ,
+react-confetti,^6.1.0 ,
+react-use,^17.5.0 ,
+stripe,^15.5.0,
+tailwindcss-animate,^1.0.7 ,
+@types/node,^20 ,
+@types/react-dom,^18 ,
+drizzle-kit,^0.20.17 ,
+eslint-config-next,14.1.3 ,
+postcss,^8 ,
+tsx,^4.7.1 ,
+Database: Postgress
+IDE : Visual studio
+Os: Windows
+@neondatabase/serverless, ^0.9.0,
+@radix-ui/react-dialog, ^1.0.5
+@radix-ui/react-separator, ^1.0.3 ,
+Class-variance-authority, ^0.7.0 ,
+dotenv, ^16.4.5 ,
+http-proxy-middleware, ^2.0.6 ,
+next-themes,^0.3.0 ,
+react,^18 ,
+react-circular-progressbar,^2.1.0 ,
+react-dom,^18 ,
+sonner,^1.4.3 ,
+tailwind-merge,^2.2.2 ,
+zustand,^4.5.2 ,
+@types/react,^18 ,
+autoprefixer,^10.0.1 ,
+eslint,^8 ,
+pg,^8.11.3 ,
+tailwindcss,^3.3.0 ,
+typescript,^5
+

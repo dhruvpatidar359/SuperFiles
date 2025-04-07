@@ -1,0 +1,12 @@
+What Is Augmented Reality (AR)?
+Augmented reality (AR) is an enhanced version of the real world, achieved through the use of computer-generated digital information. These include visual, sound, and other sensory elements. AR uses computer hardware and software, such as apps, consoles, screens, or projections, to combine digital information with the real-world environment.
+
+AR is a growing trend among companies developing metaverse solutions, particularly in mobile computing and business applications.
+
+Amid the increase in data collection and analysis, one of augmented reality’s primary goals is to highlight specific features of the physical world, increase understanding of those features, and derive smart and accessible insight that can be applied to real-world applications. This "big data" can help inform companies’ decision-making, gain insight into consumer spending habits, and much more.
+
+Examples of Augmented Reality
+Some early adopters in the retail sector have developed AR technologies designed to enhance the consumer shopping experience. Augmented reality has been incorporated into store catalog apps, which allows consumers to visualize what different products would look like in different environments. For example, when buying furniture, shoppers point the camera to the appropriate room, and the product will appear in the foreground.
+1
+
+Augmented reality’s benefits can also extend to the healthcare sector, where it can play a much bigger role. AR apps enable users to see highly detailed, 3D images of different body systems when they hover mobile devices over a target image. This use of AR has become a powerful learning tool for training medical professionals.
