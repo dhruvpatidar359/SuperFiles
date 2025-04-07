@@ -276,10 +276,10 @@ class _AddDocumentFormState extends State<AddDocumentForm> {
                     onPressed: () async {
                       if(_folderPathController.text != "%" &&
                           _folderPathController.text.isNotEmpty
-                          && !isSubFolderOrSystemFolder(_folderPathController.text)
-                          && !isSoftwareInstallFolder(_folderPathController.text)
-                          && !isAppDevelopmentFolder(_folderPathController.text)
-                          && !isWebDevelopmentFolder(_folderPathController.text)
+                          // && !isSubFolderOrSystemFolder(_folderPathController.text)
+                          // && !isSoftwareInstallFolder(_folderPathController.text)
+                          // && !isAppDevelopmentFolder(_folderPathController.text)
+                          // && !isWebDevelopmentFolder(_folderPathController.text)
                       ){
 
                         if (_folderPathController.text != "%" &&
