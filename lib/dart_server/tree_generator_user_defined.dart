@@ -6,6 +6,9 @@ You will be provided with a list of source files, a summary of their contents, a
 
 User-defined folders to use in the structure:
 [folderNames]  
+
+User's custom instructions:
+[customPrompt]
   
 (Additional folders can be created as necessary to improve organization.)
 
@@ -58,18 +61,16 @@ class TreeGeneratorUserDefined {
 
   TreeGeneratorUserDefined(this.model);
 
-// Method to generate the tree structure using file summaries
-//   Future<Map<String, dynamic>?> createFileTree(
-  Future<String?> createFileTree(
-      String summaries, String folders) async {
-    // List<Map<String, String>> summaries) async {
+  Future<String?> createFileTree(String summaries, String folders,
+      {String customPrompt = ""}) async {
     try {
+      // Replace placeholders in the prompt template
+      String modifiedPrompt = TREE_STRUCTURE_PROMPT
+          .replaceFirst("[folderNames]", folders)
+          .replaceFirst(
+              "[customPrompt]", customPrompt.isEmpty ? "None" : customPrompt);
 
-      // Convert summaries list to JSON format
-      // final String summariesData = jsonEncode(summaries);
-      final String summariesData = summaries;
-      String FILE_PROMPT = TREE_STRUCTURE_PROMPT.replaceFirst("[folderNames]" , folders);
-      final String prompt = FILE_PROMPT + summariesData;
+      final String prompt = modifiedPrompt + summaries;
       print('Sending prompt: $prompt');
 
       final Content contentMessage = Content.text(prompt);
@@ -90,12 +91,7 @@ class TreeGeneratorUserDefined {
 
       print('Raw response after replacement: $responseText');
 
-
-
       return responseText;
-      // Parse the response into a JSON object
-      // final Map<String, dynamic> fileTree = jsonDecode(responseText!);
-      // return fileTree;
     } catch (e) {
       print('Error: $e');
       return null;

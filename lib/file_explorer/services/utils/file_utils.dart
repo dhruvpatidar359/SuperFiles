@@ -3,16 +3,13 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as path;
 
-class UtilServices{
+class UtilServices {
   static String getUserDirectory(String folderName) {
     String homeDir = Platform.environment['USERPROFILE'] ??
         Platform.environment['HOME'] ??
         '/';
     return path.join(homeDir, folderName);
   }
-
-
-
 
   static List<String> getAvailableDrives() {
     if (Platform.isWindows) {
@@ -35,7 +32,9 @@ class UtilServices{
           var parts = line.split(' ');
           if (parts.length > 1) {
             var mountPoint = parts[1];
-            if ((mountPoint.startsWith('/media') || mountPoint == '/mnt' || mountPoint == '/') &&
+            if ((mountPoint.startsWith('/media') ||
+                    mountPoint == '/mnt' ||
+                    mountPoint == '/') &&
                 Directory(mountPoint).existsSync()) {
               drives.add(mountPoint);
             }
@@ -48,7 +47,9 @@ class UtilServices{
         return Directory('/Volumes')
             .listSync()
             .whereType<Directory>()
-            .where((dir) => dir.listSync(recursive: false).isNotEmpty) // avoid empty volumes
+            .where((dir) => dir
+                .listSync(recursive: false)
+                .isNotEmpty) // avoid empty volumes
             .map((dir) => dir.path)
             .toList();
       } catch (_) {
@@ -58,13 +59,13 @@ class UtilServices{
     return [];
   }
 
-
   // Helper function to format bytes into a more readable format
   static String formatBytes(int bytes, int decimals) {
     if (bytes == 0) return "0 B";
     const suffixes = ["B", "KB", "MB", "GB", "TB"];
     var i = (log(bytes) / log(1024)).floor();
-    var size = bytes / pow(1024, i).toDouble(); // Ensure result is double for formatting
+    var size = bytes /
+        pow(1024, i).toDouble(); // Ensure result is double for formatting
     return size.toStringAsFixed(decimals) + " " + suffixes[i];
   }
 
