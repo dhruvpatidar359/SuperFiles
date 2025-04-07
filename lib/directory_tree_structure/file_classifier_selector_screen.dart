@@ -58,8 +58,9 @@ class AddDocumentForm extends StatefulWidget {
 
 class _AddDocumentFormState extends State<AddDocumentForm> {
   final _folderPathController = TextEditingController();
+  final _customPromptController = TextEditingController();
+
   List<TextEditingController> fieldControllers = [];
-  String? selectedFolderPath;
   String? combinedSummariesJson;
   String? treeGenerator;
   bool dataSent = false;
@@ -71,27 +72,21 @@ class _AddDocumentFormState extends State<AddDocumentForm> {
   }
 
   final summarizer = Summarizer(GenerativeModel(
-    model: 'gemini-1.5-flash-latest', // The model you are using
-    apiKey:
-        'AIzaSyDqXskrI3gT1axkZGkYRCBW8tBENIjlpNw', // Replace with your actual Google Generative AI API key
+    model: 'gemini-1.5-flash-latest',
+    apiKey: 'AIzaSyDqXskrI3gT1axkZGkYRCBW8tBENIjlpNw',
   ));
 
-  late final loader = Loader(summarizer); // Initialize loader with summarizer
+  late final loader = Loader(summarizer);
 
   late final tree = TreeGenerator(GenerativeModel(
-    model: 'gemini-1.5-flash-latest', // The model you are using
-    apiKey:
-        'AIzaSyDqXskrI3gT1axkZGkYRCBW8tBENIjlpNw', // Replace with your actual Google Generative AI API key
+    model: 'gemini-1.5-flash-latest',
+    apiKey: 'AIzaSyDqXskrI3gT1axkZGkYRCBW8tBENIjlpNw',
   ));
-
 
   late final treeUserDefined = TreeGeneratorUserDefined(GenerativeModel(
-    model: 'gemini-1.5-flash-latest', // The model you are using
-    apiKey:
-    'AIzaSyDqXskrI3gT1axkZGkYRCBW8tBENIjlpNw', // Replace with your actual Google Generative AI API key
+    model: 'gemini-1.5-flash-latest',
+    apiKey: 'AIzaSyDqXskrI3gT1axkZGkYRCBW8tBENIjlpNw',
   ));
-
-
 
   Future<void> _pickFolder() async {
     try {
@@ -102,7 +97,6 @@ class _AddDocumentFormState extends State<AddDocumentForm> {
         });
       }
     } catch (e) {
-      // Handle any exceptions that might occur
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Error picking folder: $e")),
       );
@@ -111,49 +105,46 @@ class _AddDocumentFormState extends State<AddDocumentForm> {
 
   Future<void> summarizeAllFilesInDirectory(String selectedDirectory) async {
     try {
-
-      // Load and summarize document content from the selected folder
       combinedSummariesJson =
-                await loader.loadAndSummarizeDocuments(selectedDirectory);
+          await loader.loadAndSummarizeDocuments(selectedDirectory);
 
+      if (fieldControllers.isNotEmpty ||
+          _customPromptController.text.isNotEmpty) {
+        // Get folder names from field controllers
+        String folderNames =
+            convertFieldControllersListToString(fieldControllers);
 
+        // Get custom prompt from controller
+        String customPrompt = _customPromptController.text;
 
-      // To check how to generate the tree
-      // If user have defined the folders this function will work
-      // Otherwise else part will run
-      if(fieldControllers.isNotEmpty){
-
-        String folderNames = convertFieldControllersListToString(fieldControllers);
-
-        treeGenerator = await treeUserDefined.createFileTree(combinedSummariesJson!, folderNames);
-
-
-      }
-      else {
+        // Pass both folder names and custom prompt separately
+        treeGenerator = await treeUserDefined.createFileTree(
+            combinedSummariesJson!, folderNames,
+            customPrompt: customPrompt);
+      } else {
+        // If no custom folders or prompt, use the standard tree generator
         treeGenerator = await tree.createFileTree(combinedSummariesJson!);
       }
-      print("tree Generator");
-      print(treeGenerator);
+
+      print("Tree Generated:\n$treeGenerator");
     } catch (e) {
-      // Handle exceptions that occur during summarization or tree generation
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Error during summarization: $e")),
       );
-      print("Error during summarization: ${e}");
     }
   }
 
-  String convertFieldControllersListToString(List<TextEditingController> fieldControllers){
+  String convertFieldControllersListToString(
+      List<TextEditingController> fieldControllers) {
     String result = "";
     int it = 0;
-    for( TextEditingController textEditingController in fieldControllers){
-      if(textEditingController.text.isNotEmpty){
-        result += "- Folder ${it++}: ${textEditingController.text.toString()} \n";
+    for (TextEditingController textEditingController in fieldControllers) {
+      if (textEditingController.text.isNotEmpty) {
+        result +=
+            "- Folder ${it++}: ${textEditingController.text.toString()} \n";
       }
     }
-
     return result;
-
   }
 
   @override
@@ -161,25 +152,24 @@ class _AddDocumentFormState extends State<AddDocumentForm> {
     return Stack(
       children: [
         if (dataSent)
-          Center(
+          const Center(
             child: CircularProgressIndicator(),
           ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // "Parent Path" label (this can be hardcoded or dynamically displayed)
             Container(
               width: double.infinity,
               height: 100,
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.primary,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(10),
                   topRight: Radius.circular(10),
                 ),
               ),
               child: Padding(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Text(
                   "Parent Path\n${widget.directoryPath}",
                   style: TextStyle(
@@ -188,42 +178,58 @@ class _AddDocumentFormState extends State<AddDocumentForm> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
-            // Document ID Input
+            // Folder Path Input Row
             Container(
-              margin: EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               child: Row(
                 children: [
                   Expanded(
                     child: TextField(
                       controller: _folderPathController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Folder Path',
                         border: OutlineInputBorder(),
                         hintText: 'Enter Folder Path',
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5), // Square border
-                      ),
+                          borderRadius: BorderRadius.circular(5)),
                     ),
                     onPressed: _pickFolder,
-                    child: Text("Pick Folder"),
+                    child: const Text("Pick Folder"),
                   )
                 ],
               ),
             ),
-            SizedBox(height: 20),
 
-            // Dynamic list of field entries
+            // ✨ Custom Prompt Input Card
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: TextField(
+                  controller: _customPromptController,
+                  maxLines: null,
+                  decoration: const InputDecoration(
+                    labelText: 'Extra Prompt for Sorting',
+                    hintText: 'e.g., Group files by deadlines or usage...',
+                  ),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 10),
+
+            // Dynamic field list
             Expanded(
               child: Container(
-                margin: EdgeInsets.all(20),
+                margin: const EdgeInsets.all(20),
                 child: ListView.builder(
                   itemCount: fieldControllers.length,
                   itemBuilder: (context, index) {
@@ -242,16 +248,14 @@ class _AddDocumentFormState extends State<AddDocumentForm> {
                     fieldControllers.add(TextEditingController());
                   });
                 },
-                icon: Icon(Icons.add_circle),
-                label: Text(
-                  'Add field',
-                ),
+                icon: const Icon(Icons.add_circle),
+                label: const Text('Add field'),
               ),
             ),
 
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
-            // Cancel and Save buttons
+            // Cancel and Save Buttons
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 0, 30, 20),
               child: Row(
@@ -262,73 +266,55 @@ class _AddDocumentFormState extends State<AddDocumentForm> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5))),
                     onPressed: () {
-                      // Handle cancel logic
                       Navigator.pop(context);
                     },
-                    child: Text('Cancel', style: TextStyle(color: Colors.grey)),
+                    child: const Text('Cancel',
+                        style: TextStyle(color: Colors.grey)),
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5), // Square border
-                      ),
+                          borderRadius: BorderRadius.circular(5)),
                     ),
                     onPressed: () async {
-                      if(_folderPathController.text != "%" &&
-                          _folderPathController.text.isNotEmpty
-                          && !isSubFolderOrSystemFolder(_folderPathController.text)
-                          && !isSoftwareInstallFolder(_folderPathController.text)
-                          && !isAppDevelopmentFolder(_folderPathController.text)
-                          && !isWebDevelopmentFolder(_folderPathController.text)
-                      ){
+                      final folderPath = _folderPathController.text;
+                      if (folderPath != "%" &&
+                          folderPath.isNotEmpty &&
+                          !isSubFolderOrSystemFolder(folderPath) &&
+                          !isSoftwareInstallFolder(folderPath) &&
+                          !isAppDevelopmentFolder(folderPath) &&
+                          !isWebDevelopmentFolder(folderPath)) {
+                        setState(() {
+                          dataSent = true;
+                        });
 
-                        if (_folderPathController.text != "%" &&
-                            _folderPathController.text.isNotEmpty) {
+                        await summarizeAllFilesInDirectory(folderPath);
 
-                          setState(() {
-                            dataSent = true; // Show progress indicator
-                          });
+                        setState(() {
+                          dataSent = false;
+                        });
 
-                          await summarizeAllFilesInDirectory(
-                              _folderPathController.text);
-
-                          setState(() {
-                            dataSent = false; // Hide progress indicator
-                          });
-
-                          // Navigate to the next screen if summary is successful
-                          if (treeGenerator != null) {
-                            // combinedSummariesJson = combinedSummariesJson?.replaceAll("```json", "").replaceAll("```", "replace");
-                            // print("combinerSummaries after replacement");
-                            // print(treeGenerator);
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => TreeStructureSelector(
-                                  dataList: treeGenerator!,
-                                  srcPath: widget.directoryPath,
-                                )));
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text("Summarization failed.")),
-                            );
-                          }
+                        if (treeGenerator != null) {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => TreeStructureSelector(
+                                    dataList: treeGenerator!,
+                                    srcPath: widget.directoryPath,
+                                  )));
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                                content: Text(
-                                    "Please enter or select a valid folder path.")),
+                                content: Text("Summarization failed.")),
                           );
                         }
-                      }
-                      else{
+                      } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                               content: Text(
-                                  "System Files and Software Files cannot be Manipulated ")),
+                                  "System Files and Software Files cannot be Manipulated")),
                         );
                       }
                     },
-                    child: Text("Save"),
+                    child: const Text("Save"),
                   )
                 ],
               ),
@@ -339,27 +325,24 @@ class _AddDocumentFormState extends State<AddDocumentForm> {
     );
   }
 
-  // Helper to build a row for each field
+  // Helper for field UI
   Widget _buildFieldRow(int index) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
-          // Field name input
           Expanded(
             child: TextField(
               controller: fieldControllers[index],
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Field',
               ),
             ),
           ),
-          SizedBox(width: 10),
-
-          // Remove field button
+          const SizedBox(width: 10),
           IconButton(
-            icon: Icon(Icons.remove_circle, color: Colors.red),
+            icon: const Icon(Icons.remove_circle, color: Colors.red),
             onPressed: () {
               setState(() {
                 fieldControllers.removeAt(index);

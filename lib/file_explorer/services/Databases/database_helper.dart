@@ -36,8 +36,7 @@ class DatabaseHelper {
 
   // Create the database table
   Future<void> _onCreate(Database db, int version) async {
-    await db.execute(
-        '''
+    await db.execute('''
       CREATE TABLE summaries (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         fileName TEXT UNIQUE NOT NULL,
@@ -46,12 +45,12 @@ class DatabaseHelper {
         suggested_file_name TEXT,
         lastModified DATETIME NOT NULL
       )
-      '''
-    );
+      ''');
   }
 
   // Retrieve all columns for a specific filePath
-  static Future<Map<String, dynamic>?> getAllColumns(Database database, String filePath) async {
+  static Future<Map<String, dynamic>?> getAllColumns(
+      Database database, String filePath) async {
     List<Map<String, dynamic>> results = await database.query(
       'summaries',
       where: 'filePath = ?',
@@ -67,11 +66,16 @@ class DatabaseHelper {
 
   // Insert or update a summary
   static Future<void> insertSummary(
-      Database database,String fileName, String filePath, String summary, String suggestedFileName, String lastModified) async {
+      Database database,
+      String fileName,
+      String filePath,
+      String summary,
+      String suggestedFileName,
+      String lastModified) async {
     await database.insert(
       'summaries',
       {
-        'fileName':fileName,
+        'fileName': fileName,
         'filePath': filePath,
         'summary': summary,
         'suggested_file_name': suggestedFileName,
@@ -98,7 +102,8 @@ class DatabaseHelper {
   }
 
   // Retrieve lastModified field
-  static Future<DateTime?> getLastModified(Database database, String filePath) async {
+  static Future<DateTime?> getLastModified(
+      Database database, String filePath) async {
     List<Map<String, dynamic>> results = await database.query(
       'summaries',
       columns: ['lastModified'],
@@ -123,12 +128,14 @@ class DatabaseHelper {
   }
 
   // Retrieve all summaries
-  static Future<List<Map<String, dynamic>>> getAllSummaries(Database database) async {
+  static Future<List<Map<String, dynamic>>> getAllSummaries(
+      Database database) async {
     return await database.query('summaries');
   }
 
   // Update an existing summary
-  static Future<void> updateSummary(Database database, String filePath, String newSummary) async {
+  static Future<void> updateSummary(
+      Database database, String filePath, String newSummary) async {
     await database.update(
       'summaries',
       {
@@ -153,7 +160,8 @@ class DatabaseHelper {
   Future<DateTime?> getLastModifiedDebug(String filePath) async {
     final db = DatabaseHelper.instance;
     Database databaseHelper = await db.getDatabase();
-    DateTime? lastModified = await DatabaseHelper.getLastModified(databaseHelper, filePath);
+    DateTime? lastModified =
+        await DatabaseHelper.getLastModified(databaseHelper, filePath);
     if (lastModified != null) {
       print('Last Modified for $filePath: $lastModified');
     } else {
@@ -165,33 +173,33 @@ class DatabaseHelper {
 
 // Usage Example
 // void main() async {
-  // final dbHelper = DatabaseHelper.instance;
-  // Database database = await dbHelper.getDatabase();
+// final dbHelper = DatabaseHelper.instance;
+// Database database = await dbHelper.getDatabase();
 
-  //   // Delete the entire summaries table
-  // await DatabaseHelper.deleteTable(database);
+//   // Delete the entire summaries table
+// await DatabaseHelper.deleteTable(database);
 
-  // // Insert summary
-  // await DatabaseHelper.insertSummary(database, '/path/to/file.txt', 'This is a summary of the file.', DateTime.now().toString());
-  //
-  // // Get summary
-  // String? summary = await DatabaseHelper.getSummary(database, '/path/to/file.txt');
-  // print('Retrieved Summary: $summary');
-  //
-  // // Get last modified date
-  // DateTime? lastModified = await DatabaseHelper.getLastModified(database, '/path/to/file.txt');
-  // print('Last Modified: $lastModified');
-  //
-  // // Update summary
-  // await DatabaseHelper.updateSummary(database, '/path/to/file.txt', 'Updated summary of the file.');
-  //
-  // // Get all summaries
-  // List<Map<String, dynamic>> allSummaries = await DatabaseHelper.getAllSummaries(database);
-  // print('All Summaries: $allSummaries');
-  //
-  // // Delete summary
-  // await DatabaseHelper.deleteSummary(database, '/path/to/file.txt');
-  //
-  // // Delete all summaries
-  // await DatabaseHelper.deleteAllSummaries(database);
+// // Insert summary
+// await DatabaseHelper.insertSummary(database, '/path/to/file.txt', 'This is a summary of the file.', DateTime.now().toString());
+//
+// // Get summary
+// String? summary = await DatabaseHelper.getSummary(database, '/path/to/file.txt');
+// print('Retrieved Summary: $summary');
+//
+// // Get last modified date
+// DateTime? lastModified = await DatabaseHelper.getLastModified(database, '/path/to/file.txt');
+// print('Last Modified: $lastModified');
+//
+// // Update summary
+// await DatabaseHelper.updateSummary(database, '/path/to/file.txt', 'Updated summary of the file.');
+//
+// // Get all summaries
+// List<Map<String, dynamic>> allSummaries = await DatabaseHelper.getAllSummaries(database);
+// print('All Summaries: $allSummaries');
+//
+// // Delete summary
+// await DatabaseHelper.deleteSummary(database, '/path/to/file.txt');
+//
+// // Delete all summaries
+// await DatabaseHelper.deleteAllSummaries(database);
 // }
