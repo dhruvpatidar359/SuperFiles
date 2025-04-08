@@ -22,6 +22,9 @@ class Loader {
       'AIzaSyDqXskrI3gT1axkZGkYRCBW8tBENIjlpNw', // Replace with your actual Google Generative AI API key
     ));
 
+    //To debug
+    // return "abc";
+
 
 
     final filteredItemsFromGemini = await fileRearranger.getRearrangeableItems(folderPath);

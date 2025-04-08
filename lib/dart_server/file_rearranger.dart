@@ -21,12 +21,15 @@ You are an AI-based file organizer.
 Here is a folder structure as JSON. Your job is to return a list of files/folders that can be **rearranged**.
 
 Rules:
-1. Ignore and skip any files/folders that are part of structured projects like Flutter, React, Node.js, etc.
+1. Ignore and skip any files/folders that are inside of structured projects like Flutter, React, Node.js, etc. For structured projects folder return its summary in following format.
+  - "filePath": full absolute path
+   - "fileName": file name
+   - "content": "Summary of the folder"
 2. For any rearrangeable **file**, return an object with:
    - "filePath": full absolute path
    - "fileName": file name
    - "content": "file"
-3. For a **folder**, only return its summary *if its inner contents should NOT be rearranged*. In that case:
+3. For a **folder**, only return its summary *if its inner contents should NOT be rearranged* Example of this type of folders are like Android Project, Flutter Project, etc. In that case:
    - "content": one-line summary like "contains backup logs"
 4. If a folder contains rearrangeable files, don't return the folder itself—just return its children.
 
