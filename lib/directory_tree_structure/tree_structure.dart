@@ -67,6 +67,7 @@ class _TreeStructureState extends State<TreeStructure> {
       Node currentNode = root;
 
       for (String segment in segments) {
+        if(segment == "") continue;
         Node? child = currentNode.children.firstWhere(
           (child) => child.name == segment,
           orElse: () => Node(id: segment.hashCode, name: segment, summary: ""),
@@ -136,8 +137,8 @@ class _TreeStructureState extends State<TreeStructure> {
       String summary = fileEntry["summary"];
 
       // Combine the base path with src_path and dst_path
-      String absoluteSrcPath = '$basePath/$srcPath';
-      String absoluteDstPath = '$basePath/$dstPath/$suggestedFileName'.replaceAll("//", "/");
+      String absoluteSrcPath = '$srcPath';
+      String absoluteDstPath = '$dstPath/$suggestedFileName'.replaceAll("//", "/");
 
       print("absoluteDstPath $absoluteDstPath");
 
@@ -161,7 +162,7 @@ class _TreeStructureState extends State<TreeStructure> {
 
       // Storing the summary in the database.
 
-      saveSummary(srcPath, absoluteDstPath, summary, suggestedFileName);
+      // saveSummary(srcPath, absoluteDstPath, summary, suggestedFileName);
 
       getSummary(absoluteDstPath);
     }

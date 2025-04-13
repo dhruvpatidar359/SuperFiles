@@ -62,7 +62,9 @@ ${jsonEncode(folderJson)}
       final decoded = jsonDecode(text.trim());
       print("decoded" + decoded.toString());
       if (decoded is List) {
-        return List<Map<String, dynamic>>.from(decoded);
+        var temp = List<Map<String, dynamic>>.from(decoded);
+        print("File arranger result " + temp.toString());
+        return temp;
       } else {
         throw Exception('Unexpected format from Gemini.');
       }

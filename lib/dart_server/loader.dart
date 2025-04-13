@@ -60,9 +60,10 @@ class Loader {
       } else {
         // It's a folder – use Gemini's description directly
         allSummaries.add({
-          "filePath": filePath,
-          "fileName": fileName,
-          "content": content, // Gemini's description
+          "original_file_name": fileName,
+          "suggested_file_name": fileName,
+          "original_file_path" : filePath,
+          "summary": content, // Gemini's description
         });
 
         print("Using Gemini description for folder: $filePath");

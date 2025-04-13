@@ -28,31 +28,31 @@ class Summarizer {
         final fileStats = await File(filePath).stat();
         final lastModified = fileStats.modified;
 
-        Map<String,
-            dynamic>? alreadyExistingFileData = await getAllColumnsValues(
-            filePath);
-        if (alreadyExistingFileData != null) {
-          String? lastSummaryGenerated = alreadyExistingFileData['lastModified'];
-          DateTime? lastSummaryGeneratedInDateTime = DateTime.tryParse(
-              lastSummaryGenerated ?? "");
-
-          if (lastSummaryGeneratedInDateTime != null &&
-              (lastSummaryGeneratedInDateTime.isAfter(lastModified) ||
-                  lastSummaryGeneratedInDateTime.isAtSameMomentAs(
-                      lastModified))) {
-            print("**************************");
-            print("Summary already exists for $filePath ($fileName)");
-            print("**************************");
-
-            summariesList.add({
-              "original_file_name": alreadyExistingFileData["original_file_name"],
-              "suggested_file_name": alreadyExistingFileData["suggested_file_name"],
-              "summary": alreadyExistingFileData["summary"]
-            });
-
-            continue; // Skip summarizing
-          }
-        }
+        // Map<String,
+        //     dynamic>? alreadyExistingFileData = await getAllColumnsValues(
+        //     filePath);
+        // if (alreadyExistingFileData != null) {
+        //   String? lastSummaryGenerated = alreadyExistingFileData['lastModified'];
+        //   DateTime? lastSummaryGeneratedInDateTime = DateTime.tryParse(
+        //       lastSummaryGenerated ?? "");
+        //
+        //   if (lastSummaryGeneratedInDateTime != null &&
+        //       (lastSummaryGeneratedInDateTime.isAfter(lastModified) ||
+        //           lastSummaryGeneratedInDateTime.isAtSameMomentAs(
+        //               lastModified))) {
+        //     print("**************************");
+        //     print("Summary already exists for $filePath ($fileName)");
+        //     print("**************************");
+        //
+        //     summariesList.add({
+        //       "original_file_name": alreadyExistingFileData["original_file_name"],
+        //       "suggested_file_name": alreadyExistingFileData["suggested_file_name"],
+        //       "summary": alreadyExistingFileData["summary"]
+        //     });
+        //
+        //     continue; // Skip summarizing
+        //   }
+        // }
 
         print("Summarizing new/updated file: $filePath ($fileName)");
 
@@ -62,12 +62,14 @@ You will be provided with the contents of a file along with its metadata. Provid
 Return in JSON format:
 ```{
    "original_file_name" : "original name of the file as given by the user",
+   "original_file_path" : "original path of the file as given by the user"
    "suggested_file_name": "suggest a file name that best describes it",
    "summary": "summary of the content"
 }```
 
 Below is the file's data:
 $fileName
+$filePath
 $content
 ''';
 
@@ -97,8 +99,7 @@ $content
         String suggestedFileName = summaryMap["suggested_file_name"];
         String originalFileName = summaryMap["original_file_name"];
 
-        saveSummary(
-            originalFileName, filePath, summary, suggestedFileName);
+        // saveSummary(originalFileName, filePath, summary, suggestedFileName);
 
         summariesList.add(summaryMap);
       }
