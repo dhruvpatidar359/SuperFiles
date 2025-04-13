@@ -100,6 +100,11 @@ class FileItemCard extends StatelessWidget {
                       value: 'organize',
                       child: Text('Organize'),
                     ),
+                  if (entity is Directory)
+                    const PopupMenuItem<String>(
+                      value: 'optimize',
+                      child: Text('Optimize'),
+                    ),
                   const PopupMenuItem<String>(
                     value: 'move',
                     child: Text('Move'),

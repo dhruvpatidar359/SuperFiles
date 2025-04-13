@@ -48,8 +48,33 @@ class DatabaseHelper {
       )
       '''
     );
+
+    // New table: analyzed files
+    db.execute('''
+          CREATE TABLE folders(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            path TEXT NOT NULL UNIQUE
+          )
+    ''');
+  }
+  /////////////////////////////////////////////////////////////////
+  //writing the functions for optimize
+  static Future<List<String>> getAllFolders(Database db) async {
+
+    final result = await db.query('folders');
+    return result.map((e) => e['path'] as String).toList();
   }
 
+  static Future<void> insertFolder(Database db,String path) async {
+
+    await db.insert('folders', {'path': path}, conflictAlgorithm: ConflictAlgorithm.ignore);
+  }
+
+  static Future<void> deleteFolder(Database db, String path) async {
+
+    await db.delete('folders', where: 'path = ?', whereArgs: [path]);
+  }
+  ///////////////////////////////////////////////////////////////////
   // Retrieve all columns for a specific filePath
   static Future<Map<String, dynamic>?> getAllColumns(Database database, String filePath) async {
     List<Map<String, dynamic>> results = await database.query(
@@ -161,6 +186,60 @@ class DatabaseHelper {
     }
     return lastModified;
   }
+  // Add a folder to be monitored
+  static Future<void> addMonitoredFolder(Database db, String folderPath) async {
+    await db.insert(
+      'monitored_folders',
+      {'folder_path': folderPath},
+      conflictAlgorithm: ConflictAlgorithm.ignore,
+    );
+  }
+
+  // Get all monitored folders
+  static Future<List<Map<String, dynamic>>> getAllMonitoredFolders(Database db) async {
+    return await db.query('monitored_folders');
+  }
+
+  // Insert analyzed file entry
+  static Future<void> insertAnalyzedFile(
+      Database db,
+      String filePath,
+      int folderId,
+      DateTime lastModified,
+      int sizeInBytes,
+      String status,
+      DateTime scannedAt,
+      ) async {
+    await db.insert(
+      'analyzed_files',
+      {
+        'file_path': filePath,
+        'folder_id': folderId,
+        'last_modified': lastModified.toIso8601String(),
+        'size_in_bytes': sizeInBytes,
+        'status': status,
+        'last_scanned': scannedAt.toIso8601String(),
+      },
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+
+  // Update file status (e.g., archived/deleted)
+  static Future<void> updateFileStatus(Database db, String filePath, String newStatus) async {
+    await db.update(
+      'analyzed_files',
+      {'status': newStatus},
+      where: 'file_path = ?',
+      whereArgs: [filePath],
+    );
+  }
+
+  // Delete an analyzed file entry
+  static Future<void> deleteAnalyzedFile(Database db, String filePath) async {
+    await db.delete('analyzed_files', where: 'file_path = ?', whereArgs: [filePath]);
+  }
+
 }
 
 // Usage Example

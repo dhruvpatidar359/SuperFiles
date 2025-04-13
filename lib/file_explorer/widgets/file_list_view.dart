@@ -79,6 +79,10 @@ class FileListView extends StatelessWidget {
                     child: Text('Organize'),
                   ),
                 const PopupMenuItem<String>(
+                  value: 'optimize',
+                  child: Text('Optimize'),
+                ),
+                const PopupMenuItem<String>(
                   value: 'move',
                   child: Text('Move'),
                 ),

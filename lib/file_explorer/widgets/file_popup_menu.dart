@@ -29,10 +29,21 @@ class FilePopupMenu {
           ),
         ),
         PopupMenuItem<String>(
+          value: 'Optimize',
+          child: ListTile(
+            leading: Icon(Icons.drive_file_move),
+            title: Text('Move'),
+            onTap: () {
+              Navigator.pop(context, 'move');
+              onSelect('optimize');
+            },
+          ),
+        ),
+        PopupMenuItem<String>(
           value: 'rename',
           child: ListTile(
             leading: Icon(Icons.edit),
-            title: Text('Rename'),
+            title: Text('Renme'),
             onTap: () {
               Navigator.pop(context, 'rename');
               onSelect('rename');

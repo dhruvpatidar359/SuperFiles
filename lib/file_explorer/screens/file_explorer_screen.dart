@@ -7,6 +7,8 @@ import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:superfiles/directory_tree_structure/file_classifier_selector_screen.dart';
+import 'package:superfiles/file_explorer/services/Archive%20Optimization%20Services/folder_manager_ui.dart';
+import 'package:superfiles/file_explorer/services/Archive%20Optimization%20Services/optimize_folder.dart';
 import 'package:superfiles/file_explorer/services/File%20System%20Services/file_system_service.dart';
 import 'package:watcher/watcher.dart';
 import '../widgets/file_list_view.dart';
@@ -218,6 +220,19 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
           );
         }
         break;
+      case 'optimize':
+        if (entity is Directory) {
+          organizeAndArchiveFolder(entity.path).then(
+                (value) {
+              _loadFilesAndFolders();
+            },
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Optimize is only available for folders.')),
+          );
+        }
+        break;
       case 'move':
         await FileSystemService.handleMove(context, entity).then(
               (value) {
@@ -287,6 +302,7 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
       appBar: AppBar(
         actions: [
           IconButton(
+            tooltip: isCardView ? 'Switch to List View' : 'Switch to Grid View',
             icon: Icon(isCardView ? Icons.view_list : Icons.grid_view),
             onPressed: () {
               setState(() {
@@ -294,25 +310,64 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
               });
             },
           ),
-          Row(
-            children: [
-              const Text('Auto-Organize'),
-              Switch(
-                value: isAutoOrganizeEnabled,
-                onChanged: (value) {
-                  setState(() {
-                    isAutoOrganizeEnabled = value;
-                    if (isAutoOrganizeEnabled) {
-                      _startWatching();
-                    } else {
-                      _stopWatching();
-                    }
-                  });
+          const SizedBox(width: 8),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              children: [
+                Icon(Icons.sync_alt, color: Theme.of(context).colorScheme.primary),
+                const SizedBox(width: 6),
+                Text(
+                  'Auto-Organize',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
+                    color: Theme.of(context).textTheme.bodyMedium?.color,
+                  ),
+                ),
+                const SizedBox(width: 6),
+                Switch.adaptive(
+                  activeColor: Theme.of(context).colorScheme.primary,
+                  value: isAutoOrganizeEnabled,
+                  onChanged: (value) {
+                    setState(() {
+                      isAutoOrganizeEnabled = value;
+                      value ? _startWatching() : _stopWatching();
+                    });
+                  },
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Tooltip(
+              message: 'Open Folder Optimizer',
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const FolderManager()),
+                  );
                 },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey,
+                  foregroundColor: Colors.white,
+                  elevation: 2,
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                icon: const Icon(Icons.auto_fix_high, size: 20),
+                label: const Text(
+                  'Optimize',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                ),
               ),
-            ],
+            ),
           ),
         ],
+
         title: Text('Super Files'),
       ),
       body: Row(
